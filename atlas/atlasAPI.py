@@ -5,8 +5,12 @@ from flask import jsonify, Blueprint, request, current_app
 from werkzeug.wrappers import Response
 from . import utils
 from .modeles.repositories import (
-    vmSearchTaxonRepository, vmObservationsRepository,
-    vmObservationsMaillesRepository, vmMedias, vmCommunesRepository
+    vmSearchTaxonRepository, 
+    vmObservationsRepository,
+    vmObservationsMaillesRepository, 
+    vmObservationsEspecesMaillesGlobalRepository, 
+    vmMedias, 
+    vmCommunesRepository
 )
 from .configuration import config
 
@@ -50,6 +54,12 @@ def getObservationsMailleAPI(cd_ref):
     connection.close()
     return jsonify(observations)
 
+@api.route('/observationsEspecesMailleGlobal', methods=['GET'])
+def getObservationsEspecesMailleGlobalAPI():
+    connection = utils.engine.connect()
+    observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds(connection)
+    connection.close()
+    return jsonify(observations)
 
 @api.route('/observationsPoint/<int:cd_ref>', methods=['GET'])
 def getObservationsPointAPI(cd_ref):
