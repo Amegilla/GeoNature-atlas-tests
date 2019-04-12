@@ -278,9 +278,9 @@ def ficheEspece(cd_ref):
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-    print '#######################################'
-    print years
-    print '#######################################'
+    print('#######################################')
+    print(years)
+    print('#######################################')
     connection.close()
     session.close()
 
