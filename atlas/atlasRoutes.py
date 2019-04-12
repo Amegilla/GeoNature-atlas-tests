@@ -7,6 +7,7 @@ from .modeles.repositories import (
     vmObservationsRepository,
     vmAltitudesRepository,
     vmMoisRepository,
+    vmYearRepository,
     vmTaxrefRepository,
     vmCommunesRepository,
     vmObservationsMaillesRepository,
@@ -207,7 +208,7 @@ def portail_loutre():
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-
+    
     connection.close()
     session.close()
 
@@ -242,6 +243,7 @@ def ficheEspece(cd_ref):
     taxon = vmTaxrefRepository.searchEspece(connection, cd_ref)
     altitudes = vmAltitudesRepository.getAltitudesChilds(connection, cd_ref)
     months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
+    years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
     synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
     communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
     taxonomyHierarchy = vmTaxrefRepository.getAllTaxonomy(session, cd_ref)
@@ -276,7 +278,7 @@ def ficheEspece(cd_ref):
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-
+    
     connection.close()
     session.close()
 
@@ -288,6 +290,7 @@ def ficheEspece(cd_ref):
         cd_ref=cd_ref,
         altitudes=altitudes,
         months=months,
+        years=years,
         synonyme=synonyme,
         communes=communes,
         taxonomyHierarchy=taxonomyHierarchy,

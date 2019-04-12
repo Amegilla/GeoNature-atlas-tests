@@ -560,6 +560,10 @@
                 -->
                 <h3 class="text-center">Observations mensuelles</h3>
                 <div id="phenologyChart"></div>
+                {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
+                    <h3 class="text-center">Observations Annuelles</h3>
+                    <div id="yearlyChart"></div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -573,6 +577,7 @@
     <script>
             var dataset = {{altitudes|tojson}};
             var months = {{months|tojson}};
+            var years = {{years|tojson}};
             var observationsPoint = [];
             var observationsMaille = [];
             var listeTaxonsSearch = {{listeTaxonsSearch|tojson}};
