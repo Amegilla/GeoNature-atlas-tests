@@ -560,8 +560,10 @@
                 -->
                 <h3 class="text-center">Observations mensuelles</h3>
                 <div id="phenologyChart"></div>
-                <h3 class="text-center">Observations Annuelles</h3>
-                <div id="yearlyChart"></div>
+                {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
+                    <h3 class="text-center">Observations Annuelles</h3>
+                    <div id="yearlyChart"></div>
+                {% endif %}
             </div>
         </div>
     </div>
