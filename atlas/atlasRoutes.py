@@ -7,6 +7,7 @@ from .modeles.repositories import (
     vmObservationsRepository,
     vmAltitudesRepository,
     vmMoisRepository,
+    vmYearRepository,
     vmTaxrefRepository,
     vmCommunesRepository,
     vmObservationsMaillesRepository,
