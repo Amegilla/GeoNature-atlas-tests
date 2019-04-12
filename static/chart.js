@@ -33,8 +33,8 @@ svgbis=d3.selectAll("svg");
 var yearlyChart =  Morris.Bar({
                 element:"yearlyChart",
                 data : years,
-                xkey: "Années",
-                ykeys : ["value"],
+                xkey: ["year"],
+                ykeys : ["nb_obs"],
                 labels: ['Observation(s)'],
                 xLabelAngle: 60,
                 hideHover: 'auto',
