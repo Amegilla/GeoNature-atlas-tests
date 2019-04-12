@@ -29,6 +29,18 @@ svgbis=d3.selectAll("svg");
             .style("text-anchor", "end")
             .text("Altitude(m)");
 
+            
+var yearlyChart =  Morris.Bar({
+                element:"yearlyChart",
+                data : years,
+                xkey: "Années",
+                ykeys : ["value"],
+                labels: ['Observation(s)'],
+                xLabelAngle: 60,
+                hideHover: 'auto',
+                resize: true,
+                axes: true,
+            });
 
 var phenologyChart =  Morris.Bar({
                         element:"phenologyChart",
@@ -41,6 +53,7 @@ var phenologyChart =  Morris.Bar({
                         resize: true,
                         axes: true,
                     });
+
 svgContainer = d3.selectAll("svg");
     svgContainer.append("g")
         .append("text")
