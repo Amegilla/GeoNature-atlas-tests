@@ -208,7 +208,7 @@ def portail_loutre():
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-
+    
     connection.close()
     session.close()
 
@@ -278,7 +278,9 @@ def ficheEspece(cd_ref):
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-
+    print '#######################################'
+    print years
+    print '#######################################'
     connection.close()
     session.close()
 
