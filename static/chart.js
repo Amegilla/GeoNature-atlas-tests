@@ -1,19 +1,19 @@
 
 // alti graph
-Morris.Bar({
-            element:"altiChart",
-            data : dataset,
-            xkey: "altitude",
-            ykeys : ["value"],
-            labels: ['Observation(s)'],
-            xLabelAngle: 45,
-            hideHover: 'auto',
-            resize: true,
-            axes: true,
-            gridIntegers: true
-            /*yLabelFormat: function(y){return y != Math.round(y)?'':y;}*/
-/*            horizontal: true
-*/        });
+// Morris.Bar({
+//             element:"altiChart",
+//             data : dataset,
+//             xkey: "altitude",
+//             ykeys : ["value"],
+//             labels: ['Observation(s)'],
+//             xLabelAngle: 45,
+//             hideHover: 'auto',
+//             resize: true,
+//             axes: true,
+//             gridIntegers: true
+//             /*yLabelFormat: function(y){return y != Math.round(y)?'':y;}*/
+// /*            horizontal: true
+// */        });
 
 
 

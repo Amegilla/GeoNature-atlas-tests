@@ -1,0 +1,91 @@
+/* Insert your custom override CSS in this file */
+ 
+@font-face {
+	font-family: 'Dosis';
+	src:url('fonts/Dosis-Medium.otf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Aldo';
+	src:url('fonts/Aldo_PC.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.navbar-collapse {
+    margin-top: 5px;
+}
+
+.navbar-default {
+    background-color: #fff;
+}
+
+.corner-ribbon.red {
+    background: #e43;
+}
+.corner-ribbon.top-right {
+    top: 40px;
+    right: -65px;
+    left: auto;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.corner-ribbon.shadow {
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
+}
+.corner-ribbon.sticky {
+    position: fixed;
+}
+.corner-ribbon {
+    width: 300px;
+    background: #e43;
+    position: absolute;
+    top: 25px;
+    left: -50px;
+    text-align: center;
+    line-height: 50px;
+	  padding-left:15px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    z-index: 9999;
+}
+
+/*** slider slick page acceuil****/
+.slidepartenaireindex{
+  width: 280px;
+}
+
+.slick-prev::before, 
+.slick-next::before {
+    color: #1e1b0c;
+  } 
+
+/*** style navbar ****/
+/*** couleur titre ****/
+.navbar-default .navbar-brand {
+    color: #c8b8ab;
+}
+/*** couleur titre hover ****/
+.navbar-default .navbar-brand:hover {
+    color: #fff;
+}
+/*** taille titre****/
+.titreAppli {
+    font-size: 26px;
+    font-family: Dosis, Helvetica, sans-serif;
+}
+/*** couleur fond navbar ****/
+.navbar-default {
+    background-color: #8d5534;
+}
+/*** couleur fond navbar veticale ****/
+#sideBar {
+    background-color: #8d5534;
+}
+
+
+

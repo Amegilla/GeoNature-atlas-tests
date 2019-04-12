@@ -3,7 +3,6 @@ tests/*
 config/settings.ini
 config/config.py
 log/*
-static/conf/custom.js
 atlas/debug.py
 data/ref/emprise_territoire.*
 data/ref/L93*
@@ -23,16 +22,6 @@ data/ref/communes.shx
 data/ref/communes.dbf
 data/ref/communes.prj
 
-static/custom/territoire.json
-static/custom/glossaire.json
-static/custom/custom.css
-static/custom/maps-custom.js
-static/custom/images/*
-static/custom/templates/presentation.html
-static/custom/templates/footer.html
-static/custom/templates/introduction.html
-static/custom/templates/credits.html
-static/custom/templates/mentions-legales.html
 
 data/ref/communes.dbf
 data/ref/communes.prj
