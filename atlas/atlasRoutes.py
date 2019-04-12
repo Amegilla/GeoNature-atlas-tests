@@ -119,8 +119,120 @@ def index():
         customStat=customStat,
         customStatMedias=customStatMedias,
     )
+################################################################################
+
+@main.route("/portail_chiro", methods=["GET", "POST"])
+def portail_chiro():
+    session = utils.loadSession()
+    connection = utils.engine.connect()
+
+    if current_app.config["AFFICHAGE_MAILLE"]:
+        observations = vmObservationsMaillesRepository.lastObservationsMailles(
+            connection,
+            current_app.config["NB_DAY_LAST_OBS"],
+            current_app.config["ATTR_MAIN_PHOTO"],
+        )
+    else:
+        observations = vmObservationsRepository.lastObservations(
+            connection,
+            current_app.config["NB_DAY_LAST_OBS"],
+            current_app.config["ATTR_MAIN_PHOTO"],
+        )
+
+    mostViewTaxon = vmTaxonsMostView.mostViewTaxon(connection)
+    stat = vmObservationsRepository.statIndex(connection)
+    customStat = vmObservationsRepository.genericStat(
+        connection, current_app.config["RANG_STAT"]
+    )
+    customStatMedias = vmObservationsRepository.genericStatMedias(
+        connection, current_app.config["RANG_STAT"]
+    )
+
+    connection.close()
+    session.close()
+
+    return render_template(
+        "templates/portail_chiro.html",
+        observations=observations,
+        mostViewTaxon=mostViewTaxon,
+        stat=stat,
+        customStat=customStat,
+        customStatMedias=customStatMedias,
+    )
+#-------------------------------------------------------------------------------#
+@main.route("/portail_loutre", methods=["GET", "POST"])
+def portail_loutre():
+    session = utils.loadSession()
+    connection = utils.engine.connect()
+
+    cd_ref = int(60630)
+    taxon = vmTaxrefRepository.searchEspece(connection, cd_ref)
+    altitudes = vmAltitudesRepository.getAltitudesChilds(connection, cd_ref)
+    months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
+    synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
+    communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
+    taxonomyHierarchy = vmTaxrefRepository.getAllTaxonomy(session, cd_ref)
+    firstPhoto = vmMedias.getFirstPhoto(
+        connection, cd_ref, current_app.config["ATTR_MAIN_PHOTO"]
+    )
+    photoCarousel = vmMedias.getPhotoCarousel(
+        connection, cd_ref, current_app.config["ATTR_OTHER_PHOTO"]
+    )
+    videoAudio = vmMedias.getVideo_and_audio(
+        connection,
+        cd_ref,
+        current_app.config["ATTR_AUDIO"],
+        current_app.config["ATTR_VIDEO_HEBERGEE"],
+        current_app.config["ATTR_YOUTUBE"],
+        current_app.config["ATTR_DAILYMOTION"],
+        current_app.config["ATTR_VIMEO"],
+    )
+    articles = vmMedias.getLinks_and_articles(
+        connection,
+        cd_ref,
+        current_app.config["ATTR_LIEN"],
+        current_app.config["ATTR_PDF"],
+    )
+    taxonDescription = vmCorTaxonAttribut.getAttributesTaxon(
+        connection,
+        cd_ref,
+        # current_app.config["ATTR_DESC"],
+        # current_app.config["ATTR_COMMENTAIRE"],
+        # current_app.config["ATTR_MILIEU"],
+        # current_app.config["ATTR_CHOROLOGIE"],
+        current_app.config["ATTR_DESC"],
+        current_app.config["ATTR_HABITATS"],
+        current_app.config["ATTR_AIRE"],
+        current_app.config["ATTR_POP"],
+        current_app.config["ATTR_MENACES"],
+    )
+    observers = vmObservationsRepository.getObservers(connection, cd_ref)
+
+    connection.close()
+    session.close()
+
+    return render_template(
+        "templates/ficheEspece_loutre.html",
+        taxon=taxon,
+        listeTaxonsSearch=[],
+        observations=[],
+        cd_ref=cd_ref,
+        altitudes=altitudes,
+        months=months,
+        synonyme=synonyme,
+        communes=communes,
+        taxonomyHierarchy=taxonomyHierarchy,
+        firstPhoto=firstPhoto,
+        photoCarousel=photoCarousel,
+        videoAudio=videoAudio,
+        articles=articles,
+        taxonDescription=taxonDescription,
+        observers=observers,
+    )
+#-------------------------------------------------------------------------------#
 
 
+################################################################################
 @main.route("/espece/<int:cd_ref>", methods=["GET", "POST"])
 def ficheEspece(cd_ref):
     session = utils.loadSession()
@@ -158,9 +270,10 @@ def ficheEspece(cd_ref):
         connection,
         cd_ref,
         current_app.config["ATTR_DESC"],
-        current_app.config["ATTR_COMMENTAIRE"],
-        current_app.config["ATTR_MILIEU"],
-        current_app.config["ATTR_CHOROLOGIE"],
+        current_app.config["ATTR_HABITATS"],
+        current_app.config["ATTR_AIRE"],
+        current_app.config["ATTR_POP"],
+        current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
 

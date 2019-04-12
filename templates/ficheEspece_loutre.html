@@ -446,33 +446,33 @@
                                 {% endif %}
                         </div>
                         <div id="habitats" class="tab-pane fade">
-                                {% if taxonDescription.habitats == None %}
-                                    Non renseigné pour le moment
-                                {% else %}
-                                {{taxonDescription.habitats}}
-                                {% endif %}
-                        </div>
-                        <div id="aire" class="tab-pane fade">
-                                {% if taxonDescription.aire == None %}
-                                    Non renseignée pour le moment
-                                {% else %}
-                                    {{taxonDescription.aire}}
-                                {% endif %}
-                        </div>
-                        <div id="population" class="tab-pane fade">
-                            {% if taxonDescription.population == None %}
+                            {% if taxonDescription.habitats == None %}
+                                Non renseigné pour le moment
+                            {% else %}
+                            {{taxonDescription.habitats}}
+                            {% endif %}
+                    </div>
+                    <div id="aire" class="tab-pane fade">
+                            {% if taxonDescription.aire == None %}
                                 Non renseignée pour le moment
                             {% else %}
-                                {{taxonDescription.population}}
+                                {{taxonDescription.aire}}
                             {% endif %}
-                        </div>
-                        <div id="menaces" class="tab-pane fade">
-                            {% if taxonDescription.menaces == None %}
-                                Non renseignée pour le moment
-                            {% else %}
-                                {{taxonDescription.menaces}}
-                            {% endif %}
-                        </div>
+                    </div>
+                    <div id="population" class="tab-pane fade">
+                        {% if taxonDescription.population == None %}
+                            Non renseignée pour le moment
+                        {% else %}
+                            {{taxonDescription.population}}
+                        {% endif %}
+                    </div>
+                    <div id="menaces" class="tab-pane fade">
+                        {% if taxonDescription.menaces == None %}
+                            Non renseignée pour le moment
+                        {% else %}
+                            {{taxonDescription.menaces}}
+                        {% endif %}
+                    </div>
                         <div id="synonymes" class="tab-pane fade">
                             {% if synonyme | length == 1 %}
                                 Aucun synonyme pour ce taxon

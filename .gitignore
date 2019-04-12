@@ -6,6 +6,7 @@ log/*
 static/conf/custom.js
 atlas/debug.py
 data/ref/emprise_territoire.*
+data/ref/L93*
 static/territoire.json
 static/images/ancien
 atlas/configuration/config.py
@@ -14,6 +15,8 @@ robots.txt
 .htaccess
 venv/*
 venv3/*
+venv_atlas
+data/*a_rejouer.sql
 
 data/ref/communes.shp
 data/ref/communes.shx
