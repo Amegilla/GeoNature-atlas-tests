@@ -2,16 +2,7 @@
  
 @font-face {
 	font-family: 'Dosis';
-	src:url('fonts/Dosis-Medium.otf');
-	font-weight: normal;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'Aldo';
-	src:url('fonts/Aldo_PC.ttf');
-	font-weight: normal;
-	font-style: normal;
+	src:url('../css/fonts/Dosis-Medium.otf');
 }
 
 .navbar-collapse {
