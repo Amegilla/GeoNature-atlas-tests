@@ -29,18 +29,20 @@ svgbis=d3.selectAll("svg");
             .style("text-anchor", "end")
             .text("Altitude(m)");
 
-            
-var yearlyChart =  Morris.Bar({
-                element:"yearlyChart",
-                data : years,
-                xkey: ["year"],
-                ykeys : ["nb_obs"],
-                labels: ['Observation(s)'],
-                xLabelAngle: 60,
-                hideHover: 'auto',
-                resize: true,
-                axes: true,
-            });
+
+if($('#yearlyChart')[0]) {
+  var yearlyChart =  Morris.Bar({
+                  element:"yearlyChart",
+                  data : years,
+                  xkey: ["year"],
+                  ykeys : ["nb_obs"],
+                  labels: ['Observation(s)'],
+                  xLabelAngle: 60,
+                  hideHover: 'auto',
+                  resize: true,
+                  axes: true,
+              });
+}
 
 var phenologyChart =  Morris.Bar({
                         element:"phenologyChart",
