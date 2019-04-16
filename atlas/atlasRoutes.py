@@ -243,7 +243,12 @@ def ficheEspece(cd_ref):
     taxon = vmTaxrefRepository.searchEspece(connection, cd_ref)
     altitudes = vmAltitudesRepository.getAltitudesChilds(connection, cd_ref)
     months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
-    years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
+    
+    if current_app.config["AFFICHAGE_GRAPH_ANNEE_ESPECE"]:
+        years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
+    else :
+        years = None
+
     synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
     communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
     taxonomyHierarchy = vmTaxrefRepository.getAllTaxonomy(session, cd_ref)
