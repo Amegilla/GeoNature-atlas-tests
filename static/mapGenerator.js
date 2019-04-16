@@ -1,10 +1,12 @@
 function generateMap() {
   // Map initialization
   firstMapTile = L.tileLayer(configuration.MAP.FIRST_MAP.url, {
-    attribution: configuration.MAP.FIRST_MAP.attribution
+    attribution: configuration.MAP.FIRST_MAP.attribution,
+    minZoom: configuration.MAP.FIRST_MAP.minzoom
   });
   orthoMap = L.tileLayer(configuration.MAP.SECOND_MAP.url, {
-    attribution: configuration.MAP.SECOND_MAP.attribution
+    attribution: configuration.MAP.SECOND_MAP.attribution,
+    minZoom: configuration.MAP.SECOND_MAP.minzoom
   });
 
   baseMap = {};
@@ -29,11 +31,13 @@ function generateMap() {
   // Add limits of the territory to the map
   $(document).ready(function() {
     $.getJSON(url_limit_territory, function(json) {
-      L.geoJson(json, {
-        style: territoryStyle
-      }).addTo(map);
+        var territoryLayer = L.geoJson(json, {
+            style: territoryStyle
+        });
+        territoryLayer.addTo(map);
+        map.setMaxBounds(territoryLayer.getBounds());
     });
-  });
+});
 
   // 'Google-like' baseLayer controler
 
