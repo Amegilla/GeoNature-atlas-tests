@@ -10,7 +10,8 @@ from .modeles.repositories import (
     vmObservationsMaillesRepository, 
     vmObservationsEspecesMaillesGlobalRepository, 
     vmMedias, 
-    vmCommunesRepository
+    vmCommunesRepository,
+    vmMaillesRepository
 )
 from .configuration import config
 
@@ -35,6 +36,13 @@ def searchCommuneAPI():
     results = vmCommunesRepository.getCommunesSearch(session, search, limit)
     return jsonify(results)
 
+@api.route('/searchMaille/', methods=['GET'])
+def searchMailleAPI():
+    session = utils.loadSession()
+    search = request.args.get('search')
+    limit = request.args.get('limit', 50)
+    results = vmMaillesRepository.getMaillesSearch(session, search, limit)
+    return jsonify(results)
 
 @api.route('/observationsMailleAndPoint/<int:cd_ref>', methods=['GET'])
 def getObservationsMailleAndPointAPI(cd_ref):

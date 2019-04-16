@@ -10,6 +10,7 @@ from .modeles.repositories import (
     vmYearRepository,
     vmTaxrefRepository,
     vmCommunesRepository,
+    vmMaillesRepository,
     vmObservationsMaillesRepository,
     vmMedias,
     vmCorTaxonAttribut,
@@ -243,7 +244,7 @@ def ficheEspece(cd_ref):
     taxon = vmTaxrefRepository.searchEspece(connection, cd_ref)
     altitudes = vmAltitudesRepository.getAltitudesChilds(connection, cd_ref)
     months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
-    
+
     if current_app.config["AFFICHAGE_GRAPH_ANNEE_ESPECE"]:
         years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
     else :
@@ -251,6 +252,7 @@ def ficheEspece(cd_ref):
 
     synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
     communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
+    mailles = vmMaillesRepository.getMaillesObservationsChilds(connection, cd_ref)
     taxonomyHierarchy = vmTaxrefRepository.getAllTaxonomy(session, cd_ref)
     firstPhoto = vmMedias.getFirstPhoto(
         connection, cd_ref, current_app.config["ATTR_MAIN_PHOTO"]
@@ -298,6 +300,7 @@ def ficheEspece(cd_ref):
         years=years,
         synonyme=synonyme,
         communes=communes,
+        mailles=mailles,
         taxonomyHierarchy=taxonomyHierarchy,
         firstPhoto=firstPhoto,
         photoCarousel=photoCarousel,
