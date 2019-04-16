@@ -72,11 +72,11 @@
 						<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
 							<div class="thumbnail stat-thumbnail">
 								<img id="picto" src="{{url_for('static', filename='images/commune-icone.png')}}">
-								<h1>{{stat.town}}</h1>
-								<h4> {{ 'communes' if stat.town > 1 else 'commune' }}</h4>
+								<h1>{{stat.maille}}</h1>
+								<h4> {{ 'mailles' if stat.maille > 1 else 'maille' }}</h4>
 								<form method="POST" onsubmit="completeAction('#searchFormCommunesStat', hiddenInputCommunesStat)" id='searchFormCommunesStat' action=""  class="navbar-form" role="search">
 									<div class="form-group has-feedback">
-										<input id="searchCommunesStat" type="text" class="form-control" placeholder="Rechercher une commune" />
+										<input id="searchCommunesStat" type="text" class="form-control" placeholder="Rechercher une maille" />
 										<i class="glyphicon glyphicon-search form-control-feedback"></i>
 										<input id="hiddenInputCommunesStat" type="hidden" name="insee">
 									</div>
@@ -206,7 +206,7 @@
 					<div class="row thumbnail-row">
 					{% for tax in mostViewTaxon %}
 					{% if tax.cd_ref != 60630 %} <!-- on elimine la loutre -->
-						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 thumbnail-col">
+						<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 thumbnail-col">
 						    <div class="hovereffect">
 						        {% if tax.path == None %}
                       <img class="default-logo " src="{{url_for('static', filename='images/picto_' + tax.group2_inpn | replace(" ", "_") +'.png') }}" alt="">
@@ -233,7 +233,7 @@
 		</div>
 
         {% if configuration.AFFICHAGE_FOOTER %}
-			{% include 'static/custom/templates/footer.html' %}
+			{% include 'static/custom/templates/footer_chiro.html' %}
 		{% endif %}
 
     	<script type="text/javascript">

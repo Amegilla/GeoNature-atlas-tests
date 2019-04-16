@@ -191,7 +191,7 @@ def getObserversCommunes(connection, insee):
 
 
 def statIndex(connection):
-    result = {'nbTotalObs': None, 'nbTotalTaxons': None, 'town': None, 'photo': None}
+    result = {'nbTotalObs': None, 'nbTotalTaxons': None, 'town': None, 'maille': None, 'photo': None}
 
     sql = "SELECT COUNT(*) AS count \
     FROM atlas.vm_observations "
@@ -204,6 +204,11 @@ def statIndex(connection):
     req = connection.execute(text(sql))
     for r in req:
         result['town'] = r.count
+
+    sql = "SELECT count(*) FROM (SELECT DISTINCT id_maille FROM atlas.vm_observations_mailles) as c"
+    req = connection.execute(text(sql))
+    for r in req:
+        result['maille'] = r.count
 
     sql = "SELECT COUNT(DISTINCT cd_ref) AS count \
     FROM atlas.vm_taxons"
