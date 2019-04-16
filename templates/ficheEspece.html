@@ -253,7 +253,7 @@
             </div>
             <div class="panel panel-default" id="mapPanel">
                 <div class ="row">
-                    <div class="col-sm-10" id="mapContainer" style="height:730px;">
+                    <div class="col-sm-10" id="mapContainer"">
                         <div id="map">
                             <img id ="loadingGif" src="">
                         </div>
@@ -263,7 +263,7 @@
                             <li> <span data-icon="&#xe037;" style="font-size: 30px;"></span> </br>
                                     <b>{{taxon.taxonSearch.nb_obs}}</b> </br> {{ 'observations' if taxon.taxonSearch.nb_obs > 1 else 'observation' }}</li>
                             <li> <img id="picto" src="{{url_for('static', filename='images/church.png')}}" style="width"><br/><b>{{communes|length}}</b><br/>{{ 'communes' if communes|length > 1 else 'commune' }}</li>
-                            <li> <img id="picto" src="{{url_for('static', filename='images/church.png')}}" style="width"><br/><b>{{mailles|length}}</b><br/>{{ 'mailles' if mailles|length > 1 else 'maille' }}</li>
+                            <li> <b>{{mailles|length}}</b><br/>{{ 'mailles' if mailles|length > 1 else 'maille' }}</li>
                             <li> <span data-icon="&#xe040;"  style="font-size: 30px;"></span><br/><b>{{observers|length}}</b><br/>{{ 'observateurs' if observers|length > 1 else 'observateur' }}</li>
                             <li id="firstObs" class="pointer"><span data-icon="&#xe037;" style="font-size: 25px; color: brown"></span><br/><b>Première observation</b><br/>{{taxon.taxonSearch.yearmin|int}}</li>
                             <li id="lastObs" class="pointer"><span data-icon="&#xe037;" style="font-size: 25px; color: blue"></span><br/><b>Dernière observation</b><br/>{{taxon.taxonSearch.yearmax|int}}</li>

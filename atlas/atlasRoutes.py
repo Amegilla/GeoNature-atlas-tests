@@ -173,6 +173,7 @@ def portail_loutre():
     months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
     synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
     communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
+    mailles = vmMaillesRepository.getMaillesObservationsChilds(connection, cd_ref)
     taxonomyHierarchy = vmTaxrefRepository.getAllTaxonomy(session, cd_ref)
     firstPhoto = vmMedias.getFirstPhoto(
         connection, cd_ref, current_app.config["ATTR_MAIN_PHOTO"]
@@ -223,6 +224,7 @@ def portail_loutre():
         months=months,
         synonyme=synonyme,
         communes=communes,
+        mailles=mailles,
         taxonomyHierarchy=taxonomyHierarchy,
         firstPhoto=firstPhoto,
         photoCarousel=photoCarousel,
