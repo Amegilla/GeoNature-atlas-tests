@@ -6,9 +6,11 @@ import json
 
 
 def getObservationsMaillesChilds(connection):
-    sql = """SELECT Distinct
+    sql = """SELECT
             nb_espece,
             id_maille,
+            area_code,
+            liste_espece_scien,
             geojson_maille
         FROM atlas.vm_nbespece_mailles
         ORDER BY id_maille"""
@@ -16,8 +18,9 @@ def getObservationsMaillesChilds(connection):
     tabObs = list()
     for o in observations:
         temp = {
-            "id_maille": o.id_maille,
+            "area_code": o.area_code,
             "nb_espece": o.nb_espece,
+            "liste_espece_scien": o.liste_espece_scien,
             "geojson_maille": json.loads(o.geojson_maille),
         }
         tabObs.append(temp)
