@@ -167,6 +167,17 @@ def getObservers(connection, cd_ref):
     req = connection.execute(text(sql), thiscdref=cd_ref)
     return observersParser(req)
 
+def getSources(connection, cd_ref):
+    sql = """
+    SELECT distinct observateurs
+    FROM atlas.vm_sources
+    WHERE cd_ref in (
+            SELECT * FROM atlas.find_all_taxons_childs(:thiscdref)
+        )
+        OR cd_ref = :thiscdref
+    """
+    req = connection.execute(text(sql), thiscdref=cd_ref)
+    return observersParser(req)
 
 def getGroupeObservers(connection, groupe):
     sql = """

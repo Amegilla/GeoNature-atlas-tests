@@ -287,7 +287,7 @@ def ficheEspece(cd_ref):
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-    
+    sources = vmObservationsRepository.getSources(connection, cd_ref)
     connection.close()
     session.close()
 
@@ -310,6 +310,7 @@ def ficheEspece(cd_ref):
         articles=articles,
         taxonDescription=taxonDescription,
         observers=observers,
+        sources=sources,
     )
 
 
