@@ -185,6 +185,25 @@ def getSources(connection, cd_ref):
         tabSources.append(temp)
     return tabSources
 
+
+def getContactTypes(connection, cd_ref):
+    tabContactTypes = list()
+    result = {'nb_obs': None, 'contactType': None}
+    sql = """
+    SELECT COUNT(*) as nb_obs, contact_type
+    FROM atlas.vm_contact_types
+    WHERE cd_ref in (
+            SELECT * FROM atlas.find_all_taxons_childs(:thiscdref)
+        )
+        OR cd_ref = :thiscdref
+    GROUP BY contact_type
+    """
+    req = connection.execute(text(sql), thiscdref=cd_ref)
+    for r in req:
+        temp = {'nb_obs': r.nb_obs, 'contactType': r.contact_type}
+        tabContactTypes.append(temp)
+    return tabContactTypes
+
 def getGroupeObservers(connection, groupe):
     sql = """
         SELECT distinct observateurs

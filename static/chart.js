@@ -61,6 +61,37 @@ for(i = 0; i < sources.length; i++) {
 }
 // FIN | GRAPHIQUE CAMEMBERT SOURCES //
             
+// GRAPHIQUE CAMEMBERT CONTACT TYPES //
+if($('#contactTypesChart')[0]) {
+  var labels = [];
+  var values = [];
+  for(i = 0; i < contacttypes.length; i++) {
+    labels.push(contacttypes[i].contactType);
+    values.push(contacttypes[i].nb_obs);
+    }
+  
+    var contactTypesChart = [{
+      values: values,
+      labels: labels,
+      type: 'pie'
+    }];
+    
+    var layout = {
+      autosize: false,
+      height: 250,
+      margin: {
+        l: 50,
+        r: 50,
+        b: 20,
+        t: 20,
+        pad: 4
+      }
+    }
+  
+    Plotly.newPlot('contactTypesChart', contactTypesChart, layout, {displayModeBar: false});
+  }
+  // FIN | GRAPHIQUE CAMEMBERT CONTACT TYPES //
+
 
 
 // GRAPHIQUE NOMBRE D'OBSERVATIONS PAR ANNEES //

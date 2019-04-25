@@ -252,6 +252,16 @@ def ficheEspece(cd_ref):
     else :
         years = None
 
+    if current_app.config["AFFICHAGE_GRAPH_SOURCE_ESPECE"]:
+        sources = vmObservationsRepository.getSources(connection, cd_ref)
+    else :
+        sources = None
+
+    if current_app.config["AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE"]:
+        contacttypes = vmObservationsRepository.getContactTypes(connection, cd_ref)
+    else :
+        contacttypes = None
+
     synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
     communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
     mailles = vmMaillesRepository.getMaillesObservationsChilds(connection, cd_ref)
@@ -287,7 +297,6 @@ def ficheEspece(cd_ref):
         current_app.config["ATTR_MENACES"],
     )
     observers = vmObservationsRepository.getObservers(connection, cd_ref)
-    sources = vmObservationsRepository.getSources(connection, cd_ref)
     connection.close()
     session.close()
 
@@ -311,6 +320,7 @@ def ficheEspece(cd_ref):
         taxonDescription=taxonDescription,
         observers=observers,
         sources=sources,
+        contacttypes=contacttypes,
     )
 
 

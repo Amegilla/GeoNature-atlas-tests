@@ -45,6 +45,8 @@
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <!-- Numeric JS  , pour graphique camembert sources -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+        <!-- highcharts , pour graphique camembert sources -->
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
 
         <!-- RaphaelJs -->
         <script src="{{url_for('static', filename='lib/raphaelJs/raphael.min.js') }}"></script>
@@ -576,6 +578,11 @@
                     <h3 class="text-center">Sources</h3>
                     <div id="sourcesChart"></div>
                 {% endif %}
+
+                {% if configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
+                <h3 class="text-center">Type de contact</h3>
+                <div id="contactTypesChart"></div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -599,6 +606,7 @@
             var cd_ref = {{taxon.taxonSearch.cd_ref}};
             var nb_obs = {{taxon.taxonSearch.nb_obs}};
             var sources = {{sources|tojson}};
+            var contacttypes = {{contacttypes|tojson}};
     </script>
 
     <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script>
