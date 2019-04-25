@@ -168,16 +168,22 @@ def getObservers(connection, cd_ref):
     return observersParser(req)
 
 def getSources(connection, cd_ref):
+    tabSources = list()
+    result = {'nb_obs': None, 'sources': None}
     sql = """
-    SELECT distinct observateurs
+    SELECT COUNT(*) as nb_obs, observateurs as sources
     FROM atlas.vm_sources
     WHERE cd_ref in (
             SELECT * FROM atlas.find_all_taxons_childs(:thiscdref)
         )
         OR cd_ref = :thiscdref
+    GROUP BY observateurs
     """
     req = connection.execute(text(sql), thiscdref=cd_ref)
-    return observersParser(req)
+    for r in req:
+        temp = {'nb_obs': r.nb_obs, 'name_source': r.sources}
+        tabSources.append(temp)
+    return tabSources
 
 def getGroupeObservers(connection, groupe):
     sql = """

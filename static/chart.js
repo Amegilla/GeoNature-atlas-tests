@@ -30,6 +30,26 @@ svgbis=d3.selectAll("svg");
             .text("Altitude(m)");
 
 
+// GRAPHIQUE CAMEMBERT SOURCES //
+if($('#sourcesChart')[0]) {
+var labels = [];
+var values = [];
+for(i = 0; i < sources.length; i++) {
+  labels.push(sources[i].name_source);
+  values.push(sources[i].nb_obs);
+  }
+
+  var sourcesChart = [{
+    values: values,
+    labels: labels,
+    type: 'pie'
+  }];
+  
+  Plotly.newPlot('sourcesChart', sourcesChart);
+}
+// FIN | GRAPHIQUE CAMEMBERT SOURCES //
+            
+// GRAPHIQUE NOMBRE D'OBSERVATIONS PAR ANNEES //
 if($('#yearlyChart')[0]) {
   var yearlyChart =  Morris.Bar({
                   element:"yearlyChart",
@@ -43,6 +63,7 @@ if($('#yearlyChart')[0]) {
                   axes: true,
               });
 }
+// FIN | GRAPHIQUE NOMBRE D'OBSERVATIONS PAR ANNEES //
 
 var phenologyChart =  Morris.Bar({
                         element:"phenologyChart",
@@ -55,6 +76,7 @@ var phenologyChart =  Morris.Bar({
                         resize: true,
                         axes: true,
                     });
+
 
 svgContainer = d3.selectAll("svg");
     svgContainer.append("g")

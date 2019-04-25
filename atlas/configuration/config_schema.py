@@ -58,6 +58,7 @@ class AtlasConfig(Schema):
     AFFICHAGE_EN_CE_MOMENT = fields.Bool(missing=True)
     AFFICHAGE_RANG_STAT = fields.Bool(missing=True)
     AFFICHAGE_GRAPH_ANNEE_ESPECE = fields.Bool(missing=True)
+    AFFICHAGE_GRAPH_SOURCE_ESPECE = fields.Bool(missing=True)
     RANG_STAT = fields.List(
         fields.Dict,
         missing=[
