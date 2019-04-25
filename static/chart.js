@@ -45,10 +45,24 @@ for(i = 0; i < sources.length; i++) {
     type: 'pie'
   }];
   
-  Plotly.newPlot('sourcesChart', sourcesChart);
+  var layout = {
+    autosize: false,
+    height: 250,
+    margin: {
+      l: 50,
+      r: 50,
+      b: 20,
+      t: 20,
+      pad: 4
+    }
+  }
+
+  Plotly.newPlot('sourcesChart', sourcesChart, layout, {displayModeBar: false});
 }
 // FIN | GRAPHIQUE CAMEMBERT SOURCES //
             
+
+
 // GRAPHIQUE NOMBRE D'OBSERVATIONS PAR ANNEES //
 if($('#yearlyChart')[0]) {
   var yearlyChart =  Morris.Bar({
