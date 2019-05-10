@@ -62,10 +62,43 @@ def getObservationsMailleAPI(cd_ref):
     connection.close()
     return jsonify(observations)
 
+# api pour la carte de la page d'accueil avec nombre d'espece par maille
 @api.route('/observationsEspecesMailleGlobal', methods=['GET'])
 def getObservationsEspecesMailleGlobalAPI():
     connection = utils.engine.connect()
     observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds(connection)
+    connection.close()
+    return jsonify(observations)
+
+# api pour la carte de la page portail chiro avec nombre d'espece par maille pour les chiro
+@api.route('/observationsEspecesMailleGlobal', methods=['GET'])
+def getObservationsEspecesMailleGlobalAPI_chiro():
+    connection = utils.engine.connect()
+    observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds_chiro(connection)
+    connection.close()
+    return jsonify(observations)
+
+# api pour la carte de la pageportail chiro avec nombre d'espece par maille pour les chiro annexeII
+@api.route('/observationsEspecesMailleGlobalchiroannexeII', methods=['GET'])
+def getObservationsEspecesMailleGlobalAPI_chiro_annexeII():
+    connection = utils.engine.connect()
+    observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds_chiro_annexeII(connection)
+    connection.close()
+    return jsonify(observations)
+
+# api pour la carte de la page portail chiro avec nombre d'espece par maille pour les chiro EN + CR
+@api.route('/observationsEspecesMailleGlobalchiroCREN', methods=['GET'])
+def getObservationsEspecesMailleGlobalAPI_chiro_CR_EN():
+    connection = utils.engine.connect()
+    observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds_chiro_CR_EN(connection)
+    connection.close()
+    return jsonify(observations)
+
+# api pour la carte de la page portail chiro avec nombre d'espece par maille pour les chiro VU
+@api.route('/observationsEspecesMailleGlobalchiroVU', methods=['GET'])
+def getObservationsEspecesMailleGlobalAPI_chiro_VU():
+    connection = utils.engine.connect()
+    observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds_chiro_VU(connection)
     connection.close()
     return jsonify(observations)
 

@@ -77,3 +77,12 @@
 #sideBar {
     background-color: #8d5534;
 }
+
+
+/*** bouton  http://jsfiddle.net/23pmy0rt/ ****/
+.switch-candy a {background-color: #ffba0c!important;}
+.switch-toggle > label {
+            outline-style: none!important;
+              }
+/*** bouton switch carto ****/
+
