@@ -48,15 +48,15 @@
 					<div class="row">
 						<div class="panel-heading"><strong><h3>En quelques chiffres</h3></strong></div>
 						<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
-							<div class="thumbnail stat-thumbnail">
+							<div class="thumbnail stat-thumbnail chiro">
 								<span class="glyphicon glyphicon-search"></span>
 								<h1>{{stat.nbTotalObs}}</h1>
 								<h4> {{ 'observations' if stat.nbTotalObs > 1 else 'observation' }}</h4>
-								<p><a id="localScroll" href="#DernieresObservations" class="btn btn-default" role="button">Voir les dernières observations</a></p>
+								<!-- <p><a id="localScroll" href="#DernieresObservations" class="btn btn-default" role="button">Voir les dernières observations</a></p> -->
 							</div>
 						</div>
 						<div class = "col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
-							<div class="thumbnail stat-thumbnail">
+							<div class="thumbnail stat-thumbnail chiro">
 								<span class="glyphicon glyphicon-leaf"></span>
 								<h1>{{stat.nbTotalTaxons - 1}}</h1><!-- moins 1 pour ne pas compter la loutre -->
 								<h4> {{ 'espèces' if stat.nbTotalTaxons > 1 else 'espèce' }}</h4>
@@ -70,7 +70,7 @@
 							</div>
 						</div>
 						<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
-							<div class="thumbnail stat-thumbnail">
+							<div class="thumbnail stat-thumbnail chiro">
 								<img id="picto" src="{{url_for('static', filename='images/commune-icone.png')}}">
 								<h1>{{stat.maille}}</h1>
 								<h4> {{ 'mailles' if stat.maille > 1 else 'maille' }}</h4>
@@ -84,11 +84,13 @@
 							</div>
 						</div>
 						<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
-							<div class="thumbnail stat-thumbnail">
-								<span class="glyphicon glyphicon-camera"></span>
-								<h1>{{stat.photo}}</h1>
-								<h4> {{ 'photos' if stat.photo > 1 else 'photo' }}</h4>
-								<p><a href="{{url_for('main.photos')}}" class="btn btn-default" role="button">Galerie photos</a></p>
+							<div class="thumbnail stat-thumbnail chiro">
+								<div class="vertical-center">
+									<span class="glyphicon glyphicon-book"></span>
+									<!-- <h1>{{stat.photo}}</h1> -->
+									<!-- <h4> {{ 'photos' if stat.photo > 1 else 'photo' }}</h4> -->
+									<p><a href="{{url_for('main.photos')}}" class="btn btn-default" role="button">Centre de Ressources</a></p>
+								</div>
 							</div>
 						</div>
 
@@ -107,10 +109,10 @@
 						</div>
 						<div class="col-sm-4" id="mapStat">
 							<h3>Affichages</h3>
-							<p><button id="sp_all" type="button" class="btn btn-primary btn-lg btn-block">Toutes les Espèces</button></p>
-							<p><button id="sp_annexeII" type="button" class="btn btn-primary btn-lg btn-block">Espèces annexe II</button></p>
-							<p><button id="sp_cr_en" type="button" class="btn btn-primary btn-lg btn-block">Espèces CR et EN</button></p>
-							<p><button id="sp_vu" type="button" class="btn btn-primary btn-lg btn-block">Espèces VU</button></p>
+							<p><button id="sp_all" type="button" class="btn btn-primary btn-lg btn-block">Toutes les Espèces<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Les 34 espèces françaises de chiroptères" data-placement="right"></span></button></p>
+							<p><button id="sp_annexeII" type="button" class="btn btn-primary btn-lg btn-block">Espèces annexe II<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces protégées au titre de la directive habitats (annexe II)" data-placement="right"></span></button></p>
+							<p><button id="sp_cr_en" type="button" class="btn btn-primary btn-lg btn-block">Espèces CR et EN<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces classées en danger et en danger CRitique selon la liste rouge UICN France" data-placement="right"></span></button></p>
+							<p><button id="sp_vu" type="button" class="btn btn-primary btn-lg btn-block">Espèces VU<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces classées Vulnérables selon la liste rouge UICN France" data-placement="right"></span></button></p>
 						</div>
 					</div>
 				</div>
