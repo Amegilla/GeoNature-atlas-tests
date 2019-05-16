@@ -86,3 +86,28 @@
               }
 /*** bouton switch carto ****/
 
+ h1 {
+    margin-top: 5px;
+}
+
+.btn-primary {
+    background-color: #8d5534;
+    border-color: #ba864a;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #b47634;
+    border-color: #b47634;
+}
+
+.stat-thumbnail .chiro{
+    min-height: 180px;
+    max-height: 180px;
+}
+
+.vertical-center {
+
+  
+    align-items: center;
+  }

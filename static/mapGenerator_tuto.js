@@ -165,28 +165,13 @@ $('#map').click(function(){
 })
 
 
-/* on va charger les données du nb d'espèces par mailles */
-
-$.ajax({
-    /*url: configuration.URL_APPLICATION+'/api/nb_espece_par_maille/'+cd_ref, */
-    url: configuration.URL_APPLICATION+'/api/observationsEspecesMailleGlobal',
-    dataType: "json",
-    beforeSend: function(){
-      $('#loadingGif').attr('src', configuration.URL_APPLICATION+'/static/images/loading.svg')
-    }
-    }).done(function(observations) {
-      $('#loadingGif').hide();
-      $('#sp_all').prop('disabled', true)
-      displayMailleLayerEspeces(observations);   
-
-    });
 
 
 function generateLegendMailleEspeces() {
     legend.onAdd = function(map) {
       var div = L.DomUtil.create("div", "info legend"),
         grades = [0, 1, 2, 3, 5, 10, 20, 30],
-        labels = ["<strong> Nombre <br> d'observations </strong> <br>"];
+        labels = ["<strong> Nombre <br> d'espèces </strong> <br>"];
   
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < grades.length; i++) {
@@ -206,7 +191,7 @@ function generateLegendMailleEspeces() {
     legend.addTo(map);
   }
 
-
+/* on va charger les données du nb d'espèces par mailles */
   $.ajax({
     /*url: configuration.URL_APPLICATION+'/api/nb_espece_par_maille/'+cd_ref, */
     url: configuration.URL_APPLICATION+'/api/observationsEspecesMailleGlobal',
@@ -263,9 +248,9 @@ function generateLegendMailleEspeces() {
     beforeSend: function(){
       $('#loadingGif').attr('src', configuration.URL_APPLICATION+'/static/images/loading.svg')
     }
-    }).done(function(observations) {
+    }).done(function(observationsannexeII) {
       $('#loadingGif').hide();
-      displayMailleLayerEspeces(observations);   
+      displayMailleLayerEspeces(observationsannexeII);   
 
     });
 
@@ -286,9 +271,9 @@ function generateLegendMailleEspeces() {
       beforeSend: function(){
         $('#loadingGif').attr('src', configuration.URL_APPLICATION+'/static/images/loading.svg')
       }
-      }).done(function(observations) {
+      }).done(function(observationsCREN) {
         $('#loadingGif').hide();
-        displayMailleLayerEspeces(observations);   
+        displayMailleLayerEspeces(observationsCREN);   
   
       });
 
@@ -309,10 +294,9 @@ function generateLegendMailleEspeces() {
       beforeSend: function(){
         $('#loadingGif').attr('src', configuration.URL_APPLICATION+'/static/images/loading.svg')
       }
-      }).done(function(observations) {
+      }).done(function(observationsVU) {
         $('#loadingGif').hide();
-        displayMailleLayerEspeces(observations);   
-  
+        displayMailleLayerEspeces(observationsVU);   
       });  
 
   })

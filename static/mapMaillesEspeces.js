@@ -102,7 +102,7 @@ $.ajax({
     legend.onAdd = function(map) {
       var div = L.DomUtil.create("div", "info legend"),
         grades = [0, 1, 2, 3, 5, 10, 20, 30],
-        labels = ["<strong> Nombre <br> d'observations </strong> <br>"];
+        labels = ["<strong> Nombre <br> d'espèces </strong> <br>"];
   
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < grades.length; i++) {
