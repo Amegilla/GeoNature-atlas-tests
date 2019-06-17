@@ -133,6 +133,8 @@ function onEachFeatureMaille(feature, layer) {
   popupContent =
     "<b>Nombre d'observation(s): </b>" +
     feature.properties.nb_observations +
+    "</br><b>Observateur(s): </b>" +
+    feature.properties.list_observateurs.filter(onlyUnique) +
     "</br> <b> Dernière observation: </b>" +
     feature.properties.last_observation +
     " ";
@@ -191,46 +193,53 @@ function generateLegendMaille() {
   legend.addTo(map);
 }
 
+// pour ne garder que les valeurs uniques d'une liste
+function onlyUnique(value, index, self) { 
+  return self.indexOf(value) === index;
+}
+
 // Geojson Maille
 function generateGeojsonMaille(observations, yearMin, yearMax) {
   var i = 0;
   myGeoJson = { type: "FeatureCollection", features: [] };
   tabProperties = [];
   while (i < observations.length) {
-    if (observations[i].annee >= yearMin && observations[i].annee <= yearMax) {
-      geometry = observations[i].geojson_maille;
-      idMaille = observations[i].id_maille;
-      properties = {
-        id_maille: idMaille,
-        nb_observations: 1,
-        last_observation: observations[i].annee,
-        tabDateobs: [new Date(observations[i].dateobs)]
-      };
-      var j = i + 1;
-      while (j < observations.length && observations[j].id_maille <= idMaille) {
-        if (
-          observations[j].annee >= yearMin &&
-          observations[j].annee <= yearMax
-        ) {
-          properties.nb_observations += observations[j].nb_observations;
-          properties.tabDateobs.push(new Date(observations[i].dateobs));
+        if (observations[i].annee >= yearMin && observations[i].annee <= yearMax) {
+                geometry = observations[i].geojson_maille;
+                idMaille = observations[i].id_maille;
+                observers = observations[i].observateurs;
+                properties = {
+                                id_maille: idMaille,
+                                nb_observations: 1,
+                                list_observateurs : [observers],
+                                last_observation: observations[i].annee,
+                                tabDateobs: [new Date(observations[i].dateobs)]
+                              };
+                var j = i + 1;
+                while (j < observations.length && observations[j].id_maille <= idMaille) {
+                        if (observations[j].annee >= yearMin && observations[j].annee <= yearMax) {
+                            properties.nb_observations += observations[j].nb_observations;
+                            properties.tabDateobs.push(new Date(observations[i].dateobs));
+                            properties.list_observateurs.push(observations[j].observateurs);
+                          }
+                        if (observations[j].annee >= properties.last_observation) {
+                            properties.last_observation = observations[j].annee;
+                          }
+                        j = j + 1;
+                }
+                // ici il faut transformer la liste des observateurs d'un tableau vers un string en supprimant les doublons
+                //properties.list_observateurs = properties.list_observateurs.filter(onlyUnique).join(', ')
+                myGeoJson.features.push({
+                                        type: "Feature",
+                                        properties: properties,
+                                        geometry: geometry
+                                      });
+                // on avance jusqu' à j
+                i = j;
+        } else {
+          i = i + 1;
+          }
         }
-        if (observations[j].annee >= properties.last_observation) {
-          properties.last_observation = observations[j].annee;
-        }
-        j = j + 1;
-      }
-      myGeoJson.features.push({
-        type: "Feature",
-        properties: properties,
-        geometry: geometry
-      });
-      // on avance jusqu' à j
-      i = j;
-    } else {
-      i = i + 1;
-    }
-  }
 
   return myGeoJson;
 }
