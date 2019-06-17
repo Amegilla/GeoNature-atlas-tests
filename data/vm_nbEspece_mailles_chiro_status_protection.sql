@@ -60,7 +60,10 @@ AS
 SELECT 
 count(DISTINCT p.cd_ref) AS nb_espece,
 string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
+<<<<<<< HEAD
 string_agg(DISTINCT split_part(nom_vern,',', 1)::text, ', '::text) AS liste_espece_vern,
+=======
+>>>>>>> 8f8d49351e803ec59704fcbbbfce3b28bc55e420
 string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
 min(obs.dateobs) AS date_min,
 max(obs.dateobs) AS date_max,
@@ -91,7 +94,10 @@ AS
 SELECT 
 count(DISTINCT p.cd_ref) AS nb_espece,
 string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
+<<<<<<< HEAD
 string_agg(DISTINCT split_part(nom_vern,',', 1)::text, ', '::text) AS liste_espece_vern,
+=======
+>>>>>>> 8f8d49351e803ec59704fcbbbfce3b28bc55e420
 string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
 min(obs.dateobs) AS date_min,
 max(obs.dateobs) AS date_max,
@@ -122,7 +128,10 @@ AS
 SELECT 
 count(DISTINCT p.cd_ref) AS nb_espece,
 string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
+<<<<<<< HEAD
 string_agg(DISTINCT split_part(nom_vern,',', 1)::text, ', '::text) AS liste_espece_vern,
+=======
+>>>>>>> 8f8d49351e803ec59704fcbbbfce3b28bc55e420
 string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
 min(obs.dateobs) AS date_min,
 max(obs.dateobs) AS date_max,
