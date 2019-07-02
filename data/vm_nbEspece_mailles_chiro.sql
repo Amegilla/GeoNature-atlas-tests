@@ -4,6 +4,7 @@ drop MATERIALIZED VIEW atlas.vm_nbespece_mailles_chiro;
 CREATE MATERIALIZED VIEW atlas.vm_nbespece_mailles_chiro
 AS SELECT count(DISTINCT t.cd_ref) AS nb_espece,
     string_agg(DISTINCT t.lb_nom::text, ', '::text) AS liste_espece_scien,
+    string_agg(DISTINCT split_part(nom_vern,',', 1)::text, ', '::text) AS liste_espece_vern,
     string_agg(DISTINCT t.cd_ref::text, ', '::text) AS liste_cd_ref,
     min(obs.dateobs) AS date_min,
     max(obs.dateobs) AS date_max,
