@@ -2,7 +2,9 @@
 CREATE MATERIALIZED VIEW atlas.vm_nbespece_mailles as
 SELECT count(distinct t.cd_ref) AS nb_espece,
     string_agg(distinct t.lb_nom, ', ') as liste_espece_scien,
+    string_agg(DISTINCT split_part(t.nom_vern::text, ','::text, 1), ', '::text) AS liste_espece_vern,
     string_agg(distinct t.cd_ref::text, ', ') as liste_cd_ref,
+    string_agg(DISTINCT obs.observateurs, ', '::text) AS liste_observateurs,
     min(obs.dateobs) as date_min,
     max(obs.dateobs) as date_max,
     m.id_maille,

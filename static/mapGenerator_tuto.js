@@ -91,7 +91,8 @@ function generateGeojsonMailleEspeces(observations) {
           {
             nb_espece: obs.nb_espece,
             area_code: obs.area_code,
-            liste_espece_scien: obs.liste_espece_scien
+            liste_espece_vern: obs.liste_espece_vern,
+          liste_observateurs: obs.liste_observateurs
           }
       })
     });
@@ -121,7 +122,9 @@ function generateGeojsonMailleEspeces(observations) {
       "</br> <b> Code Maille: </b>" +
       feature.properties.area_code +
       "</br> <b> Espèces: </b>" +
-      feature.properties.liste_espece_scien
+      feature.properties.liste_espece_vern +
+      "</br> <b> Sources: </b>" +
+      feature.properties.liste_observateurs
       + " ";
     layer.bindPopup(popupContent);
   }

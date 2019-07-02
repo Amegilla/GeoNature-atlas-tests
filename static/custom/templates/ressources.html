@@ -30,13 +30,9 @@
 		<div id="sideBar">
 			{% include 'templates/sideBar.html' %}
 		</div>
+    
     <div class="container-fluid" id="page">
     
-  <!-- Introduction -->
-  {% if configuration.AFFICHAGE_INTRODUCTION %}
-  {% include 'static/custom/templates/introduction_ressources.html' %}
-  {% endif %}
-
 
   
 		<div class="container presentation">
@@ -99,11 +95,13 @@
               </div>
 
     </div>
-
-		{% if configuration.AFFICHAGE_FOOTER %}
+  </div>
+  
+  
+  {% if configuration.AFFICHAGE_FOOTER %}
 			{% include 'static/custom/templates/footer.html' %}
 		{% endif %}
-
+  
         <script type="text/javascript">
         var configuration = {{configuration|tojson}};
         </script>

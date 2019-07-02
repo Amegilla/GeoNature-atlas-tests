@@ -10,7 +10,8 @@ def getObservationsMaillesChilds(connection):
             nb_espece,
             id_maille,
             area_code,
-            liste_espece_scien,
+            liste_espece_vern,
+            liste_observateurs,
             geojson_maille
         FROM atlas.vm_nbespece_mailles
         ORDER BY id_maille"""
@@ -20,7 +21,8 @@ def getObservationsMaillesChilds(connection):
         temp = {
             "area_code": o.area_code,
             "nb_espece": o.nb_espece,
-            "liste_espece_scien": o.liste_espece_scien,
+            "liste_espece_vern": o.liste_espece_vern,
+            "liste_observateurs": ', '.join(set(o.liste_observateurs.split(', '))),
             "geojson_maille": json.loads(o.geojson_maille),
         }
         tabObs.append(temp)
@@ -31,7 +33,8 @@ def getObservationsMaillesChilds_chiro(connection):
             nb_espece,
             id_maille,
             area_code,
-            liste_espece_scien,
+            liste_espece_vern,
+            liste_observateurs,
             geojson_maille
         FROM atlas.vm_nbespece_mailles_chiro
         ORDER BY id_maille"""
@@ -41,7 +44,8 @@ def getObservationsMaillesChilds_chiro(connection):
         temp = {
             "area_code": o.area_code,
             "nb_espece": o.nb_espece,
-            "liste_espece_scien": o.liste_espece_scien,
+            "liste_espece_vern": o.liste_espece_vern,
+            "liste_observateurs": ', '.join(set(o.liste_observateurs.split(', '))),
             "geojson_maille": json.loads(o.geojson_maille),
         }
         tabObs.append(temp)
@@ -52,7 +56,8 @@ def getObservationsMaillesChilds_chiro_annexeII(connection):
             nb_espece,
             id_maille,
             area_code,
-            liste_espece_scien,
+            liste_espece_vern,
+            liste_observateurs,
             geojson_maille
         FROM atlas.vm_nbespece_mailles_chiro_annexeII
         ORDER BY id_maille"""
@@ -62,7 +67,8 @@ def getObservationsMaillesChilds_chiro_annexeII(connection):
         temp = {
             "area_code": o.area_code,
             "nb_espece": o.nb_espece,
-            "liste_espece_scien": o.liste_espece_scien,
+            "liste_espece_vern": o.liste_espece_vern,
+            "liste_observateurs": ', '.join(set(o.liste_observateurs.split(', '))),
             "geojson_maille": json.loads(o.geojson_maille),
         }
         tabObs.append(temp)
@@ -73,7 +79,8 @@ def getObservationsMaillesChilds_chiro_CR_EN(connection):
             nb_espece,
             id_maille,
             area_code,
-            liste_espece_scien,
+            liste_espece_vern,
+            liste_observateurs,
             geojson_maille
         FROM atlas.vm_nbespece_mailles_chiro_CR_EN
         ORDER BY id_maille"""
@@ -83,7 +90,8 @@ def getObservationsMaillesChilds_chiro_CR_EN(connection):
         temp = {
             "area_code": o.area_code,
             "nb_espece": o.nb_espece,
-            "liste_espece_scien": o.liste_espece_scien,
+            "liste_espece_vern": o.liste_espece_vern,
+            "liste_observateurs": ', '.join(set(o.liste_observateurs.split(', '))),
             "geojson_maille": json.loads(o.geojson_maille),
         }
         tabObs.append(temp)
@@ -94,7 +102,8 @@ def getObservationsMaillesChilds_chiro_VU(connection):
             nb_espece,
             id_maille,
             area_code,
-            liste_espece_scien,
+            liste_espece_vern,
+            liste_observateurs,
             geojson_maille
         FROM atlas.vm_nbespece_mailles_chiro_VU
         ORDER BY id_maille"""
@@ -104,7 +113,8 @@ def getObservationsMaillesChilds_chiro_VU(connection):
         temp = {
             "area_code": o.area_code,
             "nb_espece": o.nb_espece,
-            "liste_espece_scien": o.liste_espece_scien,
+            "liste_espece_vern": o.liste_espece_vern,
+            "liste_observateurs": ', '.join(set(o.liste_observateurs.split(', '))),
             "geojson_maille": json.loads(o.geojson_maille),
         }
         tabObs.append(temp)
