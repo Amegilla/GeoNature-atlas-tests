@@ -7,7 +7,6 @@ atlas/debug.py
 data/ref/emprise_territoire.*
 data/ref/L93*
 static/territoire.json
-static/custom/territoire.json
 static/images/ancien
 atlas/configuration/config.py
 atlas/configuration/settings.ini
