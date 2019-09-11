@@ -38,60 +38,24 @@
 		<div class="container presentation">
       <div class="col-lg-12">
 
-              <h2>Centre de ressources</h2>
-              <p>Cet espace regroupe tout les documents et bibliographie disponible sur l'étude et la conservation des les mammifères en france. </p>
+              <h1>Centre de ressources</h1>
+              
+              
+              <p>
+                L’ONM a vocation à rassembler l’ensemble des informations relatives aux Mammifères en France, 
+                afin de faciliter la mise à disposition des connaissances et l’harmonisation des protocoles et des pratiques. 
+                Cette liste de ressources est destinée à s’enrichir, vous pouvez nous contacter pour proposer de nouvelles références.
+              </p>
+              
+              
               <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Mammifères</a>
-                    </h3>
-                  </div>
-                  <div id="collapse1" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Chiroptères</a>
-                    </h3>
-                  </div>
-                  <div id="collapse2" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      
-                        <div class="media">
-                            <div class="media-left media-top">
-                              <a href="http://www.biotope-editions.com/index.php?article164/les-chauves-souris-de-france-belgique-luxembourg-et-suisse-2eme-edition">
-                                  <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                              </a>
-                            </div>
-                            <div class="media-body">
-                              <h4 class="media-heading">Les Chauves-souris de France, Belgique, Luxembourg et Suisse - 2ème édition</h4>
-                              Avec ce livre, Laurent Arthur et Michèle Lemaire, deux des meilleurs spécialistes français des chiroptères, synthétisent l’ensemble des connaissances nouvellement acquises sur les chauves-souris en Europe. 34 espèces de France, Belgique, Luxembourg et Suisse y font l’objet de monographies détaillées avec cartes de répartition, sonogrammes... Le lecteur trouvera également dans l'ouvrage des chapitres sur les chauves-souris dans le règne animal, leurs rapports avec l’homme, leur écologie, etc. ainsi que des clés d'identification basées sur la morphologie et sur l'acoustique.
-                            </div>
-                          </div>
-                  
-                  </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h3 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Carnivores</a>
-                    </h3>
-                  </div>
-                  <div id="collapse3" class="panel-collapse collapse">
-                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                  </div>
-                </div>
+              
+                  {% include 'static/custom/templates/accordeon_mammiferes.html' %}
+
+                  {% include 'static/custom/templates/accordeon_chiropteres.html' %}
+
+                  {% include 'static/custom/templates/accordeon_carnivores.html' %}
+
               </div>
 
     </div>

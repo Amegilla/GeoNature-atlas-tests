@@ -1,5 +1,24 @@
 /* Insert your custom override CSS in this file */
  
+.panel-title {
+    font-size: 30px;
+}
+
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float : right;
+    color: grey;         /* adjust as needed */
+    padding-right: 10px;
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}
+
+
+
 @font-face {
 	font-family: 'Dosis';
 	src:url('../css/fonts/Dosis-Medium.otf');
