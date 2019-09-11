@@ -55,24 +55,22 @@ GRANT SELECT ON TABLE atlas.vm_status_protection_chiro TO geonatatlasuser;
 
 -- creation de la vue pour les especes annexe II
 drop MATERIALIZED VIEW if exists atlas.vm_nbespece_mailles_chiro_annexeII;
-CREATE MATERIALIZED VIEW atlas.vm_nbespece_mailles_chiro_annexeII
-AS 
-SELECT 
-count(DISTINCT p.cd_ref) AS nb_espece,
-string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
-string_agg(DISTINCT split_part(nom_vern,',', 1)::text, ', '::text) AS liste_espece_vern,
-string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
-string_agg(DISTINCT obs.observateurs, ', '::text) AS liste_observateurs,
-min(obs.dateobs) AS date_min,
-max(obs.dateobs) AS date_max,
-m.id_maille,
-c.area_code,
-m.geojson_maille
-FROM atlas.vm_observations obs
-JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
-JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
-join atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
-WHERE p.protection like '%CDH2%'
+CREATE MATERIALIZED VIEW atlas.vm_nbespece_mailles_chiro_annexeii
+AS SELECT count(DISTINCT p.cd_ref) AS nb_espece,
+    string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
+    string_agg(DISTINCT split_part(p.nom_vern::text, ','::text, 1), ', '::text) AS liste_espece_vern,
+    string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
+    string_agg(DISTINCT obs.observateurs::text, ', '::text) AS liste_observateurs,
+    min(obs.dateobs) AS date_min,
+    max(obs.dateobs) AS date_max,
+    m.id_maille,
+    c.area_code,
+    m.geojson_maille
+   FROM atlas.vm_observations obs
+     JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
+     JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
+     JOIN atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
+  WHERE obs.effectif_total > 0 and p.protection ~~ '%CDH2%'::text
   GROUP BY m.id_maille, m.geojson_maille, c.area_code
 WITH DATA;
 
@@ -119,25 +117,23 @@ GRANT SELECT ON TABLE atlas.vm_nbespece_mailles_chiro_CR_EN TO geonatatlasuser;
 
 -- creation de la vue pour les especes annexe VU
 drop MATERIALIZED VIEW if exists atlas.vm_nbespece_mailles_chiro_VU;
-CREATE MATERIALIZED VIEW atlas.vm_nbespece_mailles_chiro_VU
-AS 
-SELECT 
-count(DISTINCT p.cd_ref) AS nb_espece,
-string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
-string_agg(DISTINCT split_part(nom_vern,',', 1)::text, ', '::text) AS liste_espece_vern,
-string_agg(DISTINCT obs.observateurs, ', '::text) AS liste_observateurs,
-string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
-min(obs.dateobs) AS date_min,
-max(obs.dateobs) AS date_max,
-m.id_maille,
-c.area_code,
-m.geojson_maille
-FROM atlas.vm_observations obs
-JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
-JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
-join atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
-WHERE p.id_categorie_france like '%VU%'
-GROUP BY m.id_maille, m.geojson_maille, c.area_code
+CREATE MATERIALIZED VIEW atlas.vm_nbespece_mailles_chiro_vu
+AS SELECT count(DISTINCT p.cd_ref) AS nb_espece,
+    string_agg(DISTINCT p.lb_nom::text, ', '::text) AS liste_espece_scien,
+    string_agg(DISTINCT split_part(p.nom_vern::text, ','::text, 1), ', '::text) AS liste_espece_vern,
+    string_agg(DISTINCT p.cd_ref::text, ', '::text) AS liste_cd_ref,
+    string_agg(DISTINCT obs.observateurs::text, ', '::text) AS liste_observateurs,
+    min(obs.dateobs) AS date_min,
+    max(obs.dateobs) AS date_max,
+    m.id_maille,
+    c.area_code,
+    m.geojson_maille
+   FROM atlas.vm_observations obs
+     JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
+     JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
+     JOIN atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
+  WHERE obs.effectif_total > 0 and p.id_categorie_france::text ~~ '%VU%'::text
+  GROUP BY m.id_maille, m.geojson_maille, c.area_code
 WITH DATA;
 
 -- View indexes:

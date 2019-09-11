@@ -157,16 +157,45 @@ function getColor(d) {
     ? "#FEB24C"
     : d > 1
     ? "#FED976"
-    : "#FFEDA0";
+    : d > 0
+    ? "#FFEDA0"
+    : "#eaeaea";
 }
 
 function styleMaille(feature) {
   return {
-    fillColor: getColor(feature.properties.nb_observations),
+    fillColor: getColor(feature.properties.eff_tot),
     weight: 2,
     color: "black",
     fillOpacity: 0.8
   };
+}
+
+function generateLegendMaille_fich_sp() {
+  legend.onAdd = function(map) {
+    var div = L.DomUtil.create("div", "info legend"),
+      grades = [0, 1, 2, 5, 10, 20, 50, 100],
+      labels = ["<strong> Nombre <br> d'observations </strong> <br>"];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+
+    labels.push('<i style="background:#eaeaea"></i>Absence<br>');
+
+    for (var i = 0; i < grades.length; i++) {
+      labels.push(
+        '<i style="background:' +
+          getColor(grades[i] + 1) +
+          '"></i> ' +
+          grades[i] +
+          (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+")
+      );
+    }
+    div.innerHTML = labels.join("<br>");
+
+    return div;
+  };
+
+  legend.addTo(map);
 }
 
 function generateLegendMaille() {
@@ -208,20 +237,25 @@ function generateGeojsonMaille(observations, yearMin, yearMax) {
                 geometry = observations[i].geojson_maille;
                 idMaille = observations[i].id_maille;
                 observers = observations[i].observateurs;
+                effectif_total = observations[i].effectif_total;
                 properties = {
                                 id_maille: idMaille,
                                 nb_observations: 1,
+                                eff_tot: effectif_total,
                                 list_observateurs : [observers],
                                 last_observation: observations[i].annee,
                                 tabDateobs: [new Date(observations[i].dateobs)]
                               };
+
                 var j = i + 1;
                 while (j < observations.length && observations[j].id_maille <= idMaille) {
                         if (observations[j].annee >= yearMin && observations[j].annee <= yearMax) {
+                            properties.eff_tot += observations[j].effectif_total;
                             properties.nb_observations += observations[j].nb_observations;
                             properties.tabDateobs.push(new Date(observations[i].dateobs));
                             properties.list_observateurs.push(observations[j].observateurs);
                           }
+
                         if (observations[j].annee >= properties.last_observation) {
                             properties.last_observation = observations[j].annee;
                           }
@@ -240,7 +274,6 @@ function generateGeojsonMaille(observations, yearMin, yearMax) {
           i = i + 1;
           }
         }
-
   return myGeoJson;
 }
 
@@ -255,7 +288,7 @@ function displayMailleLayerFicheEspece(observationsMaille, yearMin, yearMax) {
   currentLayer.addTo(map);
 
   // ajout de la légende
-  generateLegendMaille();
+  generateLegendMaille_fich_sp();
 }
 
 function generateGeojsonMailleCommune(observations) {

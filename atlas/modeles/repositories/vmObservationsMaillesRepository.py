@@ -10,6 +10,7 @@ def getObservationsMaillesChilds(connection, cd_ref):
             obs.id_maille,
             obs.geojson_maille,
             o.dateobs,
+            o.effectif_total,
             o.observateurs,
             extract(YEAR FROM o.dateobs) as annee
         FROM atlas.vm_observations_mailles obs
@@ -25,6 +26,7 @@ def getObservationsMaillesChilds(connection, cd_ref):
         temp = {
             "id_maille": o.id_maille,
             "nb_observations": 1,
+            "effectif_total":o.effectif_total,
             "annee": o.annee,
             "dateobs": str(o.dateobs),
             "observateurs": o.observateurs,

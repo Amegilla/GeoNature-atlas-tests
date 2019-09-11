@@ -33,6 +33,17 @@ function generateMap() {
         minZoom: configuration.MAP.SECOND_MAP.minzoom,
         subdomains : ["mt0", "mt1", "mt2", "mt3"]
         });
+    CorineLandCover = L.tileLayer('https://wxs.ign.fr/corinelandcover/geoportail/r/wms?', { 
+      
+     });
+     zps = L.tileLayer('http://ws.carmencarto.fr/WMS/119/fxx_inpn?', {  });
+
+
+    wmsLayer = L.tileLayer.wms('http://ws.carmencarto.fr/WMS/119/fxx_inpn?', {
+      attribution: 'Espaces naturels et Natura 2000'
+      });
+    Routes = L.tileLayer.wms('https://public.sig.rennesmetropole.fr/geoserver/ows?', 
+                    {layers: 'ref_rva:vgs_troncon_domanialite',format: 'image/png',transparent:true}); 
     
     baseMap = {};
     baseMap[configuration.MAP.FIRST_MAP.tileName] = firstMapTile;
@@ -48,9 +59,11 @@ function generateMap() {
       var baseLayers = {
         "OpenStreetmap": firstMapTile,
         "OpenTopomap": orthoMap,
-        "GoogleSatellite" : GoogleSatellite
+        "GoogleSatellite" : GoogleSatellite,
+        "CorineLandCover" : CorineLandCover
         };
-        L.control.layers(baseLayers).addTo(map);
+        data = {"Routes": Routes, "Natura2000" : wmsLayer,"ZPS" : zps};
+        L.control.layers(baseLayers,data).addTo(map);
    
          // Style of territory on map
     territoryStyle = {
@@ -92,7 +105,7 @@ function generateGeojsonMailleEspeces(observations) {
             nb_espece: obs.nb_espece,
             area_code: obs.area_code,
             liste_espece_vern: obs.liste_espece_vern,
-          liste_observateurs: obs.liste_observateurs
+            liste_observateurs: obs.liste_observateurs
           }
       })
     });
@@ -197,7 +210,7 @@ function generateLegendMailleEspeces() {
 /* on va charger les données du nb d'espèces par mailles */
   $.ajax({
     /*url: configuration.URL_APPLICATION+'/api/nb_espece_par_maille/'+cd_ref, */
-    url: configuration.URL_APPLICATION+'/api/observationsEspecesMailleGlobal',
+    url: configuration.URL_APPLICATION+'/api/observationsEspecesMailleGlobalchiro',
     dataType: "json",
     beforeSend: function(){
       $('#loadingGif').attr('src', configuration.URL_APPLICATION+'/static/images/loading.svg')
@@ -222,7 +235,7 @@ function generateLegendMailleEspeces() {
 
     $.ajax({
     /*url: configuration.URL_APPLICATION+'/api/nb_espece_par_maille/'+cd_ref, */
-    url: configuration.URL_APPLICATION+'/api/observationsEspecesMailleGlobal',
+    url: configuration.URL_APPLICATION+'/api/observationsEspecesMailleGlobalchiro',
     dataType: "json",
     beforeSend: function(){
       $('#loadingGif').attr('src', configuration.URL_APPLICATION+'/static/images/loading.svg')

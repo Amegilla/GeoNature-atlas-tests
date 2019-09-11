@@ -71,7 +71,7 @@ def getObservationsEspecesMailleGlobalAPI():
     return jsonify(observations)
 
 # api pour la carte de la page portail chiro avec nombre d'espece par maille pour les chiro
-@api.route('/observationsEspecesMailleGlobal', methods=['GET'])
+@api.route('/observationsEspecesMailleGlobalchiro', methods=['GET'])
 def getObservationsEspecesMailleGlobalAPI_chiro():
     connection = utils.engine.connect()
     observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds_chiro(connection)
