@@ -14,6 +14,7 @@ SELECT count(distinct t.cd_ref) AS nb_espece,
      JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
      join ref_geo.l_areas c on m.id_maille = c.id_area
      join atlas.vm_taxref t on t.cd_ref = obs.cd_ref
+  WHERE obs.effectif_total > 0 
   GROUP BY m.id_maille, m.geojson_maille,c.area_code
 WITH DATA;
 

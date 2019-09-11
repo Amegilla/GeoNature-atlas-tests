@@ -70,7 +70,7 @@ AS SELECT count(DISTINCT p.cd_ref) AS nb_espece,
      JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
      JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
      JOIN atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
-  WHERE obs.effectif_total > 0 and p.protection ~~ '%CDH2%'::text
+  WHERE obs.effectif_total > 0 AND p.protection ~~ '%CDH2%'::text
   GROUP BY m.id_maille, m.geojson_maille, c.area_code
 WITH DATA;
 
@@ -102,7 +102,7 @@ FROM atlas.vm_observations obs
 JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
 JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
 join atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
-WHERE p.id_categorie_france like '%EN%' or p.id_categorie_france like '%CR%'
+WHERE obs.effectif_total > 0 AND (p.id_categorie_france like '%EN%' or p.id_categorie_france like '%CR%')
   GROUP BY m.id_maille, m.geojson_maille, c.area_code
 WITH DATA;
 
@@ -132,7 +132,7 @@ AS SELECT count(DISTINCT p.cd_ref) AS nb_espece,
      JOIN atlas.t_mailles_territoire m ON st_intersects(obs.the_geom_point, m.the_geom)
      JOIN ref_geo.l_areas c ON m.id_maille = c.id_area
      JOIN atlas.vm_status_protection_chiro p ON obs.cd_ref = p.cd_ref
-  WHERE obs.effectif_total > 0 and p.id_categorie_france::text ~~ '%VU%'::text
+  WHERE obs.effectif_total > 0 AND p.id_categorie_france::text ~~ '%VU%'::text
   GROUP BY m.id_maille, m.geojson_maille, c.area_code
 WITH DATA;
 
