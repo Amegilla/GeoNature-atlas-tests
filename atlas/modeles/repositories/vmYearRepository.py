@@ -26,4 +26,24 @@ def getYearlyObservationsChilds(connection, cd_ref):
                 "nb_obs":a.nb_obs
             }
         )
-    return data
+    
+    bins = [1700,1990,2000,2005,2010,2015,2017,3000]
+    bins_labels = ["<1990","1990-2000","2000-2005","2005-2010","2010-2015","2015-2017",">2017"]
+    
+    print(data)
+    databin = []
+    for o in range(len(bins)-1) :
+        nbobs_bin = 0
+        for d in data :
+            if d["year"] >= bins[o] and d["year"] < bins[o+1] :
+                nbobs_bin = nbobs_bin + d["nb_obs"]
+        databin.append(
+            {
+                "year":bins_labels[o],
+                "nb_obs":nbobs_bin
+            }
+        )
+    return databin
+
+
+
