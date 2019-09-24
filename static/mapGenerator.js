@@ -175,6 +175,7 @@ function generateLegendMaille_fich_sp() {
   legend.onAdd = function(map) {
     var div = L.DomUtil.create("div", "info legend"),
       grades = [0, 1, 2, 5, 10, 20, 50, 100],
+      bins_labels = ["1", "2", "3-5", "5-10", "10-20", "20-50", "50-100", "100+"],
       labels = ["<strong> Nombre <br> d'observations </strong> <br>"];
 
     // loop through our density intervals and generate a label with a colored square for each interval
@@ -186,8 +187,8 @@ function generateLegendMaille_fich_sp() {
         '<i style="background:' +
           getColor(grades[i] + 1) +
           '"></i> ' +
-          grades[i] +
-          (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+")
+          bins_labels[i] + "<br>"
+
       );
     }
     div.innerHTML = labels.join("<br>");

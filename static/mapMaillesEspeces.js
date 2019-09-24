@@ -105,6 +105,7 @@ $.ajax({
     legend.onAdd = function(map) {
       var div = L.DomUtil.create("div", "info legend"),
         grades = [0, 1, 2, 3, 5, 10, 20, 30],
+        bins_labels = ["1", "2", "3", "4-5", "6-10", "11-20", "21-30", "30+"],
         labels = ["<strong> Nombre <br> d'espèces </strong> <br>"];
   
       // loop through our density intervals and generate a label with a colored square for each interval
@@ -112,9 +113,7 @@ $.ajax({
         labels.push(
           '<i style="background:' +
             getColor(grades[i] + 1) +
-            '"></i> ' +
-            grades[i] +
-            (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+")
+            '"></i> ' + bins_labels[i] + "<br>"
         );
       }
       div.innerHTML = labels.join("<br>");
