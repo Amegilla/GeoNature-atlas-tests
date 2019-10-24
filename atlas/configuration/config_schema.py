@@ -57,6 +57,7 @@ class AtlasConfig(Schema):
     AFFICHAGE_DERNIERES_OBS = fields.Bool(missing=True)
     AFFICHAGE_EN_CE_MOMENT = fields.Bool(missing=True)
     AFFICHAGE_RANG_STAT = fields.Bool(missing=True)
+    AFFICHAGE_GRAPH_ALTITUDES = fields.Bool(missing=True)
     AFFICHAGE_GRAPH_ANNEE_ESPECE = fields.Bool(missing=True)
     AFFICHAGE_GRAPH_SOURCE_ESPECE = fields.Bool(missing=True)
     AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE = fields.Bool(missing=True)

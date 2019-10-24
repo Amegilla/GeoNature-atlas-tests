@@ -113,6 +113,10 @@ p.imgDescription.main {
 	height: 734px;
 }
 
+#mapmorta {
+	height: 734px;
+}
+
 #loadingGif {
 	position: relative;
 	left:50%;
@@ -231,13 +235,25 @@ h5#buttonChild:hover {
 
 /* Graphiques */
 
-#altiChart, #phenologyChart {
+#altiChart, #phenologyChart ,#yearlyChart{
 	background-color: white;
 	height: 200px;
 }
 
 #graphBloc svg {
 	padding: 5px;
+}
+
+.nav#othersgraphs {
+	padding-left: 10px;
+}
+
+.tab-content#othersgraphs {
+	width:100%;
+}
+
+.customcharts {
+	height: 270px;
 }
 
 rect{

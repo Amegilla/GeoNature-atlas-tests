@@ -1,20 +1,20 @@
 
-// alti graph
-// Morris.Bar({
-//             element:"altiChart",
-//             data : dataset,
-//             xkey: "altitude",
-//             ykeys : ["value"],
-//             labels: ['Observation(s)'],
-//             xLabelAngle: 45,
-//             hideHover: 'auto',
-//             resize: true,
-//             axes: true,
-//             gridIntegers: true
-//             /*yLabelFormat: function(y){return y != Math.round(y)?'':y;}*/
-// /*            horizontal: true
-// */        });
-
+//alti graph
+if($('#altiChart')[0]) {
+Morris.Bar({
+            element:"altiChart",
+            data : dataset,
+            xkey: "altitude",
+            ykeys : ["value"],
+            labels: ['Observation(s)'],
+            xLabelAngle: 45,
+            hideHover: 'auto',
+            resize: true,
+            axes: true,
+            gridIntegers: true
+            /*yLabelFormat: function(y){return y != Math.round(y)?'':y;}*/
+/*            horizontal: true
+*/        });
 
 
 svgbis=d3.selectAll("svg");
@@ -28,7 +28,7 @@ svgbis=d3.selectAll("svg");
             .attr("font-size", "10px")
             .style("text-anchor", "end")
             .text("Altitude(m)");
-
+}
 
 // GRAPHIQUE CAMEMBERT SOURCES //
 if($('#sourcesChart')[0]) {
@@ -46,8 +46,8 @@ for(i = 0; i < sources.length; i++) {
   }];
   
   var layout = {
-    autosize: false,
-    height: 250,
+    autosize: true,
+    //height: 250,
     margin: {
       l: 50,
       r: 50,
@@ -77,8 +77,8 @@ if($('#contactTypesChart')[0]) {
     }];
     
     var layout = {
-      autosize: false,
-      height: 250,
+      autosize: true,
+      //height: 250,
       margin: {
         l: 50,
         r: 50,

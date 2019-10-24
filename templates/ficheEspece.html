@@ -563,27 +563,38 @@
             {% endif %}
 
             <div class="panel panel-default" id="graphBloc">
-                <!-- 
-                <h3 class="text-center">Observations par classes d'altitudes</h3>
-                <div id="altiChart"></div> 
-                -->
-                <h3 class="text-center">Observations mensuelles</h3>
-                <div id="phenologyChart"></div>
-                {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
-                    <h3 class="text-center">Observations Annuelles</h3>
-                    <div id="yearlyChart"></div>
-                {% endif %}
-
-                {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
+                    {% if configuration.AFFICHAGE_GRAPH_ALTITUDES %} 
+                        <h3 class="text-center">Observations par classes d'altitudes</h3>
+                        <div id="altiChart"></div> 
+                    {% endif %}
+                    <h3 class="text-center">Observations mensuelles</h3>
+                    <div id="phenologyChart"></div>
+                    {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
+                        <h3 class="text-center">Observations Annuelles</h3>
+                        <div id="yearlyChart"></div>
+                    {% endif %}
+                    
+                    {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE and configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
+                    <ul class="nav nav-tabs" id="othersgraphs">
+                            <li class="active"><a data-toggle="tab" href="#sources">Sources</a></li>
+                            <li><a data-toggle="tab" href="#typecontact">Type de contact</a></li>  
+                    </ul>
+                    <div class="tab-content" id="othersgraphs">
+                            <div id="sources" class="tab-pane fade in active">
+                                    <div class="customcharts" id="sourcesChart"></div>
+                            </div>
+                            <div id="typecontact" class="tab-pane fade">
+                                    <div class="customcharts" id="contactTypesChart"></div>
+                            </div>
+                    </div>
+                    {% elif configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
                     <h3 class="text-center">Sources</h3>
                     <div id="sourcesChart"></div>
-                {% endif %}
-
-                {% if configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
-                <h3 class="text-center">Type de contact</h3>
-                <div id="contactTypesChart"></div>
-                {% endif %}
-            </div>
+                    {% elif configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
+                    <h3 class="text-center">Type de contact</h3>
+                    <div id="contactTypesChart"></div>
+                    {% endif %}
+                </div>
         </div>
     </div>
         {% if configuration.AFFICHAGE_FOOTER %}

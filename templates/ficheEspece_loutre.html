@@ -40,6 +40,14 @@
         <!-- MorrisJs -->
         <script src="{{url_for('static', filename='lib/morrisJs/morris.min.js') }}"></script>
         <link rel="stylesheet" href="{{url_for('static', filename='lib/morrisJs/morris.css') }}" />
+
+        <!-- Plotly.js , pour graphique camembert sources -->
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <!-- Numeric JS  , pour graphique camembert sources -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
+        <!-- highcharts , pour graphique camembert sources -->
+        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+
         <!-- RaphaelJs -->
         <script src="{{url_for('static', filename='lib/raphaelJs/raphael.min.js') }}"></script>
 
@@ -253,18 +261,43 @@
             </div>
             <div class="panel panel-default" id="mapPanel">
                 <div class ="row">
+                    <!-- Map panel avec onglets -->
                     <div class="col-sm-10" id="mapContainer">
-                        <div id="map">
-                            <img id ="loadingGif" src="">
-                        </div>
-                    </div>
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                    <li class="active">
+                                    <a href="#obsmap" role="tab" data-toggle="tab">
+                                        <icon class="fa fa-home"></icon> <h4>Observations</h4>
+                                    </a>
+                                    </li>
+                                    <li><a href="#mortmap" role="tab" data-toggle="tab">
+                                        <i class="fa fa-user"></i> <h4>Mortalité</h4>
+                                    </a>
+                                    </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                    <div class="tab-pane fade active in" id="obsmap">
+                                    <div id="map">
+                                    <img id ="loadingGif" src="">
+                                    </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="mortmap">
+                                    <div id="mapmorta">
+                                    <img id ="loadingGif" src="">
+                                    </div>
+                                    </div>
+                            </div>
+                    </div>  
+                    <!-- END Map panel avec onglets -->
                     <div class="col-sm-2" id="mapStat">
                         <ul>
-                            <li> <span data-icon="&#xe037;" style="font-size: 30px;"></span> </br>
+                            <li> <span data-icon="&#xe037;" style="font-size: 25px;"></span> </br>
                                     <b>{{taxon.taxonSearch.nb_obs}}</b> </br> {{ 'observations' if taxon.taxonSearch.nb_obs > 1 else 'observation' }}</li>
-                            <li> <img id="picto" src="{{url_for('static', filename='images/church.png')}}" style="width"><br/><b>{{communes|length}}</b><br/>{{ 'communes' if communes|length > 1 else 'commune' }}</li>
-                            <li> <b>{{mailles|length}}</b><br/>{{ 'mailles' if mailles|length > 1 else 'maille' }}</li>
-                            <li> <span data-icon="&#xe040;"  style="font-size: 30px;"></span><br/><b>{{observers|length}}</b><br/>{{ 'observateurs' if observers|length > 1 else 'observateur' }}</li>
+                            <li> <img id="picto" src="{{url_for('static', filename='images/church.png')}}" style="width"><br/><b>{{communes|length}}</b><br/>{{ 'communes' if communes|length > 1 else 'commune' }} <br/><b>{{mailles|length}}</b><br/>{{ 'mailles' if mailles|length > 1 else 'maille' }}</li>
+                            <li> <span data-icon="&#xe040;"  style="font-size: 25px;"></span><br/><b>{{observers|length}}</b><br/>{{ 'observateurs' if observers|length > 1 else 'observateur' }}</li>
+                            <li> <span class="glyphicon glyphicon-tags"  style="font-size: 25px;"></span><br/><b>{{sources|length}}</b><br/>{{ 'sources' if sources|length > 1 else 'source' }}</li>
                             <li id="firstObs" class="pointer"><span data-icon="&#xe037;" style="font-size: 25px; color: brown"></span><br/><b>Première observation</b><br/>{{taxon.taxonSearch.yearmin|int}}</li>
                             <li id="lastObs" class="pointer"><span data-icon="&#xe037;" style="font-size: 25px; color: blue"></span><br/><b>Dernière observation</b><br/>{{taxon.taxonSearch.yearmax|int}}</li>
 
@@ -274,89 +307,163 @@
             </div>
 
             <div class="panel panel-default" id="otherInformationsPanel">
-                <div class="row" id="otherInformations">
-                          <ul class="nav nav-tabs">
-                            {% if articles | length != 0 %}
-                            <li class="active"><a data-toggle="tab" href="#articles"><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</a></li>
-                            <li><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
-                            {% else %}
-                            <li class="active"><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
-                            {% endif %}
-                            <li><a data-toggle="tab" href="#observateurs"> <b>{{observers|length}} </b> {{ 'observateurs' if observers|length > 1 else 'observateur' }}</a></li>
-                          </ul>
+                <div class="panel-body">
+                        <div class="row" id="otherInformations">
+                                <ul class="nav nav-tabs">
+                                  {% if articles | length != 0 %}
+                                  <li class="active"><a data-toggle="tab" href="#articles"><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</a></li>
+                                  <li><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
+                                  {% else %}
+                                  <li class="active"><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
+                                  {% endif %}
+                                  <li><a data-toggle="tab" href="#observateurs"> <b>{{observers|length}} </b> {{ 'observateurs' if observers|length > 1 else 'observateur' }}</a></li>
+                                </ul>
+      
+                              <div class="tab-content" style="width:100%;">
+                                  {% if articles | length != 0 %}
+                                  <div id="articles" class="tab-pane fade in active">
+                                      <table class="table table-striped">
+                                          <thead>
+                                              <th> </th>
+                                              <th> Titre </th>
+                                              <th> Auteur </th>
+                                          </thead>
+                                          <tbody>
+      
+                                                  {% for i in range (articles | length) %}
+                                                      <tr class="accordion-toggle" data-toggle="collapse" data-target=".moreInfo{{i}}">
+                                                          <td> {% if articles[i].id_type == 3 %} <span class="glyphicon glyphicon-link"> </span>
+                                                               {% else %} <span class="glyphicon glyphicon-paperclip"> </span>
+                                                               {% endif %}
+                                                          </td>
+      
+                                                          <td>
+                                                              <a href="{{articles[i].path}}" target="_blank"> {{articles[i].title}} </a>
+                                                           </td>
+      
+                                                          <td>
+                                                              {{articles[i].author}}
+                                                          </td>
+                                                          <td>
+                                                             <i class="btn-more"> <span class="glyphicon glyphicon-chevron-down "> </span></i>
+                                                          </td>
+      
+                                                      </tr>
+                                                      <tr>
+                                                          <td colspan ="4" class="hiddenRow" style="padding:0px;">
+                                                              <div  class="collapse moreInfo{{i}}">
+                                                                  <strong> Description : </strong> <br> {{articles[i].description | safe}} <br>
+                                                                  <strong> Date : </strong> {{articles[i].date}}
+                                                              </div>
+                                                          </td>
+                                                      </tr>
+      
+                                                  {% endfor %}
+      
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  {% endif %}
+                                  {% if articles | length != 0 %}
+                                  <div id="communes" class="tab-pane fade">
+                                  {% else %}
+                                  <div id="communes" class="tab-pane fade in active">
+                                  {% endif %}
+                                      <p>
+                                          {% for com in communes %}
+                                              <a href = "{{url_for('main.ficheCommune', insee = com.insee)}}">{{com.commune_maj}}</a>
+                                              {% if not loop.last %}
+                                               -
+                                              {% endif %}
+                                          {% endfor %}
+                                      </p>
+                                  </div>
+      
+                                  <div id="observateurs" class="tab-pane fade">
+                                      {% for o in observers %}
+                                          {{o }}
+                                          {% if  not loop.last %}
+                                          -
+                                          {% endif %}
+                                      {% endfor %}
+                                  </div>
+                              </div>
+                      </div>
+                  </div>
+                
 
-                        <div class="tab-content" style="width:100%;">
-                            {% if articles | length != 0 %}
-                            <div id="articles" class="tab-pane fade in active">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <th> </th>
-                                        <th> Titre </th>
-                                        <th> Auteur </th>
-                                    </thead>
-                                    <tbody>
-
-                                            {% for i in range (articles | length) %}
-                                                <tr class="accordion-toggle" data-toggle="collapse" data-target=".moreInfo{{i}}">
-                                                    <td> {% if articles[i].id_type == 3 %} <span class="glyphicon glyphicon-link"> </span>
-                                                         {% else %} <span class="glyphicon glyphicon-paperclip"> </span>
-                                                         {% endif %}
-                                                    </td>
-
-                                                    <td>
-                                                        <a href="{{articles[i].path}}" target="_blank"> {{articles[i].title}} </a>
-                                                     </td>
-
-                                                    <td>
-                                                        {{articles[i].author}}
-                                                    </td>
-                                                    <td>
-                                                       <i class="btn-more"> <span class="glyphicon glyphicon-chevron-down "> </span></i>
-                                                    </td>
-
-                                                </tr>
-                                                <tr>
-                                                    <td colspan ="4" class="hiddenRow" style="padding:0px;">
-                                                        <div  class="collapse moreInfo{{i}}">
-                                                            <strong> Description : </strong> <br> {{articles[i].description | safe}} <br>
-                                                            <strong> Date : </strong> {{articles[i].date}}
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-                                            {% endfor %}
-
-                                    </tbody>
-                                </table>
-                            </div>
-                            {% endif %}
-                            {% if articles | length != 0 %}
-                            <div id="communes" class="tab-pane fade">
-                            {% else %}
-                            <div id="communes" class="tab-pane fade in active">
-                            {% endif %}
-                                <p>
-                                    {% for com in communes %}
-                                        <a href = "{{url_for('main.ficheCommune', insee = com.insee)}}">{{com.commune_maj}}</a>
-                                        {% if not loop.last %}
-                                         -
-                                        {% endif %}
-                                    {% endfor %}
-                                </p>
-                            </div>
-
-                            <div id="observateurs" class="tab-pane fade">
-                                {% for o in observers %}
-                                    {{o }}
-                                    {% if  not loop.last %}
-                                    -
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
+                    <div class="row" id="otherInformations">
+                        <div class="col-lg-6 col-sm-12">
+                            <button type="button" class="btn btn-default btn-block btn-lg" data-toggle="modal" data-target="#listCommunes">
+                                <b>{{communes|length}}</b> communes
+                            </button>
+                            <!-- Modal -->
+                                <div id="listCommunes" class="modal fade" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;
+                                                </button>
+                                                <h4 class="modal-title">Liste des communes où l'espèce a été observée</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="">
+                                                    {% for com in communes %}
+                                                    <a href = "{{url_for('main.ficheCommune', insee = com.insee)}}">{{com.commune_maj}}</a>
+                                                    {% if not loop.last %}
+                                                        -
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Fermer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END Modal -->
                         </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <button type="button" class="btn btn-default btn-block btn-lg" data-toggle="modal" data-target="#listObservateurs">
+                                <b>{{observers|length}} </b> observateurs
+                            </button>
+                            <!-- Modal -->
+                            <div id="listObservateurs" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-lg">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;
+                                            </button>
+                                            <h4 class="modal-title">Liste des observateurs</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="">
+                                                {% for o in observers %}
+                                                {{o }}
+                                                {% if  not loop.last %}
+                                                -
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            Fermer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Modal -->
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
             {% if photoCarousel | length >= 1 %}
@@ -447,33 +554,33 @@
                                 {% endif %}
                         </div>
                         <div id="habitats" class="tab-pane fade">
-                            {% if taxonDescription.habitats == None %}
-                                Non renseigné pour le moment
-                            {% else %}
-                            {{taxonDescription.habitats}}
-                            {% endif %}
-                    </div>
-                    <div id="aire" class="tab-pane fade">
-                            {% if taxonDescription.aire == None %}
+                                {% if taxonDescription.habitats == None %}
+                                    Non renseigné pour le moment
+                                {% else %}
+                                {{taxonDescription.habitats}}
+                                {% endif %}
+                        </div>
+                        <div id="aire" class="tab-pane fade">
+                                {% if taxonDescription.aire == None %}
+                                    Non renseignée pour le moment
+                                {% else %}
+                                    {{taxonDescription.aire}}
+                                {% endif %}
+                        </div>
+                        <div id="population" class="tab-pane fade">
+                            {% if taxonDescription.population == None %}
                                 Non renseignée pour le moment
                             {% else %}
-                                {{taxonDescription.aire}}
+                                {{taxonDescription.population}}
                             {% endif %}
-                    </div>
-                    <div id="population" class="tab-pane fade">
-                        {% if taxonDescription.population == None %}
-                            Non renseignée pour le moment
-                        {% else %}
-                            {{taxonDescription.population}}
-                        {% endif %}
-                    </div>
-                    <div id="menaces" class="tab-pane fade">
-                        {% if taxonDescription.menaces == None %}
-                            Non renseignée pour le moment
-                        {% else %}
-                            {{taxonDescription.menaces}}
-                        {% endif %}
-                    </div>
+                        </div>
+                        <div id="menaces" class="tab-pane fade">
+                            {% if taxonDescription.menaces == None %}
+                                Non renseignée pour le moment
+                            {% else %}
+                                {{taxonDescription.menaces}}
+                            {% endif %}
+                        </div>
                         <div id="synonymes" class="tab-pane fade">
                             {% if synonyme | length == 1 %}
                                 Aucun synonyme pour ce taxon
@@ -555,10 +662,37 @@
             {% endif %}
 
             <div class="panel panel-default" id="graphBloc">
-                <h3 class="text-center">Observations par classes d'altitudes</h3>
-                <div id="altiChart"></div>
+                {% if configuration.AFFICHAGE_GRAPH_ALTITUDES %} 
+                    <h3 class="text-center">Observations par classes d'altitudes</h3>
+                    <div id="altiChart"></div> 
+                {% endif %}
                 <h3 class="text-center">Observations mensuelles</h3>
                 <div id="phenologyChart"></div>
+                {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
+                    <h3 class="text-center">Observations Annuelles</h3>
+                    <div id="yearlyChart"></div>
+                {% endif %}
+                
+                {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE and configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
+                <ul class="nav nav-tabs" id="othersgraphs">
+                        <li class="active"><a data-toggle="tab" href="#sources">Sources</a></li>
+                        <li><a data-toggle="tab" href="#typecontact">Type de contact</a></li>  
+                </ul>
+                <div class="tab-content" id="othersgraphs">
+                        <div id="sources" class="tab-pane fade in active">
+                                <div class="customcharts" id="sourcesChart"></div>
+                        </div>
+                        <div id="typecontact" class="tab-pane fade">
+                                <div class="customcharts" id="contactTypesChart"></div>
+                        </div>
+                </div>
+                {% elif configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
+                <h3 class="text-center">Sources</h3>
+                <div id="sourcesChart"></div>
+                {% elif configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
+                <h3 class="text-center">Type de contact</h3>
+                <div id="contactTypesChart"></div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -572,6 +706,7 @@
     <script>
             var dataset = {{altitudes|tojson}};
             var months = {{months|tojson}};
+            var years = {{years|tojson}};
             var observationsPoint = [];
             var observationsMaille = [];
             var listeTaxonsSearch = {{listeTaxonsSearch|tojson}};
@@ -580,6 +715,8 @@
             var taxonYearMin = {{taxon.taxonSearch.yearmin}};
             var cd_ref = {{taxon.taxonSearch.cd_ref}};
             var nb_obs = {{taxon.taxonSearch.nb_obs}};
+            var sources = {{sources|tojson}};
+            var contacttypes = {{contacttypes|tojson}};
     </script>
 
     <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script>
@@ -588,6 +725,8 @@
 
     <script src="{{url_for('static', filename='mapGenerator.js') }}"></script>
     <script src="{{url_for('static', filename='main.js') }}"></script>
+    <script src="{{url_for('static', filename='mapmorta.js') }}"></script>
+    <script src="{{url_for('static', filename='mapGen_mortalite.js') }}"></script>
     {% if configuration.AFFICHAGE_MAILLE %}
         <script src="{{url_for('static', filename='mapMailles.js') }}"></script>
     {% else %}

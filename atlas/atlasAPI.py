@@ -54,6 +54,15 @@ def getObservationsMailleAndPointAPI(cd_ref):
     connection.close()
     return jsonify(observations)
 
+@api.route('/observationsMailleAndPoint_lulu_morta/', methods=['GET'])
+def getObservationsMailleAndPointAPI_lulu_morta():
+    connection = utils.engine.connect()
+    observations = {
+        'point': vm_lulu_morta_Repository.searchObservations(connection),
+        'maille': vm_lulu_morta_MaillesRepository.getObservationsMailles(connection)
+    }
+    connection.close()
+    return jsonify(observations)
 
 @api.route('/observationsMaille/<int:cd_ref>', methods=['GET'])
 def getObservationsMailleAPI(cd_ref):

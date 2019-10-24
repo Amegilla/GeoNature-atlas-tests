@@ -30,7 +30,7 @@ def getYearlyObservationsChilds(connection, cd_ref):
     bins = [1700,1990,2000,2005,2010,2015,2017,3000]
     bins_labels = ["<1990","1990-2000","2000-2005","2005-2010","2010-2015","2015-2017",">2017"]
     
-    print(data)
+
     databin = []
     for o in range(len(bins)-1) :
         nbobs_bin = 0

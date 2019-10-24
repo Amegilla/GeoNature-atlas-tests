@@ -82,7 +82,7 @@ def indexMedias(image):
         + image
     )
 
-
+###################################################  PAGE D ACCEUIL ############
 @main.route("/", methods=["GET", "POST"])
 def index():
     session = utils.loadSession()
@@ -121,7 +121,7 @@ def index():
         customStat=customStat,
         customStatMedias=customStatMedias,
     )
-################################################################################
+################################################################################ PORTAIL CHIRO
 
 @main.route("/portail_chiro", methods=["GET", "POST"])
 def portail_chiro():
@@ -161,7 +161,7 @@ def portail_chiro():
         customStat=customStat,
         customStatMedias=customStatMedias,
     )
-#-------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------# PORTAIL LOUTRE
 @main.route("/portail_loutre", methods=["GET", "POST"])
 def portail_loutre():
     session = utils.loadSession()
@@ -300,8 +300,13 @@ def ficheEspece(cd_ref):
     connection.close()
     session.close()
 
+    html_template = "templates/ficheEspece.html"
+    if cd_ref == 60630:
+        print('LOUTREEEEEEEEE')
+        html_template = "templates/ficheEspece_loutre.html"
+
     return render_template(
-        "templates/ficheEspece.html",
+        html_template,
         taxon=taxon,
         listeTaxonsSearch=[],
         observations=[],
