@@ -279,7 +279,7 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                     <div class="tab-pane fade active in" id="obsmap">
-                                    <div id="map">
+                                    <div id="mapnorm">
                                     <img id ="loadingGif" src="">
                                     </div>
                                     </div>
@@ -697,7 +697,7 @@
         </div>
     </div>
         {% if configuration.AFFICHAGE_FOOTER %}
-            {% include 'static/custom/templates/footer.html' %}
+            {% include 'static/custom/templates/footer_loutre.html' %}
         {% endif %}
 
     <script  src="{{url_for('static', filename='lib/lightbox2/js/lightbox.min.js') }}" ></script>
@@ -725,14 +725,14 @@
 
     <script src="{{url_for('static', filename='mapGenerator.js') }}"></script>
     <script src="{{url_for('static', filename='main.js') }}"></script>
-    <script src="{{url_for('static', filename='mapmorta.js') }}"></script>
-    <script src="{{url_for('static', filename='mapGen_mortalite.js') }}"></script>
+    
     {% if configuration.AFFICHAGE_MAILLE %}
         <script src="{{url_for('static', filename='mapMailles.js') }}"></script>
     {% else %}
         <script src="{{url_for('static', filename='mapPoint.js') }}"></script>
     {% endif %}
-
+    <script src="{{url_for('static', filename='mapGen_mortalite.js') }}"></script>
+    <script src="{{url_for('static', filename='mapmorta.js') }}"></script>
 
 </body>
 </html>

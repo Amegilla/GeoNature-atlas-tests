@@ -1,19 +1,20 @@
+var map2 = generateMap("mapmorta");
+generateSliderOnMap2();
 
-var mapmorta = generateMap();
-generateSliderOnMap();
-var legend = L.control({position: 'bottomright'});
+$("a[href='#mortmap']").on('shown.bs.tab', function(e) {
+  map2.invalidateSize();
+});
 
-// Layer display on window ready
 
-/*GLOBAL VARIABLE*/
 
-// Current observation Layer: leaflet layer type
-var currentLayer; 
+var legend2 = L.control({position: 'bottomright'});
+
+var currentLayer2; 
 
 // Current observation geoJson:  type object
-var myGeoJson;
+var myGeoJson2;
 
-var compteurLegend = 0; // counter to not put the legend each time
+var compteurLegend2 = 0; // counter to not put the legend each time
 
 
 $.ajax({
@@ -23,72 +24,72 @@ $.ajax({
     $('#loadingGif').attr("src", configuration.URL_APPLICATION+'/static/images/loading.svg')
   }
 
-  }).done(function(observations) {
+  }).done(function(observations2) {
     $('#loadingGif').hide();
 
       //display nb observations
 
-    var mailleBoolean = false;
-    if (observations.maille.length > 500) {
-       displayMailleLayerFicheEspece(observations.maille, taxonYearMin, YEARMAX);
-       mailleBoolean = true;
+    var mailleBoolean2 = false;
+    if (observations2.maille.length > 500) {
+       displayMailleLayerFicheEspece2(observations2.maille, taxonYearMin, YEARMAX);
+       mailleBoolean2 = true;
     }
     else {
-      displayMarkerLayerFicheEspece(observations.point, taxonYearMin, YEARMAX);
+      displayMarkerLayerFicheEspece2(observations2.point, taxonYearMin, YEARMAX);
     }
     
-    if (mailleBoolean){
+    if (mailleBoolean2){
       // Slider event
-          mySlider.on("change",function(){
-              years = mySlider.getValue();
+          mySlider2.on("change",function(){
+              years = mySlider2.getValue();
               yearMin = years[0];
               yearMax = years[1];
 
 
-              mapmorta.removeLayer(currentLayer);
-              if(mapmorta.getZoom() >= configuration.ZOOM_LEVEL_POINT){
-                displayMarkerLayerFicheEspece(observations.point, yearMin, yearMax);
+              map2.removeLayer(currentLayer2);
+              if(map2.getZoom() >= configuration.ZOOM_LEVEL_POINT){
+                displayMarkerLayerFicheEspece2(observations2.point, yearMin, yearMax);
               }else{
-                displayMailleLayerFicheEspece(observations.maille, yearMin, yearMax)
+                displayMailleLayerFicheEspece2(observations2.maille, yearMin, yearMax)
               }
 
-              nbObs=0;
-              myGeoJson.features.forEach(function(l){
-                nbObs += l.properties.nb_observations
+              nbObs2=0;
+              myGeoJson2.features.forEach(function(l){
+                nbObs2 += l.properties.nb_observations
               })
 
-              $("#nbObs").html("Nombre d'observation(s): "+ nbObs);
+              $("#nbObs2").html("Nombre d'observation(s): "+ nbObs2);
 
              });
 
 
             // ZoomEvent: change maille to point
-            var legendblock = $("div.info");
-            var activeMode = "Maille";
-            mapmorta.on("zoomend", function(){
-            if (activeMode != "Point" && mapmorta.getZoom() >= configuration.ZOOM_LEVEL_POINT ){
-              mapmorta.removeLayer(currentLayer);
-              legendblock.attr("hidden", "true");
+            var legendblock2 = $("div.info");
+            var activeMode2 = "Maille";
+            map2.on("zoomend", function(){
+            if (activeMode2 != "Point" && map2.getZoom() >= configuration.ZOOM_LEVEL_POINT ){
+              map2.removeLayer(currentLayer2);
+              legendblock2.attr("hidden", "true");
 
 
-                years = mySlider.getValue();
+                years = mySlider2.getValue();
                 yearMin = years[0];
                 yearMax = years[1];
 
-              displayMarkerLayerFicheEspece(observations.point, yearMin, yearMax);
-              activeMode = "Point";
+              displayMarkerLayerFicheEspece2(observations2.point, yearMin, yearMax);
+              activeMode2 = "Point";
             }
-            if (activeMode != "Maille" && mapmorta.getZoom() <= configuration.ZOOM_LEVEL_POINT -1 ){
+            if (activeMode2 != "Maille" && map2.getZoom() <= configuration.ZOOM_LEVEL_POINT -1 ){
               // display legend
-              mapmorta.removeLayer(currentLayer);
+              map2.removeLayer(currentLayer2);
 
-              legendblock.removeAttr( "hidden" );
+              legendblock2.removeAttr( "hidden" );
 
-                years = mySlider.getValue();
+                years = mySlider2.getValue();
                 yearMin = years[0];
                 yearMax = years[1];
-              displayMailleLayerFicheEspece(observations.maille, yearMin, yearMax);
-              activeMode = "Maille"
+              displayMailleLayerFicheEspece2(observations2.maille, yearMin, yearMax);
+              activeMode2 = "Maille"
             }
 
             });
@@ -96,30 +97,28 @@ $.ajax({
     // if not display Maille
     }else {
             // Slider event
-            mySlider.on("change",function(){
-                years = mySlider.getValue();
+            mySlider2.on("change",function(){
+                years = mySlider2.getValue();
                 yearMin = years[0];
                 yearMax = years[1];
 
 
-                mapmorta.removeLayer(currentLayer);
-                displayMarkerLayerFicheEspece(observations.point, yearMin, yearMax);
-                nbObs=0;
-                myGeoJson.features.forEach(function(l){
-                  nbObs += l.properties.nb_observations
+                map2.removeLayer(currentLayer2);
+                displayMarkerLayerFicheEspece2(observations2.point, yearMin, yearMax);
+                nbObs2=0;
+                myGeoJson2.features.forEach(function(l){
+                  nbObs2 += l.properties.nb_observations
                 })
 
-                $("#nbObs").html("Nombre d'observation(s): "+ nbObs);
+                $("#nbObs2").html("Nombre d'observation(s): "+ nbObs2);
                });
 
     }
 
 })
 
-
 // Legende
 
-htmlLegend = "<i style='border: solid "+configuration.MAP.BORDERS_WEIGHT+"px "+configuration.MAP.BORDERS_COLOR+";'> &nbsp; &nbsp; &nbsp;</i> Limite du "+ configuration.STRUCTURE;
+htmlLegend2 = "<i style='border: solid "+configuration.MAP.BORDERS_WEIGHT+"px "+configuration.MAP.BORDERS_COLOR+";'> &nbsp; &nbsp; &nbsp;</i> Limite du "+ configuration.STRUCTURE;
 
-generateLegende(htmlLegend);
-
+generateLegende2(htmlLegend2);

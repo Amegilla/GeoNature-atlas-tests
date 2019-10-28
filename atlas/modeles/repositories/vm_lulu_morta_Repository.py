@@ -13,15 +13,13 @@ def getObservationsMaillesChilds(connection):
     sql = """SELECT
             obs.id_maille,
             obs.geojson_maille,
-            o.dateobs,
+            obs.dateobs,
             1 as effectif_total,
             obs.nom_decouvreur,
             obs.nom_coordinateur,
             obs.nom_informateur,
-            extract(YEAR FROM o.dateobs) as annee
-        FROM atlas.vm_observations_mailles obs
-        JOIN atlas.vm_observations o ON o.id_observation = obs.id_observation
-        WHERE obs.cd_ref = :thiscdref
+            extract(YEAR FROM obs.dateobs) as annee
+        FROM atlas.vm_obs_lulu_morta_mailles obs
         ORDER BY id_maille"""
     observations = connection.execute(text(sql), thiscdref=60630)
     tabObs = list()
@@ -43,7 +41,7 @@ def getObservationsMaillesChilds(connection):
 def searchObservationsChilds(connection):
     sql = """SELECT obs.*
             FROM atlas.vm_obs_lulu_morta obs
-            WHERE obs.cd_ref = :thiscdref"""
+            """
 
     observations = connection.execute(text(sql), thiscdref=60630)
     obsList = list()

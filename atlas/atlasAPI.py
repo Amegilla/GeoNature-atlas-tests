@@ -11,7 +11,8 @@ from .modeles.repositories import (
     vmObservationsEspecesMaillesGlobalRepository, 
     vmMedias, 
     vmCommunesRepository,
-    vmMaillesRepository
+    vmMaillesRepository,
+    vm_lulu_morta_Repository
 )
 from .configuration import config
 
@@ -58,8 +59,8 @@ def getObservationsMailleAndPointAPI(cd_ref):
 def getObservationsMailleAndPointAPI_lulu_morta():
     connection = utils.engine.connect()
     observations = {
-        'point': vm_lulu_morta_Repository.searchObservations(connection),
-        'maille': vm_lulu_morta_MaillesRepository.getObservationsMailles(connection)
+        'point': vm_lulu_morta_Repository.searchObservationsChilds(connection),
+        'maille': vm_lulu_morta_Repository.getObservationsMaillesChilds(connection)
     }
     connection.close()
     return jsonify(observations)

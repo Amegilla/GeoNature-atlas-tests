@@ -252,8 +252,10 @@ def ficheEspece(cd_ref):
     else :
         years = None
 
-    if current_app.config["AFFICHAGE_GRAPH_SOURCE_ESPECE"]:
+    if current_app.config["AFFICHAGE_GRAPH_SOURCE_ESPECE"] and cd_ref != 60630:
         sources = vmObservationsRepository.getSources(connection, cd_ref)
+    elif current_app.config["AFFICHAGE_GRAPH_SOURCE_ESPECE"] and cd_ref == 60630:
+        sources = vmObservationsRepository.getSources_lulu(connection)
     else :
         sources = None
 
@@ -302,7 +304,6 @@ def ficheEspece(cd_ref):
 
     html_template = "templates/ficheEspece.html"
     if cd_ref == 60630:
-        print('LOUTREEEEEEEEE')
         html_template = "templates/ficheEspece_loutre.html"
 
     return render_template(

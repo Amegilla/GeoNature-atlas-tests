@@ -185,6 +185,19 @@ def getSources(connection, cd_ref):
         tabSources.append(temp)
     return tabSources
 
+def getSources_lulu(connection):
+    tabSources = list()
+    result = {'nb_obs': None, 'sources': None}
+    sql = """
+    SELECT COUNT(*) as nb_obs, "Source" as sources
+    FROM atlas.vm_sources_lulu
+    GROUP BY "Source";
+    """
+    req = connection.execute(text(sql))
+    for r in req:
+        temp = {'nb_obs': r.nb_obs, 'name_source': r.sources}
+        tabSources.append(temp)
+    return tabSources
 
 def getContactTypes(connection, cd_ref):
     tabContactTypes = list()

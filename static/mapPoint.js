@@ -1,5 +1,5 @@
 
-var map = generateMap();
+var map = generateMap("mapnorm");
 generateSliderOnMap();
 var legend = L.control({position: 'bottomright'});
 
