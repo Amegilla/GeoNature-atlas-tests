@@ -107,6 +107,7 @@ class AtlasConfig(Schema):
             },
         }
     )
+    AFFICHAGE_PAGE_PHOTOS_NAVBAR = fields.Boolean(missing=True)
     STATIC_PAGES = fields.Dict(
         missing={
             "presentation": {

@@ -48,28 +48,38 @@
 					<div class="panel panel-default stat-panel">
 						<div class="row">
 							<div class="panel-heading"><strong><h3>Liens vers les portails </h3></strong></div>
-							<div class ="col-lg-4 col-md-4 col-sm-6 col-xs-12 stat-object">
-								<div class="thumbnail stat-thumbnail">
-										<img id="picto" src="{{url_for('static', filename='images/picto_Mammiferes_chiro.png')}}">
-									<h1>Chiroptères</h1>
-									<p><a id="localScroll" href="{{url_for('main.portail_chiro')}}" class="btn btn-default" role="button">Portail Chiroptères</a></p>
+							<a  href="{{url_for('main.portail_chiro')}}">
+								<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
+									<div class="thumbnail stat-thumbnail">
+											<img id="picto" src="{{url_for('static', filename='images/picto_Mammiferes_chiro.png')}}">
+										<h1>Chiroptères</h1>
+									</div>
 								</div>
-							</div>
-							<div class = "col-lg-4 col-md-4 col-sm-6 col-xs-12 stat-object">
-								<div class="thumbnail stat-thumbnail">
-										<img id="picto" src="{{url_for('static', filename='images/picto_lutra.png')}}">
-									<h1>Loutre</h1>
-									<p><a id="localScroll" href="espece/60630" class="btn btn-default" role="button">Portail Loutre</a></p>
+							</a>
+							<a  href="{{url_for('main.portail_chiro')}}">
+								<div class = "col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
+									<div class="thumbnail stat-thumbnail">
+											<img id="picto" src="{{url_for('static', filename='images/picto_lutra.png')}}">
+										<h1>Loutre</h1>
+									</div>
 								</div>
-							</div>
-							<div class ="col-lg-4 col-md-4 col-sm-6 col-xs-12 stat-object">
-								<div class="thumbnail stat-thumbnail">
-									<img id="picto" src="{{url_for('static', filename='images/picto_micromam.png')}}">
-									<h1>Petits Mammifères</h1>
-									<p><a id="localScroll" href="#" class="btn btn-default" role="button">Portail Petits Mammifères</a></p>
+							</a>
+							<a  href="{{url_for('main.portail_chiro')}}">
+								<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
+									<div class="thumbnail stat-thumbnail">
+										<img id="picto" src="{{url_for('static', filename='images/picto_micromam.png')}}">
+										<h1>Petits Mammifères</h1>
+									</div>
 								</div>
-							</div>
-
+							</a>
+							<a  href="{{url_for('main.get_staticpages', page='ressources')}}">
+								<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
+									<div class="thumbnail stat-thumbnail">
+											<img id="picto" src="{{url_for('static', filename='images/book_stack.png')}}">
+										<h1>Centre de ressources</h1>
+									</div>
+								</div>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -175,7 +185,7 @@
 					<div class="panel-heading"><h3> Carte du nombre d'espèces par maille</h3></div>
 					<div class ="row">
 						<div class="col-sm-12" id="mapContainer">
-							<div id="map">
+							<div id="mapnorm">
 								<img id ="loadingGif" src="">
 							</div>
 						</div>

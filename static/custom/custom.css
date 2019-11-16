@@ -90,11 +90,11 @@
 }
 /*** couleur fond navbar ****/
 .navbar-default {
-    background-color: #8d5534;
+    background-color: #425363;
 }
 /*** couleur fond navbar veticale ****/
 #sideBar {
-    background-color: #8d5534;
+    background-color: #00948F;
 }
 
 
@@ -107,6 +107,7 @@
 
  h1 {
     margin-top: 5px;
+    font-family: Dosis;
 }
 
 .btn-primary {
@@ -130,3 +131,7 @@
   
     align-items: center;
   }
+
+  #mapnorm {
+	height: 734px;
+}

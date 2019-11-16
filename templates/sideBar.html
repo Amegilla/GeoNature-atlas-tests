@@ -8,8 +8,9 @@
       <li class="sidebar-brand"><span class="glyphicon {{page_values.picto}}"></span></li>
     </a>
   {% endfor %}
-
+  {% if configuration.AFFICHAGE_PAGE_PHOTOS_NAVBAR %}
   <a href="{{url_for('main.photos')}}" data-toggle="tooltip" data-original-title="Galerie photos" data-placement="right">
     <li class="sidebar-brand"><span class="glyphicon glyphicon-camera"></span></li>
   </a>
+  {% endif %}
 </ul>
