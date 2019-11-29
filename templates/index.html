@@ -184,14 +184,45 @@
 				<div class="panel panel-default" id="mapPanel">
 					<div class="panel-heading"><h3> Carte du nombre d'espèces par maille</h3></div>
 					<div class ="row">
-						<div class="col-sm-12" id="mapContainer">
+						<div class="col-sm-8" id="mapContainer">
 							<div id="mapnorm">
 								<img id ="loadingGif" src="">
 							</div>
 						</div>
-						<div class="col-sm-2" id="mapStat">
+
+						<div class="col-sm-4" id="mapSide">
+							
+								<div class="thumbnail stat-thumbnail">
+									<span class="glyphicon glyphicon-leaf"></span>
+									<h1>{{stat.nbTotalTaxons}} {{ 'espèces' if stat.nbTotalTaxons > 1 else 'espèce' }}</h1>
+									<form method="POST" id="searchFormTaxonsStat" class="navbar-form" role="search">
+										<div class="form-group has-feedback">
+											<input id="searchTaxonsStat" type="text" class="form-control" 
+												placeholder="une espèce ?" loading="false" />
+											<i class="glyphicon glyphicon-search form-control-feedback"></i>
+											<input id="hiddenInputTaxonStat" type="hidden" name="cd_ref">
+										</div>
+									</form>
+								</div>
+
+								<div class="thumbnail stat-thumbnail">
+										<span class="glyphicon glyphicon-leaf"></span>
+										<h1>{{stat.nbTotalTaxons}} {{ 'espèces' if stat.nbTotalTaxons > 1 else 'espèce' }}</h1>
+										<form method="POST" id="searchFormTaxonsStat" class="navbar-form" role="search">
+											<div class="form-group has-feedback">
+												<input id="searchTaxonsStat" type="text" class="form-control" 
+													placeholder="une espèce ?" loading="false" />
+												<i class="glyphicon glyphicon-search form-control-feedback"></i>
+												<input id="hiddenInputTaxonStat" type="hidden" name="cd_ref">
+											</div>
+										</form>
+									</div>
+
+
 							
 						</div>
+
+
 					</div>
 				</div>
 			</div>

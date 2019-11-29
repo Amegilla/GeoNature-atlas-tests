@@ -1,48 +1,39 @@
     <footer class="footer">
         
-        <div class="container">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="panel panel-default stat-panel bg-white">
             <div class="row">
-                    <h1 class="text-muted">
-                            Partenaires <br/>
-                        <h1>
-                <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_partenaires/logo_mnhn.jpg') }}"
-                    alt="logo-mnhm"  class="img-responsive">
-                </div>
-                <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-mtes.jpg') }}"
-                    alt="logo-mtes"  class="img-responsive">
-                </div>
-                <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-dreal.jpg') }}"
-                    alt="logo-dreal"  class="img-responsive">
-                </div>
-                <!-- <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_partenaires/logo_Dreal_nouvelle-aquitaine.jpg') }}"
-                    alt="logo-dreal"  class="img-responsive ">
-                </div> -->
-                <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_partenaires/logo_cen.png') }}"
-                    alt="logo-dreal"  class="img-responsive ">
-                </div>
-                <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_pna/logo_pna_chiro.png') }}"
-                    alt="logo-dreal"  class="img-responsive ">
-                </div>
-                <div class="col-md-2">
-                    <img style="width: 70%; height: 70%" src="{{url_for('static', filename='custom/images/logo_pna/logo_pna_loutre.jpg') }}"
-                    alt="logo-dreal"  class="img-responsive ">
+                <h1 class="text-muted">
+                        Partenaires <br/>
+                <h1>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires/logo_mnhn.jpg') }}" alt="logo-mnhm" class="img-responsive" />
+                    </div>
+                    <div class="flex-item">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-mtes.jpg') }}" alt="logo-ministere" class="img-responsive" />
+                    </div>
+                    <div class="flex-item">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-dreal.jpg') }}" alt="logo dreal franche-comte" class="img-responsive" />
+                    </div>
+                    <div class="flex-item">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-dreal-aquitaine.jpg') }}" alt="logo dreal aquitaine" class="img-responsive" />
+                    </div>
+                    <div class="flex-item">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires/logo_cen.png') }}" alt="logo cen" class="img-responsive" />
+                    </div>
+                    <div class="flex-item">
+                        <img src="{{url_for('static', filename='custom/images/logo_pna/logo_pna_chiro.png') }}" alt="logo pna chiro"class="img-responsive" />
+                    </div>
+                    <div class="flex-item">
+                            <img src="{{url_for('static', filename='custom/images/logo_pna/logo_pna_loutre.jpg') }}" alt="logo pna loutre"class="img-responsive" />
+                    </div>
                 </div>
             </div>
             </div>
             </div>
-        </div>
 
     
-        
-
         <p> <br/>
             <a href="{{url_for('main.index')}}">Accueil</a> | 
             <a href="https://www.sfepm.org/" target="_blank">Site de la {{configuration.STRUCTURE}}</a> | 
