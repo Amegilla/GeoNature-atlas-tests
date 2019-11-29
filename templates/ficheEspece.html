@@ -282,21 +282,20 @@
             </div>
 
             <div class="panel panel-default" id="otherInformationsPanel">
-                <div class="row" id="otherInformations">
-                          <ul class="nav nav-tabs">
-                            {% if articles | length != 0 %}
-                            <li class="active"><a data-toggle="tab" href="#articles"><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</a></li>
-                            <li><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
-                            {% else %}
-                            <li class="active"><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
-                            {% endif %}
-                            <li><a data-toggle="tab" href="#observateurs"> <b>{{observers|length}} </b> {{ 'observateurs' if observers|length > 1 else 'observateur' }}</a></li>
-                          </ul>
-
-                        <div class="tab-content" style="width:100%;">
-                            {% if articles | length != 0 %}
-                            <div id="articles" class="tab-pane fade in active">
-                                <table class="table table-striped">
+                {% if articles | length != 0 %}  
+                    <div class="panel-body">
+                        <div class="row" id="otherInformations">
+                            <ul class="nav nav-tabs">
+                                {% if articles | length != 0 %}
+                                <li class="active"><a data-toggle="tab" href="#articles"><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</a></li>
+                                {% else %}
+                                <li class="active"><a  href="{{url_for('main.get_staticpages', page='ressources')}}" > <b>Ressources</b> </a></li>
+                                {% endif %}
+                            </ul>
+                            <div class="tab-content" style="width:100%;">
+                                {% if articles | length != 0 %}
+                                    <div id="articles" class="tab-pane fade in active">
+                                    <table class="table table-striped">
                                     <thead>
                                         <th> </th>
                                         <th> Titre </th>
@@ -307,19 +306,19 @@
                                             {% for i in range (articles | length) %}
                                                 <tr class="accordion-toggle" data-toggle="collapse" data-target=".moreInfo{{i}}">
                                                     <td> {% if articles[i].id_type == 3 %} <span class="glyphicon glyphicon-link"> </span>
-                                                         {% else %} <span class="glyphicon glyphicon-paperclip"> </span>
-                                                         {% endif %}
+                                                            {% else %} <span class="glyphicon glyphicon-paperclip"> </span>
+                                                            {% endif %}
                                                     </td>
 
                                                     <td>
                                                         <a href="{{articles[i].path}}" target="_blank"> {{articles[i].title}} </a>
-                                                     </td>
+                                                        </td>
 
                                                     <td>
                                                         {{articles[i].author}}
                                                     </td>
                                                     <td>
-                                                       <i class="btn-more"> <span class="glyphicon glyphicon-chevron-down "> </span></i>
+                                                        <i class="btn-more"> <span class="glyphicon glyphicon-chevron-down "> </span></i>
                                                     </td>
 
                                                 </tr>
@@ -335,36 +334,87 @@
                                             {% endfor %}
 
                                     </tbody>
-                                </table>
-                            </div>
-                            {% endif %}
-                            {% if articles | length != 0 %}
-                            <div id="communes" class="tab-pane fade">
-                            {% else %}
-                            <div id="communes" class="tab-pane fade in active">
-                            {% endif %}
-                                <p>
-                                    {% for com in communes %}
-                                        <a href = "{{url_for('main.ficheCommune', insee = com.insee)}}">{{com.commune_maj}}</a>
-                                        {% if not loop.last %}
-                                         -
-                                        {% endif %}
-                                    {% endfor %}
-                                </p>
-                            </div>
-
-                            <div id="observateurs" class="tab-pane fade">
-                                {% for o in observers %}
-                                    {{o }}
-                                    {% if  not loop.last %}
-                                    -
-                                    {% endif %}
-                                {% endfor %}
+                                    </table>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
+                    </div>
+                {% endif %}
+            <div class="row" id="otherInformations" >
+                <div class="panel-body"> 
+                    <div class="col-lg-6 col-sm-12">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-toggle="modal" data-target="#listCommunes">
+                            <b>{{communes|length}}</b> communes
+                        </button>
+                        <!-- Modal -->
+                            <div id="listCommunes" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-lg">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;
+                                            </button>
+                                            <h4 class="modal-title">Liste des communes où l'espèce a été observée</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="">
+                                                {% for com in communes %}
+                                                <a href = "{{url_for('main.ficheCommune', insee = com.insee)}}">{{com.commune_maj}}</a>
+                                                {% if not loop.last %}
+                                                    -
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            Fermer
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END Modal -->
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <button type="button" class="btn btn-default btn-block btn-lg" data-toggle="modal" data-target="#listObservateurs">
+                            <b>{{observers|length}} </b> observateurs
+                        </button>
+                        <!-- Modal -->
+                        <div id="listObservateurs" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;
+                                        </button>
+                                        <h4 class="modal-title">Liste des observateurs</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="">
+                                            {% for o in observers %}
+                                            {{o }}
+                                            {% if  not loop.last %}
+                                            -
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        Fermer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Modal -->
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
             {% if photoCarousel | length >= 1 %}

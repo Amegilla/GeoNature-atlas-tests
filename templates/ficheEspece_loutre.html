@@ -312,11 +312,11 @@
                                 <ul class="nav nav-tabs">
                                   {% if articles | length != 0 %}
                                   <li class="active"><a data-toggle="tab" href="#articles"><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</a></li>
-                                  <li><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
+                                  
                                   {% else %}
-                                  <li class="active"><a data-toggle="tab" href="#communes"> <b>{{communes|length}}</b> {{ 'communes' if communes|length > 1 else 'commune' }}</a></li>
+                                  <li class="active"><a  href="{{url_for('main.get_staticpages', page='ressources')}}"> <b>Ressources</b> </a></li>
                                   {% endif %}
-                                  <li><a data-toggle="tab" href="#observateurs"> <b>{{observers|length}} </b> {{ 'observateurs' if observers|length > 1 else 'observateur' }}</a></li>
+                                  
                                 </ul>
       
                               <div class="tab-content" style="width:100%;">
@@ -364,29 +364,9 @@
                                       </table>
                                   </div>
                                   {% endif %}
-                                  {% if articles | length != 0 %}
-                                  <div id="communes" class="tab-pane fade">
-                                  {% else %}
-                                  <div id="communes" class="tab-pane fade in active">
-                                  {% endif %}
-                                      <p>
-                                          {% for com in communes %}
-                                              <a href = "{{url_for('main.ficheCommune', insee = com.insee)}}">{{com.commune_maj}}</a>
-                                              {% if not loop.last %}
-                                               -
-                                              {% endif %}
-                                          {% endfor %}
-                                      </p>
-                                  </div>
+                                  
       
-                                  <div id="observateurs" class="tab-pane fade">
-                                      {% for o in observers %}
-                                          {{o }}
-                                          {% if  not loop.last %}
-                                          -
-                                          {% endif %}
-                                      {% endfor %}
-                                  </div>
+                                  
                               </div>
                       </div>
                   </div>
