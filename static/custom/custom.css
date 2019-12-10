@@ -111,14 +111,14 @@
 }
 
 .btn-primary {
-    background-color: #8d5534;
-    border-color: #ba864a;
+    background-color: #00948F;
+    border-color: #00948F;
 }
 
 .btn-primary:hover {
     color: #fff;
-    background-color: #b47634;
-    border-color: #b47634;
+    background-color: #425363;
+    border-color: #425363;
 }
 
 .stat-thumbnail .chiro{
@@ -156,7 +156,9 @@
     margin-bottom: 20px;
 }
 
-
+.glyphicon.white {
+    color: #fff;
+  }
 
 
 

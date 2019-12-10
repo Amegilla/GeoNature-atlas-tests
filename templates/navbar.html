@@ -25,14 +25,16 @@
 					   <span class="glyphicon glyphicon-search form-control-feedback"></span>
 				</div>
 				<input id="hiddenInputTaxons" type="hidden" name="cd_ref" />
+				<span class="glyphicon glyphicon-info-sign white" data-toggle="tooltip" data-original-title="Entrez les premières lettres du nom latin ou du nom vernaculaire de l'espèce et cliquer sur le déroulant" data-placement="right"></span>
       </form>
 
       <form method="POST" onsubmit="completeAction('#searchFormCommunes', hiddenInputCommunes)" id='searchFormCommunes' action=""  class="navbar-form navbar-left" role="search">
 				<div class="form-group has-feedback">
-					<input id="searchCommunes" type="text" class="form-control ajax-search" placeholder="une commune?" >
+					<input id="searchCommunes" type="text" class="form-control ajax-search" placeholder="une commune ?" >
 					<span class="glyphicon glyphicon-search form-control-feedback"></span>
 				</div>
 			  <input id="hiddenInputCommunes" type="hidden" name="insee">
+			  <span class="glyphicon glyphicon-info-sign white" data-toggle="tooltip" data-original-title="Entrez les premières lettres de la commune en commencant par une majuscule" data-placement="right"></span>
       </form>
 	  </div>
 

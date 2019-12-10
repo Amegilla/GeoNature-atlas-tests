@@ -48,7 +48,7 @@
 					<div class="panel panel-default stat-panel">
 						<div class="row">
 							<div class="panel-heading"><strong><h3>Liens vers les portails </h3></strong></div>
-							<a  href="{{url_for('main.portail_chiro')}}">
+							<a  href="{{url_for('main.portail_chiro')}}" title="Portail Chiroptères">
 								<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
 									<div class="thumbnail stat-thumbnail">
 											<img id="picto" src="{{url_for('static', filename='images/picto_Mammiferes_chiro.png')}}" style="height: 120px;">
@@ -56,7 +56,7 @@
 									</div>
 								</div>
 							</a>
-							<a  href="{{url_for('main.ficheEspece',cd_ref=60630)}}">
+							<a  href="{{url_for('main.ficheEspece',cd_ref=60630)}}" title="Portail Loutre">
 								<div class = "col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
 									<div class="thumbnail stat-thumbnail">
 											<img id="picto" src="{{url_for('static', filename='images/picto_lutra.png')}}" style="height: 120px;">
@@ -64,7 +64,7 @@
 									</div>
 								</div>
 							</a>
-							<a  href="#">
+							<a  href="#" title="(Non disponible pour l'instant) Portail Petits Mammifères">
 								<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
 									<div class="thumbnail stat-thumbnail">
 										<img id="picto" src="{{url_for('static', filename='images/picto_micromam.png')}}" style="height: 120px;">
@@ -72,7 +72,7 @@
 									</div>
 								</div>
 							</a>
-							<a  href="{{url_for('main.get_staticpages', page='ressources')}}">
+							<a  href="{{url_for('main.get_staticpages', page='ressources')}}" title="Centres de ressources">
 								<div class ="col-lg-3 col-md-3 col-sm-6 col-xs-12 stat-object">
 									<div class="thumbnail stat-thumbnail">
 											<img id="picto" src="{{url_for('static', filename='images/book_stack.png')}}" style="height: 120px;">
@@ -206,14 +206,15 @@
 								</div>
 
 								<div class="thumbnail stat-thumbnail">
-										<span class="glyphicon glyphicon-leaf"></span>
-										<h1>{{stat.nbTotalTaxons}} {{ 'espèces' if stat.nbTotalTaxons > 1 else 'espèce' }}</h1>
-										<form method="POST" id="searchFormTaxonsStat" class="navbar-form" role="search">
+										<img id="picto" src="{{url_for('static', filename='images/commune-icone.png')}}">
+										<h1>{{stat.town}}</h1>
+										<h4> {{ 'communes' if stat.town > 1 else 'commune' }}</h4>
+										<form method="POST" onsubmit="completeAction('#searchFormCommunesStat', hiddenInputCommunesStat)" id='searchFormCommunesStat' action=""  class="navbar-form" role="search">
 											<div class="form-group has-feedback">
-												<input id="searchTaxonsStat" type="text" class="form-control" 
-													placeholder="une espèce ?" loading="false" />
+												<input id="searchCommunesStat" type="text" class="form-control" 
+												placeholder="une commune ?" />
 												<i class="glyphicon glyphicon-search form-control-feedback"></i>
-												<input id="hiddenInputTaxonStat" type="hidden" name="cd_ref">
+												<input id="hiddenInputCommunesStat" type="hidden" name="insee">
 											</div>
 										</form>
 									</div>
