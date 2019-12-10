@@ -161,3 +161,21 @@ svgContainer = d3.selectAll("svg");
             .attr("font-size", "10px")
             .style("text-anchor", "end")
             .text("Observations");
+
+
+// regle le pb d'affichage du graphique dans un t //
+$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+  var target = $(e.target).attr("href") // activated tab
+
+  switch (target) {
+    case "#yearcharttab":
+      yearlyChart.redraw();
+      $(window).trigger('resize');
+      break;
+    case "#monthcharttab":
+      phenologyChart.redraw();
+      $(window).trigger('resize');
+      break;
+
+  }
+});
