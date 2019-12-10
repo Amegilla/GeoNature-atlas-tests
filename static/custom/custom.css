@@ -148,11 +148,18 @@
     width: 10%;
   }
 
+.footer img {
+    max-height : 130px;
+  }
 
-
-#tabgraphs {
-    display: none;      /* this is the problem */
+.footer h1 {
+    margin-bottom: 20px;
 }
+
+/* #tabgraphs {
+    display: none;     
+} */  /* this is the problem */
+
 /* bootstrap hack: fix content width inside hidden tabs */
 #tabgraphs {
     display: block;
@@ -160,3 +167,6 @@
     overflow-y: hidden;
 } 
 /* bootstrap hack end */
+
+
+
