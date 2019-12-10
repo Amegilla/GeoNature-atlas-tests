@@ -156,17 +156,7 @@
     margin-bottom: 20px;
 }
 
-/* #tabgraphs {
-    display: none;     
-} */  /* this is the problem */
 
-/* bootstrap hack: fix content width inside hidden tabs */
-#tabgraphs {
-    display: block;
-    height: 0;
-    overflow-y: hidden;
-} 
-/* bootstrap hack end */
 
 
 

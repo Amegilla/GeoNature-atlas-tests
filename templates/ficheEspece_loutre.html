@@ -307,72 +307,9 @@
             </div>
 
             <div class="panel panel-default" id="otherInformationsPanel">
-                <div class="panel-body">
-                        <div class="row" id="otherInformations">
-                                <ul class="nav nav-tabs">
-                                  {% if articles | length != 0 %}
-                                  <li class="active"><a data-toggle="tab" href="#articles"><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</a></li>
-                                  
-                                  {% else %}
-                                  <li class="active"><a  href="{{url_for('main.get_staticpages', page='ressources')}}"> <b>Ressources</b> </a></li>
-                                  {% endif %}
-                                  
-                                </ul>
-      
-                              <div class="tab-content" style="width:100%;">
-                                  {% if articles | length != 0 %}
-                                  <div id="articles" class="tab-pane fade in active">
-                                      <table class="table table-striped">
-                                          <thead>
-                                              <th> </th>
-                                              <th> Titre </th>
-                                              <th> Auteur </th>
-                                          </thead>
-                                          <tbody>
-      
-                                                  {% for i in range (articles | length) %}
-                                                      <tr class="accordion-toggle" data-toggle="collapse" data-target=".moreInfo{{i}}">
-                                                          <td> {% if articles[i].id_type == 3 %} <span class="glyphicon glyphicon-link"> </span>
-                                                               {% else %} <span class="glyphicon glyphicon-paperclip"> </span>
-                                                               {% endif %}
-                                                          </td>
-      
-                                                          <td>
-                                                              <a href="{{articles[i].path}}" target="_blank"> {{articles[i].title}} </a>
-                                                           </td>
-      
-                                                          <td>
-                                                              {{articles[i].author}}
-                                                          </td>
-                                                          <td>
-                                                             <i class="btn-more"> <span class="glyphicon glyphicon-chevron-down "> </span></i>
-                                                          </td>
-      
-                                                      </tr>
-                                                      <tr>
-                                                          <td colspan ="4" class="hiddenRow" style="padding:0px;">
-                                                              <div  class="collapse moreInfo{{i}}">
-                                                                  <strong> Description : </strong> <br> {{articles[i].description | safe}} <br>
-                                                                  <strong> Date : </strong> {{articles[i].date}}
-                                                              </div>
-                                                          </td>
-                                                      </tr>
-      
-                                                  {% endfor %}
-      
-                                          </tbody>
-                                      </table>
-                                  </div>
-                                  {% endif %}
-                                  
-      
-                                  
-                              </div>
-                      </div>
-                  </div>
-                
-
-                    <div class="row" id="otherInformations">
+                   
+                <div class="row" id="otherInformations" >
+                    <div class="panel-body"> 
                         <div class="col-lg-6 col-sm-12">
                             <button type="button" class="btn btn-default btn-block btn-lg" data-toggle="modal" data-target="#listCommunes">
                                 <b>{{communes|length}}</b> communes
@@ -443,6 +380,64 @@
                         </div>
                     </div>
                 </div>
+
+
+                {% if articles | length != 0 %}  
+                <div class="panel-body">
+                    <div class="row" id="otherInformations">
+                        <h4><b>{{articles|length}}</b> {{ 'articles' if articles|length > 1 else 'article' }}</h4>
+                        
+                            {% if articles | length != 0 %}
+                                <table class="table table-striped">
+                                <thead>
+                                    <th> </th>
+                                    <th> Titre </th>
+                                    <th> Auteur </th>
+                                </thead>
+                                <tbody>
+
+                                        {% for i in range (articles | length) %}
+                                            <tr class="accordion-toggle" data-toggle="collapse" data-target=".moreInfo{{i}}">
+                                                <td> {% if articles[i].id_type == 3 %} <span class="glyphicon glyphicon-link"> </span>
+                                                        {% else %} <span class="glyphicon glyphicon-paperclip"> </span>
+                                                        {% endif %}
+                                                </td>
+
+                                                <td>
+                                                    <a href="{{articles[i].path}}" target="_blank"> {{articles[i].title}} </a>
+                                                    </td>
+
+                                                <td>
+                                                    {{articles[i].author}}
+                                                </td>
+                                                <td>
+                                                    <i class="btn-more"> <span class="glyphicon glyphicon-chevron-down "> </span></i>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan ="4" class="hiddenRow" style="padding:0px;">
+                                                    <div  class="collapse moreInfo{{i}}">
+                                                        <strong> Description : </strong> <br> {{articles[i].description | safe}} <br>
+                                                        <strong> Date : </strong> {{articles[i].date}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        {% endfor %}
+
+                                </tbody>
+                                </table>
+                                
+                            {% endif %}
+                        
+                    </div>
+                </div>
+            {% endif %}
+
+
+
+            </div>
             </div>
 
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -641,39 +636,42 @@
             </div>
             {% endif %}
 
-            <div class="panel panel-default" id="graphBloc">
-                {% if configuration.AFFICHAGE_GRAPH_ALTITUDES %} 
-                    <h3 class="text-center">Observations par classes d'altitudes</h3>
-                    <div id="altiChart"></div> 
-                {% endif %}
-                <h3 class="text-center">Observations mensuelles</h3>
-                <div id="phenologyChart"></div>
-                {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
-                    <h3 class="text-center">Observations Annuelles</h3>
-                    <div id="yearlyChart"></div>
-                {% endif %}
-                
-                {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE and configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
-                <ul class="nav nav-tabs" id="othersgraphs">
-                        <li class="active"><a data-toggle="tab" href="#sources">Sources</a></li>
-                        <li><a data-toggle="tab" href="#typecontact">Type de contact</a></li>  
-                </ul>
-                <div class="tab-content" id="othersgraphs">
-                        <div id="sources" class="tab-pane fade in active">
-                                <div class="customcharts" id="sourcesChart"></div>
-                        </div>
-                        <div id="typecontact" class="tab-pane fade">
-                                <div class="customcharts" id="contactTypesChart"></div>
-                        </div>
+                <div class="panel panel-default" id="graphBloc">
+                    {% if configuration.AFFICHAGE_GRAPH_ALTITUDES %} 
+                        <h4 class="text-center">Observations par classes d'altitudes</h4>
+                        <div id="altiChart"></div> 
+                    {% endif %}
+
+                    {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
+                    <ul class="nav nav-tabs" id="tabbedgraphs">
+                            <li class="active"><a data-toggle="tab" href="#monthcharttab"><h4>Observations mensuelles</h4></a></li>
+                            <li><a data-toggle="tab" href="#yearcharttab"><h4>Observations Annuelles</h4></a></li>  
+                    </ul>
+                    <div class="tab-content" id="tabbedgraphs">
+                            <div id="monthcharttab" class="tab-pane fade in active">
+                                    
+                                    <div  id="phenologyChart"></div>
+                            </div>
+                            <div id="yearcharttab" class="tab-pane fade">
+                                    
+                                    <div id="yearlyChart"></div>
+                            </div>
+                    </div>
+                        
+                    {% else %}                    
+                        <h4 class="text-center">Observations mensuelles</h4>
+                        <div id="phenologyChart"></div>
+                    {% endif %}
+                    
+                    {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
+                    <h4 class="text-center">Sources</h4>
+                    <div class="customcharts" id="sourcesChart"></div>
+                    {% endif %}
+                    {% if configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
+                    <h4 class="text-center">Type de contact</h4>
+                    <div class="customcharts"  id="contactTypesChart"></div>
+                    {% endif %}
                 </div>
-                {% elif configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
-                <h3 class="text-center">Sources</h3>
-                <div id="sourcesChart"></div>
-                {% elif configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
-                <h3 class="text-center">Type de contact</h3>
-                <div id="contactTypesChart"></div>
-                {% endif %}
-            </div>
         </div>
     </div>
         {% if configuration.AFFICHAGE_FOOTER %}

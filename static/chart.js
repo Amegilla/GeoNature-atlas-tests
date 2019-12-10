@@ -1,5 +1,5 @@
 
-//alti graph
+// GRAPHIQUE ALTITUDES PLOT //
 if($('#altiChart')[0]) {
 Morris.Bar({
             element:"altiChart",
@@ -29,6 +29,7 @@ svgbis=d3.selectAll("svg");
             .style("text-anchor", "end")
             .text("Altitude(m)");
 }
+// FIN GRAPHIQUE ALTITUDES PLOT //
 
 // GRAPHIQUE CAMEMBERT SOURCES //
 if($('#sourcesChart')[0]) {
@@ -110,6 +111,8 @@ if($('#yearlyChart')[0]) {
 }
 // FIN | GRAPHIQUE NOMBRE D'OBSERVATIONS PAR ANNEES //
 
+
+// GRAPHIQUE NOMBRE D'OBSERVATIONS PAR MOIS //
 var phenologyChart =  Morris.Bar({
                         element:"phenologyChart",
                         data : months,
@@ -121,19 +124,6 @@ var phenologyChart =  Morris.Bar({
                         resize: true,
                         axes: true,
                     });
-
-
-svgContainer = d3.selectAll("svg");
-    svgContainer.append("g")
-        .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", '0%')
-            .attr('x', '-15%')
-            .attr("dy", ".71em")
-            .attr("fill", "#888888")
-            .attr("font-size", "10px")
-            .style("text-anchor", "end")
-            .text("Observations");
 
 
 
@@ -150,20 +140,11 @@ rect = d3.selectAll("rect");
 
 });
 
-svgContainer = d3.selectAll("svg");
-    svgContainer.append("g")
-        .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", '0%')
-            .attr('x', '-15%')
-            .attr("dy", ".71em")
-            .attr("fill", "#888888")
-            .attr("font-size", "10px")
-            .style("text-anchor", "end")
-            .text("Observations");
+// FIN | GRAPHIQUE NOMBRE D'OBSERVATIONS PAR MOIS //
 
 
-// regle le pb d'affichage du graphique dans un t //
+
+// regle le pb d'affichage du graphique dans des onglets 'tab' //
 $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
   var target = $(e.target).attr("href") // activated tab
 
@@ -179,3 +160,4 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 
   }
 });
+// regle le pb d'affichage du graphique dans des onglets 'tab' //

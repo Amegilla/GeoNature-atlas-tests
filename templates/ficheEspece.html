@@ -614,35 +614,37 @@
 
             <div class="panel panel-default" id="graphBloc">
                     {% if configuration.AFFICHAGE_GRAPH_ALTITUDES %} 
-                        <h3 class="text-center">Observations par classes d'altitudes</h3>
+                        <h4 class="text-center">Observations par classes d'altitudes</h4>
                         <div id="altiChart"></div> 
                     {% endif %}
 
                     {% if configuration.AFFICHAGE_GRAPH_ANNEE_ESPECE %}
-                    <ul class="nav nav-tabs" id="tabgraphs">
-                            <li class="active"><a data-toggle="tab" href="#sources"><h4>Observations mensuelles</h4></a></li>
-                            <li><a data-toggle="tab" href="#typecontact"><h4>Observations Annuelles</h4></a></li>  
+                    <ul class="nav nav-tabs" id="tabbedgraphs">
+                            <li class="active"><a data-toggle="tab" href="#monthcharttab"><h4>Observations mensuelles</h4></a></li>
+                            <li><a data-toggle="tab" href="#yearcharttab"><h4>Observations Annuelles</h4></a></li>  
                     </ul>
-                    <div class="tab-content" id="tabgraphs">
-                            <div id="sources" class="tab-pane fade in active">
+                    <div class="tab-content" id="tabbedgraphs">
+                            <div id="monthcharttab" class="tab-pane fade in active">
+                                    
                                     <div  id="phenologyChart"></div>
                             </div>
-                            <div id="typecontact" class="tab-pane fade">
+                            <div id="yearcharttab" class="tab-pane fade">
+                                    
                                     <div id="yearlyChart"></div>
                             </div>
                     </div>
                         
                     {% else %}                    
-                        <h3 class="text-center">Observations mensuelles</h3>
+                        <h4 class="text-center">Observations mensuelles</h4>
                         <div id="phenologyChart"></div>
                     {% endif %}
                     
                     {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
-                    <h3 class="text-center">Sources</h3>
+                    <h4 class="text-center">Sources</h4>
                     <div class="customcharts" id="sourcesChart"></div>
                     {% endif %}
                     {% if configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
-                    <h3 class="text-center">Type de contact</h3>
+                    <h4 class="text-center">Type de contact</h4>
                     <div class="customcharts"  id="contactTypesChart"></div>
                     {% endif %}
                 </div>

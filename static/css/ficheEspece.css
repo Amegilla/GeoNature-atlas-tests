@@ -244,11 +244,13 @@ h5#buttonChild:hover {
 	padding: 5px;
 }
 
-.nav#othersgraphs {
+.nav-tabs#tabbedgraphs{
 	padding-left: 10px;
+	padding-top: 10px;
 }
 
-.tab-content#othersgraphs {
+
+.tab-content#tabbedgraphs {
 	width:100%;
 }
 
