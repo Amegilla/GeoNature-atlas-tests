@@ -119,6 +119,12 @@ class AtlasConfig(Schema):
         }
     )
 
+    PORTAL_PAGES = fields.Dict(
+            missing={
+                
+            }
+        )
+
     AFFICHAGE_MAILLE = fields.Boolean(missing=False)
     ZOOM_LEVEL_POINT = fields.Integer(missing=11)
     LIMIT_CLUSTER_POINT = fields.Integer(missing=1000)

@@ -8,6 +8,23 @@
       <li class="sidebar-brand"><span class="glyphicon {{page_values.picto}}"></span></li>
     </a>
   {% endfor %}
+  
+
+<div class="sidebar-nav btn-group" >
+  <li class="sidebar-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="glyphicon glyphicon-th" data-toggle="tooltip" data-original-title="Portails thématiques" data-placement="right"></span>
+  </li>
+
+  <ul class="dropdown-menu">
+    {% for page_key, page_values in configuration.PORTAL_PAGES.items()|sort(attribute='1.order') %}
+    <a href="{{url_for('main.get_staticpages', page=page_key)}}">
+    <li class="sidebar-brand">{{page_values.title}}</li>
+    </a>
+    {% endfor %}
+  </ul>
+</div>
+
+
   {% if configuration.AFFICHAGE_PAGE_PHOTOS_NAVBAR %}
   <a href="{{url_for('main.photos')}}" data-toggle="tooltip" data-original-title="Galerie photos" data-placement="right">
     <li class="sidebar-brand"><span class="glyphicon glyphicon-camera"></span></li>
