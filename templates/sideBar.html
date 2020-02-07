@@ -16,8 +16,8 @@
   </li>
 
   <ul class="dropdown-menu">
-    {% for page_key, page_values in configuration.PORTAL_PAGES.items()|sort(attribute='1.order') %}
-    <a href="{{url_for('main.get_staticpages', page=page_key)}}">
+    {% for portal_name, page_values in configuration.PORTAL_PAGES.items()|sort(attribute='1.order') %}
+    <a href="{{url_for('main.fiche_portail', portal_name=portal_name)}}">
     <li class="sidebar-brand">{{page_values.title}}</li>
     </a>
     {% endfor %}

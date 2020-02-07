@@ -33,33 +33,74 @@ function generateMap() {
         minZoom: configuration.MAP.SECOND_MAP.minzoom,
         subdomains : ["mt0", "mt1", "mt2", "mt3"]
         });
-    CorineLandCover = L.WMS.layer("http://ws.carmencarto.fr/WMS/119/fxx_inpn?", "Zones_de_protection_speciale", {
-      format: 'image/png',
-      uppercase: true,
-      transparent: true,
-      continuousWorld : true,
-      tiled: true,
-      info_format: 'text/html',
-      opacity: 1,
-      identify: false,
-  });
-  layer_Coursdeaumtropolede510km_7 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau5", {
-    format: 'image/png',
-    uppercase: true,
-    transparent: true,
-    continuousWorld : true,
-    tiled: true,
-    info_format: 'text/html',
-    opacity: 1,
-    identify: false,
-});
-
-
-    wmsLayer = L.tileLayer.wms('http://ws.carmencarto.fr/WMS/119/fxx_inpn?', {
-      attribution: 'Espaces naturels et Natura 2000'
+        var layer_Coursdeaumtropolede1025km_1 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau4", {
+          format: 'image/png',
+          uppercase: true,
+          transparent: true,
+          continuousWorld : true,
+          tiled: true,
+          info_format: 'text/html',
+          opacity: 1,
+          identify: false,
       });
-    Routes = L.tileLayer.wms('https://public.sig.rennesmetropole.fr/geoserver/ows?', 
-                    {layers: 'ref_rva:vgs_troncon_domanialite',format: 'image/png',transparent:true}); 
+
+      var layer_Coursdeaumtropolede2550km_2 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau3", {
+          format: 'image/png',
+          uppercase: true,
+          transparent: true,
+          continuousWorld : true,
+          tiled: true,
+          info_format: 'text/html',
+          opacity: 1,
+          identify: false,
+      });
+
+      var layer_Coursdeaumtropolede510km_3 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau5", {
+          format: 'image/png',
+          uppercase: true,
+          transparent: true,
+          continuousWorld : true,
+          tiled: true,
+          info_format: 'text/html',
+          opacity: 1,
+          identify: false,
+      });
+
+      var layer_Coursdeaumtropolede50100km_4 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau2", {
+          format: 'image/png',
+          uppercase: true,
+          transparent: true,
+          continuousWorld : true,
+          tiled: true,
+          info_format: 'text/html',
+          opacity: 1,
+          identify: false,
+      });
+
+      var layer_Coursdeaumtropoleinf5km_5 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau6", {
+          format: 'image/png',
+          uppercase: true,
+          transparent: true,
+          continuousWorld : true,
+          tiled: true,
+          info_format: 'text/html',
+          opacity: 1,
+          identify: false,
+      });
+
+      var layer_Coursdeaumtropoledeplusde100km_6 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau1", {
+          format: 'image/png',
+          uppercase: true,
+          transparent: true,
+          continuousWorld : true,
+          tiled: true,
+          info_format: 'text/html',
+          opacity: 1,
+          identify: false,
+      });
+
+     
+      
     
     baseMap = {};
     baseMap[configuration.MAP.FIRST_MAP.tileName] = firstMapTile;
@@ -79,11 +120,13 @@ function generateMap() {
         "OpenTopomap": orthoMap,
         "GoogleSatellite" : GoogleSatellite
         };
-      var data = {"CorineLandCover" : CorineLandCover,
-                "Routes": Routes,
-                "Natura2000" : wmsLayer,
-                "ZPS" : layer_Coursdeaumtropolede510km_7
-                };
+      var data = {"Cours d'eau métropole de plus de 100km": layer_Coursdeaumtropoledeplusde100km_6,
+      "Cours d'eau métropole inf. à 5km": layer_Coursdeaumtropoleinf5km_5,
+      "Cours d'eau métropole de 50 à 100km": layer_Coursdeaumtropolede50100km_4,
+      "Cours d'eau métropole de 5 à 10km": layer_Coursdeaumtropolede510km_3,
+      "Cours d'eau métropole de 25 à 50km": layer_Coursdeaumtropolede2550km_2,
+      "Cours d'eau métropole de 10 à 25km": layer_Coursdeaumtropolede1025km_1};
+      
         L.control.layers(baseLayers,data).addTo(map);
    
          // Style of territory on map

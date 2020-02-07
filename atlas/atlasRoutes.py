@@ -427,8 +427,123 @@ def get_staticpages(page):
     session.close()
     return render_template(static_page["template"])
 
+
+
 @main.route("/test_carto", methods=["GET", "POST"])
 def test_carto():
     
     html_template = "templates/test_carto.html"
     return render_template(html_template)
+
+
+
+
+@main.route("/portal/<portal_name>", methods=["GET", "POST"])
+def fiche_portail(portal_name):
+    '''
+    La page portail se base sur la fiche espèce avec agglomération de taxons
+    il faut donc associer le portail à un cd_ref (dans la config)
+    Le but est d'avoir sur cette page :
+    - info taxonomique (on garde l'encart des fiches espèces, avec nombre de taxons inférieurs)
+    - liste d'espèces (on garde le bouton taxons inférieurs, on renomme juste ce bouton et on ajoute vigenttes photo dans la liste comme ce qui est fait sur les pages listes)
+    - cartographie avec nb d'espèces par maille / ou par commune    voir mapMailles.js
+    - cartographie avec nb d'obs par maille / ou par commune
+    - graphique avec observation par années
+    - graphique camenbert selon sources
+    - les X espèces observés dans les X derniers jours comme sur page d'accueil.
+
+    pour les medias on charge les medias du cd_nom
+    '''
+      
+    session = utils.loadSession()
+    connection = utils.engine.connect()
+
+    # recupere les infos du portail depuis le dictionnaire de config.py
+    portal_page = current_app.config["PORTAL_PAGES"][portal_name]
+    # recupere le cd_ref dans la config du portail
+    cd_ref = portal_page['cd_ref']
+    cd_ref = int(cd_ref)
+    # on récupère les informations taxonomiques
+    taxon = vmTaxrefRepository.searchEspece(connection, cd_ref)
+
+    altitudes = vmAltitudesRepository.getAltitudesChilds(connection, cd_ref)
+    months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
+
+    if current_app.config["AFFICHAGE_GRAPH_ANNEE_ESPECE"]:
+        years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
+    else :
+        years = None
+
+    if current_app.config["AFFICHAGE_GRAPH_SOURCE_ESPECE"] and cd_ref != 60630:
+        sources = vmObservationsRepository.getSources(connection, cd_ref)
+    elif current_app.config["AFFICHAGE_GRAPH_SOURCE_ESPECE"] and cd_ref == 60630:
+        sources = vmObservationsRepository.getSources_lulu(connection)
+    else :
+        sources = None
+
+    if current_app.config["AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE"]:
+        contacttypes = vmObservationsRepository.getContactTypes(connection, cd_ref)
+    else :
+        contacttypes = None
+
+    synonyme = vmTaxrefRepository.getSynonymy(connection, cd_ref)
+    communes = vmCommunesRepository.getCommunesObservationsChilds(connection, cd_ref)
+    mailles = vmMaillesRepository.getMaillesObservationsChilds(connection, cd_ref)
+    taxonomyHierarchy = vmTaxrefRepository.getAllTaxonomy(session, cd_ref)
+    firstPhoto = vmMedias.getFirstPhoto(
+        connection, cd_ref, current_app.config["ATTR_MAIN_PHOTO"]
+    )
+    photoCarousel = vmMedias.getPhotoCarousel(
+        connection, cd_ref, current_app.config["ATTR_OTHER_PHOTO"]
+    )
+    videoAudio = vmMedias.getVideo_and_audio(
+        connection,
+        cd_ref,
+        current_app.config["ATTR_AUDIO"],
+        current_app.config["ATTR_VIDEO_HEBERGEE"],
+        current_app.config["ATTR_YOUTUBE"],
+        current_app.config["ATTR_DAILYMOTION"],
+        current_app.config["ATTR_VIMEO"],
+    )
+    articles = vmMedias.getLinks_and_articles(
+        connection,
+        cd_ref,
+        current_app.config["ATTR_LIEN"],
+        current_app.config["ATTR_PDF"],
+    )
+    taxonDescription = vmCorTaxonAttribut.getAttributesTaxon(
+        connection,
+        cd_ref,
+        current_app.config["ATTR_DESC"],
+        current_app.config["ATTR_HABITATS"],
+        current_app.config["ATTR_AIRE"],
+        current_app.config["ATTR_POP"],
+        current_app.config["ATTR_MENACES"],
+    )
+    observers = vmObservationsRepository.getObservers(connection, cd_ref)
+
+    connection.close()
+    session.close()
+
+    return render_template(
+        "templates/portal.html",
+        taxon=taxon,
+        listeTaxonsSearch=[],
+        observations=[],
+        cd_ref=cd_ref,
+        altitudes=altitudes,
+        months=months,
+        years=years,
+        synonyme=synonyme,
+        communes=communes,
+        mailles=mailles,
+        taxonomyHierarchy=taxonomyHierarchy,
+        firstPhoto=firstPhoto,
+        photoCarousel=photoCarousel,
+        videoAudio=videoAudio,
+        articles=articles,
+        taxonDescription=taxonDescription,
+        observers=observers,
+        sources=sources,
+        contacttypes=contacttypes,
+    )
