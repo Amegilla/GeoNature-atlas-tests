@@ -183,5 +183,15 @@ font-family: Dosis;
 
 /* END sidebar */
 
+/* style bootstap */
+/* #warning-map-loutre {
+    margin-inline: 10px;
+    margin-bottom: 8px;
+} */
 
-
+#warning-map-loutre {
+    margin-inline: 0px;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    border: none;
+}
