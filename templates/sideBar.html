@@ -8,6 +8,29 @@
       <li class="sidebar-brand"><span class="glyphicon {{page_values.picto}}"></span></li>
     </a>
   {% endfor %}
+
+  <div class="sidebar-nav btn-group" >
+
+    <li class="sidebar-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="glyphicon glyphicon-th" data-toggle="tooltip" data-original-title="Portails thématiques" data-placement="right"></span>
+    </li>
+  
+    <ul class="dropdown-menu">
+      <a href="{{url_for('main.portail_chiro')}}">
+        <li class="sidebar-brand">Chiroptères</li>
+      </a>
+
+      <a href="{{url_for('main.ficheEspece',cd_ref=60630)}}">
+        <li class="sidebar-brand">Loutre</li>
+      </a>
+
+      <a href="{{url_for('main.index')}}">
+        <li class="sidebar-brand">Petits Mammifères</li>
+      </a>
+    </ul>
+
+  </div>
+
   {% if configuration.AFFICHAGE_PAGE_PHOTOS_NAVBAR %}
   <a href="{{url_for('main.photos')}}" data-toggle="tooltip" data-original-title="Galerie photos" data-placement="right">
     <li class="sidebar-brand"><span class="glyphicon glyphicon-camera"></span></li>
