@@ -195,3 +195,37 @@ font-family: Dosis;
     border-radius: 0px;
     border: none;
 }
+
+/* customisation onglets, centre ressources */
+#accueil-centre-ressources .panel-heading {
+    background-color: #a7bdd2;
+}
+#accueil-centre-ressources .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+    background-color: #e6daca;
+}
+#accueil-centre-ressources .nav.nav-tabs {
+    font-size: 26px;
+    font-family: dosis;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+#accueil-centre-ressources .panel-primary 
+{
+    border: none;
+}
+#accueil-centre-ressources .panel-heading
+{
+    border-radius:none;
+}
+#accueil-centre-ressources .panel-heading .media-heading
+{
+    padding-top:8px;
+    font-size: 20px;
+}
+#accueil-centre-ressources .panel-body {
+    padding: 15px 0px;
+}
+#accueil-centre-ressources .media {
+    padding-left: 15px;
+    padding-right: 15px;
+}
