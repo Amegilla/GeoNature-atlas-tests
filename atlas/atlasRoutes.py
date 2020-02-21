@@ -110,6 +110,9 @@ def index():
         connection, current_app.config["RANG_STAT"]
     )
 
+    years = vmYearRepository.getYearlyObservationsAll(connection)
+    sources = vmObservationsRepository.getSourcesAll(connection)
+
     connection.close()
     session.close()
 
@@ -120,6 +123,8 @@ def index():
         stat=stat,
         customStat=customStat,
         customStatMedias=customStatMedias,
+        years=years,
+        sources=sources,
     )
 ################################################################################ PORTAIL CHIRO
 

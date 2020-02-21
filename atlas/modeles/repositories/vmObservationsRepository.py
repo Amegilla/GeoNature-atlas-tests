@@ -167,6 +167,22 @@ def getObservers(connection, cd_ref):
     req = connection.execute(text(sql), thiscdref=cd_ref)
     return observersParser(req)
 
+
+def getSourcesAll(connection):
+    tabSources = list()
+    result = {'nb_obs': None, 'sources': None}
+    sql = """
+    SELECT COUNT(*) as nb_obs, observateurs as sources
+    FROM atlas.vm_sources
+    GROUP BY observateurs
+    """
+    req = connection.execute(text(sql))
+    for r in req:
+        temp = {'y': r.nb_obs, 'label': r.sources}
+        tabSources.append(temp)
+    return tabSources
+
+
 def getSources(connection, cd_ref):
     tabSources = list()
     result = {'nb_obs': None, 'sources': None}
