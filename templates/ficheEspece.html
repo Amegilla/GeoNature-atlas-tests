@@ -46,7 +46,7 @@
         <!-- Numeric JS  , pour graphique camembert sources -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
         <!-- highcharts , pour graphique camembert sources -->
-        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
 
         <!-- RaphaelJs -->
         <script src="{{url_for('static', filename='lib/raphaelJs/raphael.min.js') }}"></script>
@@ -628,9 +628,10 @@
             </div>
             {% endif %}
 
+            
             <div class="panel panel-default" id="graphBloc">
                     {% if configuration.AFFICHAGE_GRAPH_ALTITUDES %} 
-                        <h4 class="text-center">Observations par classes d'altitudes</h4>
+                        <!-- <h4 class="text-center">Observations par classes d'altitudes</h4> -->
                         <div id="altiChart"></div> 
                     {% endif %}
 
@@ -656,14 +657,18 @@
                     {% endif %}
                     
                     {% if configuration.AFFICHAGE_GRAPH_SOURCE_ESPECE %}
-                    <h4 class="text-center">Sources</h4>
+                    <!-- <h4 class="text-center">Sources</h4> -->
+                    <hr />
                     <div class="customcharts" id="sourcesChart"></div>
                     {% endif %}
                     {% if configuration.AFFICHAGE_GRAPH_CONTACTTYPE_ESPECE %}
-                    <h4 class="text-center">Type de contact</h4>
+                    <hr />
+                    <!-- <h4 class="text-center">Type de contact</h4> -->
                     <div class="customcharts"  id="contactTypesChart"></div>
                     {% endif %}
                 </div>
+ 
+
         </div>
     </div>
         {% if configuration.AFFICHAGE_FOOTER %}
@@ -691,7 +696,7 @@
 
     <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script>
     <script src="{{url_for('static', filename='ficheEspece.js') }}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='chart.js') }}"></script>
+    <script src="{{url_for('static', filename='chart2.js') }}"></script>
 
     <script src="{{url_for('static', filename='mapGenerator.js') }}"></script>
     <script src="{{url_for('static', filename='main.js') }}"></script>

@@ -181,7 +181,7 @@ def getSources(connection, cd_ref):
     """
     req = connection.execute(text(sql), thiscdref=cd_ref)
     for r in req:
-        temp = {'nb_obs': r.nb_obs, 'name_source': r.sources}
+        temp = {'y': r.nb_obs, 'label': r.sources}
         tabSources.append(temp)
     return tabSources
 
@@ -195,7 +195,7 @@ def getSources_lulu(connection):
     """
     req = connection.execute(text(sql))
     for r in req:
-        temp = {'nb_obs': r.nb_obs, 'name_source': r.sources}
+        temp = {'y': r.nb_obs, 'label': r.sources}
         tabSources.append(temp)
     return tabSources
 
@@ -213,7 +213,7 @@ def getContactTypes(connection, cd_ref):
     """
     req = connection.execute(text(sql), thiscdref=cd_ref)
     for r in req:
-        temp = {'nb_obs': r.nb_obs, 'contactType': r.contact_type}
+        temp = {'y': r.nb_obs, 'label': r.contact_type}
         tabContactTypes.append(temp)
     return tabContactTypes
 
