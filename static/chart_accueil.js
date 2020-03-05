@@ -18,7 +18,7 @@
            enabled: false
          },
          title: {
-           text: "Age des données",
+           text: "Périodes d'observation",
            style : { "color": "#333333", "fontSize": "15px" }
          },
          legend: {
@@ -40,6 +40,7 @@
        series: [{
          name: 'donnée(s)',
          data: values,
+         color:"#00948f",
          dataLabels: {
             enabled: true
         }

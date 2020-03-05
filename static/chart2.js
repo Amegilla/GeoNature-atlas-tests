@@ -1,3 +1,10 @@
+//sfepm green with degraded of saturation
+var sfepm_green_colors_full = ["#00948f","#04908c","#078d88","#0b8985","#0f8581","#12817e","#167e7a","#1a7a77","#1e7673","#217370","#256f6c","#296b69","#2c6866","#306462","#34605f","#375c5b","#3b5958","#3f5554","#435151","#464e4d","#4a4a4a"]
+//var sfepm_green_colors = ["#00948f","#078d88","#0f8581","#167e7a","#1e7673","#256f6c","#2c6866","#34605f","#3b5958","#435151","#4a4a4a"]
+
+var sfepm_green_colors = ["#006663","#009994","#00ccc5","#00fff7","#99fffc","#e6fffe"]
+
+ 
  // Create the chart altitude
  if($('#altiChart')[0]) {
  var labels = [];
@@ -68,36 +75,36 @@
 
 
 
-// Radialize the colors
-Highcharts.setOptions({
-colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-  return {
-    radialGradient: {
-      cx: 0.5,
-      cy: 0.3,
-      r: 0.7
-    },
-    stops: [
-      [0, color],
-      [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-    ]
-  };
-})
-});
+// // Radialize the colors
+// Highcharts.setOptions({
+// colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+//   return {
+//     radialGradient: {
+//       cx: 0.5,
+//       cy: 0.3,
+//       r: 0.7
+//     },
+//     stops: [
+//       [0, color],
+//       [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+//     ]
+//   };
+// })
+// });
 
 
-var pieColors = (function () {
-  var colors = [],
-      base = Highcharts.getOptions().colors[0],
-      i;
+// var pieColors = (function () {
+//   var colors = [],
+//       base = Highcharts.getOptions().colors[0],
+//       i;
 
-  for (i = 0; i < 10; i += 1) {
-      // Start out with a darkened base color (negative brighten), and end
-      // up with a much brighter color
-      colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
-  }
-  return colors;
-}());
+//   for (i = 0; i < 10; i += 1) {
+//       // Start out with a darkened base color (negative brighten), and end
+//       // up with a much brighter color
+//       colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+//   }
+//   return colors;
+// }());
 
 
 
@@ -125,8 +132,9 @@ Highcharts.chart('sourcesChart', {
     pie: {
       allowPointSelect: true,
       cursor: 'pointer',
-      colors: pieColors,
-      borderColor: "#7094db",
+      //colors: pieColors,
+      colors: sfepm_green_colors,
+      borderColor: "#00948f",
       /*
        style: {
           color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
@@ -136,7 +144,7 @@ Highcharts.chart('sourcesChart', {
       
       dataLabels: {
         allowOverlap: true,
-        connectorColor: "#7094db",
+        connectorColor: "#00948f",
         enabled: true,
         format: '<b>{point.label}</b> <b>: {point.y} donnée(s)</b><br>{point.percentage:.1f} %',
         /*distance: 10,*/
@@ -189,8 +197,6 @@ Highcharts.chart('sourcesChart', {
 });
 
 
-
-
 Highcharts.chart('contactTypesChart', {
   chart: {
     plotBackgroundColor: null,
@@ -215,8 +221,9 @@ Highcharts.chart('contactTypesChart', {
     pie: {
       allowPointSelect: true,
       cursor: 'pointer',
-      colors: pieColors,
-      borderColor: "#7094db",
+      //colors: pieColors,
+      colors: sfepm_green_colors,
+      borderColor: "#00948f",
       /*
        style: {
           color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
@@ -226,7 +233,7 @@ Highcharts.chart('contactTypesChart', {
       
       dataLabels: {
         allowOverlap: true,
-        connectorColor: "#7094db",
+        connectorColor: "#00948f",
         enabled: true,
         format: '<b>{point.label}</b> <b>: {point.y} donnée(s)</b><br>{point.percentage:.1f} %',
         /*distance: 10,*/
@@ -336,6 +343,7 @@ Highcharts.chart('contactTypesChart', {
         series: [{
           name: 'donnée(s)',
           data: values,
+          color:'#00948f',
           type: 'spline',
         }]
     
@@ -343,12 +351,11 @@ Highcharts.chart('contactTypesChart', {
 
 
   // Create the chart phenology per year
-
-  var labels = [];
-  var values = [];
+  var labels_y = [];
+  var values_y = [];
   for(i = 0; i < years.length; i++) {
-    labels.push(years[i].year);
-    values.push(years[i].nb_obs);
+    labels_y.push(years[i].year);
+    values_y.push(years[i].nb_obs);
     }
 
     Highcharts.chart('yearlyChart', {
@@ -362,7 +369,7 @@ Highcharts.chart('contactTypesChart', {
             enabled: false
           },
           title: {
-            text: "Age des données",
+            text: "Périodes d'observation",
             style : { "color": "#333333", "fontSize": "15px" }
           },
           legend: {
@@ -370,7 +377,7 @@ Highcharts.chart('contactTypesChart', {
           },
           
         xAxis: {
-            categories: labels,
+            categories: labels_y,
             crosshair: true,
             labels: {
                 rotation: -45
@@ -384,8 +391,8 @@ Highcharts.chart('contactTypesChart', {
         
         series: [{
           name: 'donnée(s)',
-          data: values
-          
+          data: values_y,
+          color:"#00948f",
         }]
     
     });

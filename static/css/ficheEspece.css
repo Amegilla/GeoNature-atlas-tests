@@ -258,9 +258,9 @@ h5#buttonChild:hover {
 	height: 320px;
 }
 
-rect{
+/* rect{
 	fill: rgb(255, 255, 255);
-}
+} */
 
 rect.highlight {
     fill: #333333;
