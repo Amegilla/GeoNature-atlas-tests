@@ -1,0 +1,86 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="panel panel-default stat-panel bg-white">
+        <div class="row">
+            <div class="partenaires-logos">
+                <div class="slide">
+                    <a href="https://azimut230.fr/" target="_bank" title="Azimut 230">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_azimut230.png') }}" alt="Logo Azimut230"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.chauve-souris-auvergne.fr" target="_bank" title="Chauve-souris Auvergne">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_csa.jpg') }}" alt="Logo Chauve-souris Auvergne"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.fne-aura.org/haute-savoie/" target="_bank" title="France Nature Environnement Haute-Savoie">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_fnehs.png') }}" alt="Logo France Nature Environnement Haute-Savoie"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="http://mammiferes.org/" target="_bank" title="Groupe Mammalogique d’Auvergne">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_GMA.png') }}" alt="Logo Groupe Mammalogique d’Auvergne"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="http://gmb.bzh/" target="_bank" title="Groupe Mammalogique Breton">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_gmb.png') }}" alt="Logo Groupe Mammalogique Breton"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="http://gmhl.asso.fr/" target="_bank" title="Groupe Mammalogique et Herpétologique du Limousin">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_gmhl_horizontal_small.png') }}" alt="Logo Groupe Mammalogique et Herpétologique du Limousin"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="http://gmn.asso.fr/" target="_bank" title="Groupe Mammalogique Normand">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_gmn.jpg') }}" alt="Logo Groupe Mammalogique Normand"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="http://www.picardie-nature.org/" target="_bank" title="Picardie Nature">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_pn_horizontal.png') }}" alt="Logo Picardie Nature"/>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="http://chauvesouriscorse.fr/" target="_bank" title="Groupe Chiroptères Corse">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_gcc.png') }}" alt="Logo Groupe Chiro Corse" />
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href="https://www.anvl.fr/" target="_bank" title="Association des Naturalistes de la Vallée du Loing et du massif de Fontainebleau">
+                        <img src="{{url_for('static', filename='custom/images/logo_partenaires_asso/logo_anvl.png') }}" alt="Logo Association des Naturalistes de la Vallée du Loing et du massif de Fontainebleau"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<script>
+    $(document).ready(function(){
+        $('.partenaires-logos').slick({
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 1500,
+            arrows: false,
+            dots: false,
+            pauseOnHover: false,
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 4
+                }
+            }, {
+                breakpoint: 520,
+                settings: {
+                    slidesToShow: 3
+                }
+            }]
+        });
+    });
+</script>
