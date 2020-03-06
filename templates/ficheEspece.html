@@ -129,6 +129,7 @@
                                 <a href="https://inpn.mnhn.fr/espece/cd_nom/{{taxon.taxonSearch.cd_ref}}/tab/statut" target="_blank">
                                     <img class="caractEspece" width="130px" src="{{url_for('static', filename='images/logo_protection.png') }}"  data-toggle="tooltip" data-original-title="Ce taxon bénéficie d'un statut de protection" data-placement="right"></a>
                             {% endif %}
+
                             {% if taxon.taxonSearch.patrimonial in configuration.PATRIMONIALITE.config %}
                                 <img
                                     class="caractEspece"
@@ -137,6 +138,17 @@
                                     data-toggle="tooltip"
                                     data-original-title="{{configuration.PATRIMONIALITE.config[taxon.taxonSearch.patrimonial].text}}" data-placement="right">
                             {% endif %}
+                            <br/>
+                            <div class="statuts_sp">
+                                {% for statuts in protections %}
+                                <img
+                                src="{{url_for('static', filename=statuts.picto) }}"
+                                data-toggle="tooltip"
+                                data-original-title="{{statuts.text}}" data-placement="right"
+                                >
+                                {% endfor %}
+                            </div>
+                            
                             </h3>
 
                         <div id="taxonomy">
@@ -692,6 +704,7 @@
             var nb_obs = {{taxon.taxonSearch.nb_obs}};
             var sources = {{sources|tojson}};
             var contacttypes = {{contacttypes|tojson}};
+            var protections = {{protections|tojson}};
     </script>
 
     <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script>
@@ -705,7 +718,6 @@
     {% else %}
         <script src="{{url_for('static', filename='mapPoint.js') }}"></script>
     {% endif %}
-
 
 </body>
 </html>

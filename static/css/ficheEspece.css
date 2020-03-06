@@ -314,3 +314,9 @@ text {
   bottom: 0px;
 }
 
+/* picto statuts */
+.statuts_sp img {
+	margin-top: 8px;
+	margin-left: 0px;
+	height: 22px;
+}

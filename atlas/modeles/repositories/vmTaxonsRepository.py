@@ -142,6 +142,8 @@ def getTaxonsGroup(connection, groupe):
     return {'taxons': tabTaxons, 'nbObsTotal': nbObsTotal}
 
 
+
+
 # get all groupINPN
 def getAllINPNgroup(connection):
     sql = """
@@ -159,3 +161,26 @@ def getAllINPNgroup(connection):
         }
         groupList.append(temp)
     return groupList
+
+
+def getTaxonsprotectionsList(connection, cd_ref):
+    sql = """select lower(protection) as protection, 
+                lower(replace(id_categorie_france,'*','')) as id_categorie_france
+                from atlas.vm_status_protection_chiro
+                where cd_ref = :thiscdref"""
+    req = connection.execute(text(sql), thiscdref=cd_ref)
+    taxonProtectionList = list()
+    for r in req:
+        if r.protection is not None:
+            temp = {
+                'picto':'custom/images/pictos_statuts/'+r.protection+'.svg',
+                'text':'Statut de protection : '+r.protection
+            }
+            taxonProtectionList.append(temp)
+        if r.id_categorie_france is not None:
+            temp = {
+                'picto':'custom/images/pictos_statuts/lrn_'+r.id_categorie_france+'.svg',
+                'text':'Statut de protection : '+r.id_categorie_france
+            }
+            taxonProtectionList.append(temp)
+    return taxonProtectionList
