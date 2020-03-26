@@ -121,6 +121,25 @@ li.sidebar-brand {
     font-size: 20px;
 }
 
+/* style du bouton deroulant pour les portails */
+.sidebar-nav .btn-group .glyphicon{
+	margin-inline: 20px;	
+}
+
+
+
+.dropdown-menu{
+	top: 105%;
+	left: 105%;
+	background-color: #00948f;
+	width: 200px;
+}
+
+.dropdown-menu {
+font-family: Dosis;
+}
+
+
 /* END sidebar */
 
 .slider-size {

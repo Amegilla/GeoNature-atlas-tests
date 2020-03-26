@@ -33,10 +33,26 @@ function generateMap() {
         minZoom: configuration.MAP.SECOND_MAP.minzoom,
         subdomains : ["mt0", "mt1", "mt2", "mt3"]
         });
-    CorineLandCover = L.tileLayer('https://wxs.ign.fr/corinelandcover/geoportail/r/wms?', { 
-      
-     });
-     zps = L.tileLayer('http://ws.carmencarto.fr/WMS/119/fxx_inpn?', {  });
+    CorineLandCover = L.WMS.layer("http://ws.carmencarto.fr/WMS/119/fxx_inpn?", "Zones_de_protection_speciale", {
+      format: 'image/png',
+      uppercase: true,
+      transparent: true,
+      continuousWorld : true,
+      tiled: true,
+      info_format: 'text/html',
+      opacity: 1,
+      identify: false,
+  });
+  layer_Coursdeaumtropolede510km_7 = L.WMS.layer("http://services.sandre.eaufrance.fr/geo/eth_FXX?", "CoursEau5", {
+    format: 'image/png',
+    uppercase: true,
+    transparent: true,
+    continuousWorld : true,
+    tiled: true,
+    info_format: 'text/html',
+    opacity: 1,
+    identify: false,
+});
 
 
     wmsLayer = L.tileLayer.wms('http://ws.carmencarto.fr/WMS/119/fxx_inpn?', {
@@ -56,13 +72,18 @@ function generateMap() {
         layers: [firstMapTile],
         fullscreenControl: true
       });
+ 
+
       var baseLayers = {
         "OpenStreetmap": firstMapTile,
         "OpenTopomap": orthoMap,
-        "GoogleSatellite" : GoogleSatellite,
-        "CorineLandCover" : CorineLandCover
+        "GoogleSatellite" : GoogleSatellite
         };
-        data = {"Routes": Routes, "Natura2000" : wmsLayer,"ZPS" : zps};
+      var data = {"CorineLandCover" : CorineLandCover,
+                "Routes": Routes,
+                "Natura2000" : wmsLayer,
+                "ZPS" : layer_Coursdeaumtropolede510km_7
+                };
         L.control.layers(baseLayers,data).addTo(map);
    
          // Style of territory on map
