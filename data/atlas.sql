@@ -266,7 +266,31 @@ CREATE UNIQUE INDEX ON atlas.vm_mois (cd_ref);
 
 
 -- Communes contenues entièrement dans le territoire
+-- necessite d'avoir chargé le script sql 'base_insee_code_postaux.sql
+CREATE MATERIALIZED VIEW atlas.list_communes_in_territoire
+AS SELECT c.insee,
+    h.code_postal
+   FROM atlas.l_communes c
+     JOIN atlas.t_layer_territoire t ON st_contains(st_buffer(t.the_geom, 200::double precision), c.the_geom)
+     LEFT JOIN atlas.list_code_postaux h ON c.insee::text = h.insee::text
+WITH DATA;
 
+CREATE MATERIALIZED VIEW atlas.vm_communes
+AS SELECT distinct c.insee,
+string_agg(distinct l.code_postal,',') as code_postal, 
+concat(c.commune_maj,' (', m.insee_dep ,')') AS commune_maj,
+c.the_geom,
+st_asgeojson(st_transform(c.the_geom, 4326)) AS commune_geojson
+FROM atlas.l_communes c
+JOIN atlas.list_communes_in_territoire l on l.insee = c.insee 
+join ref_geo.li_municipalities m on m.insee_com = c.insee 
+group by c.insee, c.commune_maj, m.insee_dep, c.the_geom;
+
+-- View indexes:
+CREATE INDEX index_gist_vm_communes_the_geom ON atlas.vm_communes USING gist (the_geom);
+CREATE UNIQUE INDEX vm_communes_insee_idx ON atlas.vm_communes USING btree (insee);
+
+/*
 CREATE MATERIALIZED VIEW atlas.vm_communes AS
 SELECT c.insee,
 c.commune_maj,
@@ -277,7 +301,7 @@ JOIN atlas.t_layer_territoire t ON ST_CONTAINS(ST_BUFFER(t.the_geom,200), c.the_
 
 CREATE UNIQUE INDEX on atlas.vm_communes (insee);
 CREATE INDEX index_gist_vm_communes_the_geom ON atlas.vm_communes USING gist (the_geom);
-
+*/
 
 -- Rangs de taxref ordonnés
 

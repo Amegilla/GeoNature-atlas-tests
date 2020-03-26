@@ -17,8 +17,30 @@ def getAllCommunes(session):
 
 
 def getCommunesSearch(session, search, limit=50):
-    req = session.query(distinct(VmCommunes.commune_maj), VmCommunes.insee) \
-        .filter(VmCommunes.commune_maj.like('%' + search + '%')).limit(limit).all()
+    if len(search.split()) == 2:
+        if search.split()[0].isnumeric():
+            search_postalcode = search.split()[0]
+            search_commune = search.split()[1]
+            req = session.query(distinct(VmCommunes.commune_maj), VmCommunes.insee) \
+                .filter(VmCommunes.code_postal.ilike('%' + search_postalcode + '%')) \
+                .filter(VmCommunes.commune_maj.ilike('%' + search_commune + '%')) \
+                .limit(limit).all()
+        elif search.split()[1].isnumeric():
+            search_postalcode = search.split()[1]
+            search_commune = search.split()[0]
+            req = session.query(distinct(VmCommunes.commune_maj), VmCommunes.insee) \
+                .filter(VmCommunes.commune_maj.ilike('%' + search_commune + '%')) \
+                .filter(VmCommunes.code_postal.ilike('%' + search_postalcode + '%')) \
+                .limit(limit).all()
+    elif search.isnumeric():
+        req = session.query(distinct(VmCommunes.commune_maj), VmCommunes.insee) \
+                .filter(VmCommunes.commune_maj.ilike('%' + search[:2] + '%')) \
+                .filter(VmCommunes.code_postal.ilike('%' + search + '%')).limit(limit).all()
+        print(search,req)
+    else :
+        req = session.query(distinct(VmCommunes.commune_maj), VmCommunes.insee) \
+                .filter(VmCommunes.commune_maj.ilike('%' + search + '%')).limit(limit).all()
+
     communeList = list()
     for r in req:
         temp = {'label': r[0], 'value': r[1]}
