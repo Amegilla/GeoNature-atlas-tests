@@ -9,6 +9,16 @@
     </a>
   {% endfor %}
 
+  <a href="{{url_for('static', filename='custom/templates/partenaires.html') }}" data-toggle="tooltip"
+      data-original-title="Partenaires" data-placement="right">
+      <li class="sidebar-brand">
+        <img class="picto-sidebar" 
+        src="{{url_for('static', filename='custom/images/picto_partenaires_white_2.svg') }}"
+        style="width: 40px;"
+        >
+      </li>
+    </a>
+
   <div class="sidebar-nav btn-group" >
 
     <li class="sidebar-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
