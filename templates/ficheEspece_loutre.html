@@ -46,7 +46,7 @@
         <!-- Numeric JS  , pour graphique camembert sources -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js"></script>
         <!-- highcharts , pour graphique camembert sources -->
-        <script src="https://code.highcharts.com/highcharts.src.js"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
 
         <!-- RaphaelJs -->
         <script src="{{url_for('static', filename='lib/raphaelJs/raphael.min.js') }}"></script>
@@ -284,6 +284,10 @@
                                     </div>
                                     </div>
                                     <div class="tab-pane fade" id="mortmap">
+                                        <div id="warning-map-loutre" class="alert alert-info alert-dismissible" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <strong>Information :</strong> Zoomer sur la carte pour afficher les données pointées.
+                                          </div>
                                     <div id="mapmorta">
                                     <img id ="loadingGif" src="">
                                     </div>
@@ -305,6 +309,23 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="panel panel-default">
+                <div class="row">
+                   <div class="col-sm-12">
+                       <p class="alert alert-warning text-justify" style="margin: 5px;">
+                        <b>Avertissement :</b> 
+                        les données mises à disposition reflètent l’état d’avancement des connaissances ou la disponibilité des inventaires. 
+                        Elles ne peuvent en aucun cas être considérées comme exhaustives. 
+                        De plus, toutes les données n’ont pas encore fait l’objet d’une validation à ce jour. 
+                        Enfin, il est rappelé que les données et les cartes mise à disposition sur ce 
+                        portail ne peuvent servir d’unique bibliographie pour les études réglementaires.
+                          <!-- <a href="{{url_for('main.get_staticpages', page='donnees') }}" style="color:#7785ce;">En savoir plus</a> -->
+                       </p>
+                   </div>
+               </div>
+           </div>
 
             <div class="panel panel-default" id="otherInformationsPanel">
                    
@@ -699,7 +720,7 @@
 
     <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script>
     <script src="{{url_for('static', filename='ficheEspece.js') }}"></script>
-    <script type="text/javascript" src="{{url_for('static', filename='chart.js') }}"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='chart2.js') }}"></script>
 
     <script src="{{url_for('static', filename='mapGenerator.js') }}"></script>
     <script src="{{url_for('static', filename='main.js') }}"></script>

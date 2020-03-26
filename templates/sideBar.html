@@ -8,22 +8,38 @@
       <li class="sidebar-brand"><span class="glyphicon {{page_values.picto}}"></span></li>
     </a>
   {% endfor %}
-  
 
-<div class="sidebar-nav btn-group" >
-  <li class="sidebar-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="glyphicon glyphicon-th" data-toggle="tooltip" data-original-title="Portails thématiques" data-placement="right"></span>
-  </li>
-
-  <ul class="dropdown-menu">
-    {% for page_key, page_values in configuration.PORTAL_PAGES.items()|sort(attribute='1.order') %}
-    <a href="{{url_for('main.get_staticpages', page=page_key)}}">
-    <li class="sidebar-brand">{{page_values.title}}</li>
+  <a href="{{url_for('static', filename='custom/templates/partenaires.html') }}" data-toggle="tooltip"
+      data-original-title="Partenaires" data-placement="right">
+      <li class="sidebar-brand">
+        <img class="picto-sidebar" 
+        src="{{url_for('static', filename='custom/images/picto_partenaires_white_2.svg') }}"
+        style="width: 40px;"
+        >
+      </li>
     </a>
-    {% endfor %}
-  </ul>
-</div>
 
+  <div class="sidebar-nav btn-group" >
+
+    <li class="sidebar-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="glyphicon glyphicon-th" data-toggle="tooltip" data-original-title="Portails thématiques" data-placement="right"></span>
+    </li>
+  
+    <ul class="dropdown-menu">
+      <a href="{{url_for('main.portail_chiro')}}">
+        <li class="sidebar-brand">Chiroptères</li>
+      </a>
+
+      <a href="{{url_for('main.ficheEspece',cd_ref=60630)}}">
+        <li class="sidebar-brand">Loutre</li>
+      </a>
+
+      <a href="{{url_for('main.index')}}">
+        <li class="sidebar-brand">Petits Mammifères</li>
+      </a>
+    </ul>
+
+  </div>
 
   {% if configuration.AFFICHAGE_PAGE_PHOTOS_NAVBAR %}
   <a href="{{url_for('main.photos')}}" data-toggle="tooltip" data-original-title="Galerie photos" data-placement="right">

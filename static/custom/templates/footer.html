@@ -8,37 +8,37 @@
                 <h1>
                 <div class="flex-container">
                     <div class="flex-item">
-                        <a href="https://www.mnhn.fr/" title="MUSÉUM NATIONAL D’HISTOIRE NATURELLE">
+                        <a href="https://www.mnhn.fr/" target="_bank" title="MUSÉUM NATIONAL D’HISTOIRE NATURELLE">
                             <img src="{{url_for('static', filename='custom/images/logo_partenaires/MNHN-logo_small.jpg') }}" alt="Logo mnhm" class="img-responsive" />
                         </a>
                     </div>
                     <div class="flex-item">
-                        <a href="https://www.ecologique-solidaire.gouv.fr/" title="Ministère de la Transition écologique et solidaire">
+                        <a href="https://www.ecologique-solidaire.gouv.fr/" target="_bank" title="Ministère de la Transition écologique et solidaire">
                             <img src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-mtes.jpg') }}" alt="Logo Ministère de la Transition écologique et solidaire" class="img-responsive" />
                         </a>
                     </div>
                     <div class="flex-item">
-                        <a href="http://www.bourgogne-franche-comte.developpement-durable.gouv.fr/" title="DREAL Bourgogne-Franche-Comté">
+                        <a href="http://www.bourgogne-franche-comte.developpement-durable.gouv.fr/" target="_bank" title="DREAL Bourgogne-Franche-Comté">
                             <img src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-dreal.jpg') }}" alt="Logo DREAL Bourgogne Franche Comté" class="img-responsive" />
                         </a>
                     </div>
                     <div class="flex-item">
-                        <a href="http://www.nouvelle-aquitaine.developpement-durable.gouv.fr/" title="DREAL Nouvelle-Aquitaine">
+                        <a href="http://www.nouvelle-aquitaine.developpement-durable.gouv.fr/" target="_bank" title="DREAL Nouvelle-Aquitaine">
                             <img src="{{url_for('static', filename='custom/images/logo_partenaires/partenaire-dreal-aquitaine.jpg') }}" alt="Logo DREAL Nouvelle-Aquitaine" class="img-responsive" />
                         </a>
                     </div>
                     <div class="flex-item">
-                        <a href="http://www.reseau-cen.org/fr" title="Conservatoires d'espaces naturels">
+                        <a href="http://www.reseau-cen.org/fr" target="_bank" title="Conservatoires d'espaces naturels">
                             <img src="{{url_for('static', filename='custom/images/logo_partenaires/logo_cen.png') }}" alt="Logo Conservatoires d'espaces naturels" class="img-responsive" />
                         </a>
                     </div>
                     <div class="flex-item">
-                        <a href="http://www.plan-actions-chiropteres.fr/" title="PNA Chiroptères">
+                        <a href="http://www.plan-actions-chiropteres.fr/" target="_bank" title="PNA Chiroptères">
                             <img src="{{url_for('static', filename='custom/images/logo_pna/logo_pna_chiro.png') }}" alt="Logo PNA Chiroptères"class="img-responsive" />
                         </a>
                     </div>
                     <div class="flex-item">
-                            <a href="https://www.sfepm.org/planloutre.htm" title="PNA Loutre">
+                            <a href="https://www.sfepm.org/planloutre.htm" target="_bank" title="PNA Loutre">
                                 <img src="{{url_for('static', filename='custom/images/logo_pna/logo_pna_loutre.png') }}" alt="Logo PNA Loutre"class="img-responsive" />
                             </a>
                     </div>
@@ -47,6 +47,7 @@
             </div>
             </div>
 
+            {% include 'static/custom/templates/footer_asso_slider.html' %}
     
         <p> <br/>
             <a href="{{url_for('main.index')}}">Accueil</a> | 
@@ -78,6 +79,7 @@
       </div>
     </div>
     
+
     {% if configuration.ID_GOOGLE_ANALYTICS != "UA-xxxxxxx-xx" %}
     <!-- Script Google Analytics -->
     <script>

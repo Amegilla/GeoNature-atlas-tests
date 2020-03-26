@@ -110,6 +110,9 @@ def index():
         connection, current_app.config["RANG_STAT"]
     )
 
+    years = vmYearRepository.getYearlyObservationsAll(connection)
+    sources = vmObservationsRepository.getSourcesAll(connection)
+
     connection.close()
     session.close()
 
@@ -120,6 +123,8 @@ def index():
         stat=stat,
         customStat=customStat,
         customStatMedias=customStatMedias,
+        years=years,
+        sources=sources,
     )
 ################################################################################ PORTAIL CHIRO
 
@@ -246,6 +251,7 @@ def ficheEspece(cd_ref):
     taxon = vmTaxrefRepository.searchEspece(connection, cd_ref)
     altitudes = vmAltitudesRepository.getAltitudesChilds(connection, cd_ref)
     months = vmMoisRepository.getMonthlyObservationsChilds(connection, cd_ref)
+    protections = vmTaxonsRepository.getTaxonsprotectionsList(connection, cd_ref)
 
     if current_app.config["AFFICHAGE_GRAPH_ANNEE_ESPECE"]:
         years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
@@ -327,6 +333,7 @@ def ficheEspece(cd_ref):
         observers=observers,
         sources=sources,
         contacttypes=contacttypes,
+        protections=protections,
     )
 
 
