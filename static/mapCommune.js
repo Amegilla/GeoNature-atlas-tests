@@ -1,4 +1,4 @@
-var map = generateMap();
+var map = generateMap("mapnorm");
 
 var legend = L.control({ position: "bottomright" });
 // Current observation Layer: leaflet layer type

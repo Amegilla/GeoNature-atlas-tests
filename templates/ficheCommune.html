@@ -71,7 +71,7 @@
 							 <h4 id="titleMap"> {{configuration.NB_LAST_OBS}} dernières observations sur la commune de <i>{{referenciel.communeName}}</i></h4> </strong>
 						</div>
 						<div class="panel-body">
-							 <div id="map"> </div>
+							 <div id="mapnorm"> </div>
 						</div>
 					</div>
 				</div>
@@ -79,9 +79,7 @@
 
         </div>
 
-        {% if configuration.AFFICHAGE_FOOTER %}
-            {% include 'static/custom/templates/footer.html' %}
-        {% endif %}
+
 
         <script type="text/javascript">
             var configuration = {{configuration|tojson}};
