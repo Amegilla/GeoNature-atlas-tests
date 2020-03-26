@@ -137,6 +137,16 @@
                                     data-toggle="tooltip"
                                     data-original-title="{{configuration.PATRIMONIALITE.config[taxon.taxonSearch.patrimonial].text}}" data-placement="right">
                             {% endif %}
+                            <br/>
+                            <div class="statuts_sp">
+                                {% for statuts in protections %}
+                                <img
+                                src="{{url_for('static', filename=statuts.picto) }}"
+                                data-toggle="tooltip"
+                                data-original-title="{{statuts.text}}" data-placement="right"
+                                >
+                                {% endfor %}
+                            </div>
                             </h3>
 
                         <div id="taxonomy">
@@ -716,6 +726,7 @@
             var nb_obs = {{taxon.taxonSearch.nb_obs}};
             var sources = {{sources|tojson}};
             var contacttypes = {{contacttypes|tojson}};
+            var protections = {{protections|tojson}};
     </script>
 
     <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script>
