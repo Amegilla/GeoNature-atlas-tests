@@ -9,15 +9,15 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="15.028332mm"
+   width="33.172829mm"
    height="11.05958mm"
-   viewBox="0 0 15.028332 11.05958"
+   viewBox="0 0 33.172829 11.05958"
    version="1.1"
-   id="svg8"
+   id="svg2016"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="lrn_lc.svg">
+   sodipodi:docname="lrfr_en.svg">
   <defs
-     id="defs2" />
+     id="defs2010" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -26,35 +26,22 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.8"
-     inkscape:cx="29.051897"
-     inkscape:cy="-25.776627"
+     inkscape:cx="56.771811"
+     inkscape:cy="7.5009068"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="958"
-     inkscape:window-height="1008"
-     inkscape:window-x="1823"
-     inkscape:window-y="2160"
-     inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:snap-bbox="true"
-     inkscape:bbox-nodes="false"
-     showguides="true"
-     inkscape:guide-bbox="true"
-     inkscape:snap-bbox-midpoints="true"
-     inkscape:object-nodes="false"
-     inkscape:bbox-paths="true">
-    <inkscape:grid
-       type="xygrid"
-       id="grid883"
-       originx="-6.5929635"
-       originy="-6.7465781" />
-  </sodipodi:namedview>
+     inkscape:window-width="1003"
+     inkscape:window-height="597"
+     inkscape:window-x="918"
+     inkscape:window-y="622"
+     inkscape:window-maximized="0" />
   <metadata
-     id="metadata5">
+     id="metadata2013">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -69,25 +56,36 @@
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-98.155804,-128.47771)">
+     transform="translate(83.110224,-128.1845)">
     <rect
-       style="opacity:1;vector-effect:none;fill:#74b94c;fill-opacity:1;stroke:#74b94c;stroke-width:0.47624999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2.79999995;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
-       id="rect1098-4"
-       width="14.552082"
+       ry="1.3229131"
+       y="128.42262"
+       x="-64.727608"
        height="10.58333"
-       x="98.393951"
-       y="128.71584"
-       ry="1.3229131" />
+       width="14.552089"
+       id="rect1098-2-5-2"
+       style="opacity:1;vector-effect:none;fill:#fcbd00;fill-opacity:1;stroke:#fcbd00;stroke-width:0.47624999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:2.79999995;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill" />
+    <text
+       id="text1186-8-6-7"
+       y="136.28603"
+       x="-62.322948"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"><tspan
+         style="font-size:7.05555534px;stroke-width:0.26458332"
+         y="136.28603"
+         x="-62.322948"
+         id="tspan1184-8-1-2"
+         sodipodi:role="line">EN</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="101.08801"
-       y="136.57582"
-       id="text1186-7"><tspan
+       x="-83.802689"
+       y="136.31476"
+       id="text1186-7-8-3-5"><tspan
          sodipodi:role="line"
-         id="tspan1184-3"
-         x="101.08801"
-         y="136.57582"
-         style="font-size:7.05555534px;stroke-width:0.26458332">LC</tspan></text>
+         id="tspan1184-3-9-0-7"
+         x="-83.802689"
+         y="136.31476"
+         style="font-size:7.05555534px;stroke-width:0.26458332">LR-fr</tspan></text>
   </g>
 </svg>
