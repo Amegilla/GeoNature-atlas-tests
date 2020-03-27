@@ -432,9 +432,3 @@ def get_staticpages(page):
     static_page = current_app.config["STATIC_PAGES"][page]
     session.close()
     return render_template(static_page["template"])
-
-@main.route("/test_carto", methods=["GET", "POST"])
-def test_carto():
-    
-    html_template = "templates/test_carto.html"
-    return render_template(html_template)
