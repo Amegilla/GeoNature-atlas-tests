@@ -164,31 +164,30 @@ def getAllINPNgroup(connection):
 
 
 def getTaxonsProtection(connection, cd_ref):
-    sql = """select lower(categorie_lr_europe) as categorie_lr_europe , 
-                    lower(categorie_lr_france) as categorie_lr_france
+    # requete pour les status listes rouges europe et france
+    sql = """select categorie_lr_europe, text_lr_europe,
+                    categorie_lr_france,text_lr_france
                     from atlas.vm_liste_rouges
                     where cd_ref = :thiscdref"""
     req = connection.execute(text(sql), thiscdref=cd_ref)
     taxonProtectionList = list()
     for r in req:
         if r.categorie_lr_europe is not None:
-            temp = {'picto':'custom/images/pictos_statuts/lreu_'+r.categorie_lr_europe+'.svg',
-            'text':'Classement liste rouge Européenne : '+r.categorie_lr_europe}
+            temp = {'cat': 'LR-eu : ', 'statut':r.categorie_lr_europe.upper(),
+                'text':'Classement liste rouge Européenne : '+r.text_lr_europe}
             taxonProtectionList.append(temp)
         if r.categorie_lr_france is not None:
-            temp = {'picto':'custom/images/pictos_statuts/lrfr_'+r.categorie_lr_france+'.svg',
-            'text':'Classement liste rouge Française : '+r.categorie_lr_france}
+            temp = {'cat': 'LR-fr : ', 'statut':r.categorie_lr_france,
+                'text':'Classement liste rouge Française : '+r.text_lr_france}
             taxonProtectionList.append(temp)
-    sql = """select lower(status) as status from atlas.vm_dhff_pn  where cd_ref = :thiscdref"""
+    # requetes pour les status reglementaires
+    sql = """select status, nullif(concat(intitule ,' (', "date",')'),' ()') as info 
+                from atlas.vm_dhff_pn 
+                where cd_ref = :thiscdref"""
     req = connection.execute(text(sql), thiscdref=cd_ref)
     for r in req:
         if r.status is not None:
-            textinfo = 'Protection réglementaire : '+r.status
-            if r.status == 'pn':
-                textinfo = "Article 2 - Liste des mammifères terrestres protégés sur l'ensemble du territoire français et les modalités de leur protection - Arrêté interministériel du 23 avril 2007 fixant la liste des mammifères terrestres protégés sur l'ensemble du territoire et les modalités de leur protection (modif. arrêté du 15 septembre 2012)"
-            if r.status == 'dhff':
-                textinfo = "Annexe II - Directive 92/43/CEE (Directive européenne dite Directive Habitats-Faune-Flore) - Directive 92/43/CEE du Conseil du 21 mai 1992 concernant la conservation des habitats naturels ainsi que de la faune et de la flore sauvages (modifiée par la Directive 97/62/CEE du Conseil du 27 octobre 1997, le Règlement (CE) n° 1882/2003 du Parlement et du Conseil du 29 septembre 2003 et la Directive 2006/105/CE du 20 novembre 2006)"
-            temp = {'picto':'custom/images/pictos_statuts/'+r.status+'.svg',
-                'text':textinfo}
+            textinfo = 'Protection réglementaire : '+r.info
+            temp = {'cat': '', 'statut':r.status, 'text':textinfo}
             taxonProtectionList.append(temp)
     return taxonProtectionList

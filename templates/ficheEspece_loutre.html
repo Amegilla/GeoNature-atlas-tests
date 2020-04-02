@@ -137,17 +137,15 @@
                                     data-toggle="tooltip"
                                     data-original-title="{{configuration.PATRIMONIALITE.config[taxon.taxonSearch.patrimonial].text}}" data-placement="right">
                             {% endif %}
-                            <br/>
-                            <div class="statuts_sp">
-                                {% for statuts in protections %}
-                                <img
-                                src="{{url_for('static', filename=statuts.picto) }}"
-                                data-toggle="tooltip"
-                                data-original-title="{{statuts.text}}" data-placement="right"
-                                >
-                                {% endfor %}
-                            </div>
                             </h3>
+
+                            <div class="statuts_sp" style="margin-top: 15px;">
+                                {% for statuts in protections %}
+                                <span data-toggle="tooltip" data-original-title="{{statuts.text}}" data-placement="right">
+                                {{statuts.cat}} <span class="{{statuts.statut}}"> {{statuts.statut}}</span>
+                                </span>
+                                {% endfor %} 
+                            </div>
 
                         <div id="taxonomy">
                             {% for taxon in taxonomyHierarchy %}
