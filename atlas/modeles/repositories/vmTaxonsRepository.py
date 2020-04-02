@@ -165,7 +165,7 @@ def getAllINPNgroup(connection):
 
 def getTaxonsProtection(connection, cd_ref):
     sql = """select lower(categorie_lr_europe) as categorie_lr_europe , 
-                    lower(id_categorie_france) as id_categorie_france
+                    lower(categorie_lr_france) as categorie_lr_france
                     from atlas.vm_liste_rouges
                     where cd_ref = :thiscdref"""
     req = connection.execute(text(sql), thiscdref=cd_ref)
@@ -175,9 +175,9 @@ def getTaxonsProtection(connection, cd_ref):
             temp = {'picto':'custom/images/pictos_statuts/lreu_'+r.categorie_lr_europe+'.svg',
             'text':'Classement liste rouge Européenne : '+r.categorie_lr_europe}
             taxonProtectionList.append(temp)
-        if r.id_categorie_france is not None:
-            temp = {'picto':'custom/images/pictos_statuts/lrfr_'+r.id_categorie_france+'.svg',
-            'text':'Classement liste rouge Française : '+r.id_categorie_france}
+        if r.categorie_lr_france is not None:
+            temp = {'picto':'custom/images/pictos_statuts/lrfr_'+r.categorie_lr_france+'.svg',
+            'text':'Classement liste rouge Française : '+r.categorie_lr_france}
             taxonProtectionList.append(temp)
     sql = """select lower(status) as status from atlas.vm_dhff_pn  where cd_ref = :thiscdref"""
     req = connection.execute(text(sql), thiscdref=cd_ref)
