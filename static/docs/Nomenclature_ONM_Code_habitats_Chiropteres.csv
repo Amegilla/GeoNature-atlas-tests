@@ -1,0 +1,64 @@
+COD_HAB;Libellé
+CAV;Toute cavité, naturelle ou anthropique non dépendante d’un bâtiment ou d’une infrastructure
+CAV.NAT;Cavité naturelle : toute cavité utilisée par les Chiroptères qui est d’origine naturelle (même si l’homme y est intervenu en modifiant certaines parties)
+CAV.NAT.GRO;Grotte
+CAV.NAT.AVE;Aven
+CAV.NAT.ABR;Abri sous roche : cavité (très) ouverte sur l’extérieur, sous un rocher, avec un renfoncement qui permet une certaine obscurité au fond
+CAV.NAT.TER;Terrier : cavité creusée par un animal dans le sol
+CAV.ANT;Cavité d’origine anthropique : toute cavité creusée par l’homme (même si, à l’abandon depuis un certain temps elle semble avoir repris une certaine naturalité)
+CAV.ANT.MIN;Mine : creusée par l’homme, même abandonnée, même de petites dimensions
+CAV.ANT.PUI;Puits : installé par l’homme, avec ou sans aménagements autour, même abandonné
+CAV.ANT.SOU;Souterrain : galerie enterrée creusée par l’homme pour diverses raisons
+CAV.ANT.CAR;Carrière : exploitations de matériaux par l’homme qui y a creusé des cavités, même abandonnées, y compris de faibles dimensions
+CAV.ANT.TUN;Tunnel
+CAV.ANT.GAL;Galerie : conduite d’eau, d’Edf, de barrage, …
+URB;Milieux urbanisés
+URB.HAB;Toute structure bâtie par l’homme à des fins d’habitation quelle que soit sa taille, qu’elle soit habitée ou non
+URB.HAB.EGL;Eglise
+URB.HAB.MAI;Maison/immeuble
+URB.HAB.GRA;Grange/écurie
+URB.HAB.CHA;Château
+URB.HAB.CAV;Cave : partie sous terre d’une maison, ou en-dessous du niveau des pièces d’habitation et peu utilisées par l’homme
+URB.HAB.COM;Comble/grenier : partie supérieure d’une maison, au-dessus des pièces d’habitation et peu utilisée par l’homme
+URB.PRO;Toute structure bâtie par l’homme et utilisée à des fins professionnelles, économiques, militaires, industrielles, … qu’elle soit encore utilisée et occupée ou non
+URB.PRO.PON;Pont : de quelque nature (fer, bois, pierre, …) ou taille qu’il soit
+URB.PRO.USI;Usine
+URB.PRO.HAN;Hangar
+URB.PRO.FOR;Fortification, ouvrage militaire
+URB.VER;Tout espace vert présent en zone urbaine
+URB.VER.JAR;Jardin
+URB.VER.PAR;Parc
+URB.VER.FRI;Friche urbaine
+URB.VER.ARB;Arbre isolé en milieu urbain, sert pour les arbres gîtes.
+AGR;Milieux agricoles
+AGR.CUL;Cultures
+AGR.CUL.CER;Culture de céréales
+AGR.CUL.OLE;Culture d’oléagineux
+AGR.CUL.VER;Verger
+AGR.CUL.VIG;Vigne
+AGR.PRA;Prairie cultivée
+AGR.PRA.SEM;Prairie semée
+AGR.PRA.PAT;Prairie paturée
+AGR.HAI;Haie
+AGR.HAI.ARB;Haie d'arbres
+AGR.HAI.BUI;Haie buissonnante
+AGR.JAC;Jachère agricole
+AGR.ARB;Arbre isolé en milieu agricole, sert pour les arbres gîtes.
+NAT;Milieux naturels non boisés
+NAT.ROC;Milieux naturels de nature rocheuse
+NAT.ROC.FAL;Falaise, paroi rocheuse
+NAT.ROC.EBO;Eboulis, zone rocheuse
+NAT.PEL;Pelouses (milieux herbacés d'origine naturelle) et landes
+NAT.PRA;Prairie naturelle
+NAT.ARB;Arbre isolé en milieu naturel non boisé, sert pour les arbres gîtes.
+BOI;Milieux boisés, de quelque taille qu’ils soient, exploités ou non
+BOI.FOR;Forêt
+BOI.BOS;Bois, bosquet
+BOI.ARB;Arbre isolé en milieu boisé, sert pour les arbres gîtes.
+HUM;Tout milieu humide (avec une masse d’eau présente, de quelque importance qu’elle soit)
+HUM.RIV;Rivière
+HUM.RUI;Ruisseau
+HUM.LAC;Lac, réservoir
+HUM.TOU;Tourbière
+HUM.MAR;Mare
+HUM.ETA;Etang

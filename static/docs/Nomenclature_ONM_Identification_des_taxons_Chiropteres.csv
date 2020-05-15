@@ -1,0 +1,54 @@
+COD_TAX;LB_Nom;cdNom;NOM_VERN
+BARBAR;Barbastella barbastellus;60345;Barbastelle d'Europe, Barbastelle
+MYOBLY;Myotis blythii;60427;Petit Murin
+MYOMYO;Myotis myotis;60418;Grand Murin
+MYOBLY/MYOMYO;Myotis blythii/Myotis myotis;;Petit Murin/Grand Murin
+MYOPUN;Myotis punicus;79298;Murin du Maghreb
+RHIEUR;Rhinolophus euryale;60330;Rhinolophe euryale
+RHIFER;Rhinolophus ferrumequinum;60295;Grand rhinolophe
+RHIEUR/RHIFER;Rhinolophus euryale/Rhinolophus ferrumequinum;;Rhinolophe euryale/Grand rhinolophe
+RHIHIP;Rhinolophus hipposideros;60313;Petit rhinolophe
+RHIMEH;Rhinolophus mehelyi;60337;Rhinolophe de Méhely
+MINSCH;Miniopterus schreibersii;79305;Minioptère de Schreibers
+TADTEN;Tadarida teniotis;60557;Molosse de Cestoni
+NYCSP;Nyctalus sp.;;Groupe des noctules
+NYCLAS;Nyctalus lasiopterus;60457;Grande Noctule
+NYCLEI;Nyctalus leisleri;60461;Noctule de Leisler
+NYCNOC;Nyctalus noctula;60468;Noctule commune
+PLEAUR;Plecotus auritus;60518;Oreillard roux, Oreillard septentrional
+PLEAUS;Plecotus austriacus;60527;Oreillard gris, Oreillard méridional
+PLEMAC;Plecotus macrobullaris;163463;Oreillard montagnard
+PLESP;Plecotus sp.;;Groupe des oreillards
+PLEAUR/PLEAUS;Plecotus auritus/Plecotus austriacus;;Oreillard roux/Oreillard gris
+PLEAUR/PLEMAC;Plecotus auritus/Plecotus macrobullaris;;Oreillard roux/Oreillard montagnard
+PLEAUS/PLEMAC;Plecotus austriacus/Plecotus macrobullaris;;Oreillard gris/Oreillard montagnard
+PIPKUH;Pipistrellus kuhlii;79303;Pipistrelle de Kuhl
+PIPNAT;Pipistrellus nathusii;60490;Pipistrelle de Nathusius
+PIPPIP;Pipistrellus pipistrellus;60479;Pipistrelle commune
+PIPPYG;Pipistrellus pygmaeus;60489;Pipistrelle pygmée
+PIPSP;Pipistrellus sp.;;Groupe des pipistrelles
+PIPPIP/PIPPYG;Pipistrellus pipistrellus/Pipistrellus pygmaeus;;Pipistrelle commune/Pipistrelle pygmée
+PIPKUH/PIPPIP;Pipistrellus kuhlii/Pipistrellus pipistrellus;;Pipistrelle de Kuhl/Pipistrelle commune
+PIPNAT/PIPPIP;Pipistrellus nathusii/Pipistrellus pipistrellus;;Pipistrelle de Nathusius/Pipistrelle commune
+EPTNIL;Eptesicus nilssonii;79302;Sérotine de Nilsson
+EPTSER;Eptesicus serotinus;60360;Sérotine commune
+VESMUR;Vespertilio murinus;60537;Vespertilion bicolore, Sérotine bicolore
+EPTSP;Eptesicus sp.;;Groupe des sérotines
+MYOSP;;;Murins de petite taille
+MYOBEC;Myotis bechsteinii;79301;Murin de Bechstein
+MYOEMA;Myotis emarginatus;60400;Murin à oreilles échancrées, Vespertilion à oreilles échancrées
+MYOALC;Myotis alcathoe;79299;Murin d'Alcathoe
+MYOMYS;Myotis mystacinus;60383;Murin à moustaches, Vespertilion à moustaches
+MYOBRA;Myotis brandtii;79300;Murin de Brandt
+MYODAUB;Myotis daubentonii;200118;Murin de Daubenton
+MYOALC/MYOBRA/MYODAU/MYOMYS;;;Murins à museaux noirs
+MYOALC/MYOBRA/MYOMYS;;;Groupe des moustaches
+MYODAS;Myotis dasycneme;60447;Murin des marais, Vespertilion des marais
+MYOCAP;Myotis capaccinii;60439;Murin de Capaccini, Vespertilion de Capaccini
+MYOCAP/MYODAU/MYODAS;;;Murins à grands pieds
+MYOESC;Myotis escalerai;60411;Murin d'Escalera
+MYONAT;Myotis nattereri;60408;Murin de Natterer, Vespertilion de Natterer
+MYOSPA;Myotis spA;;Murin spA
+MYOCRY;Myotis crypticus;;Murin cryptique
+MYOCRY/MYOESC/MYONAT/MYOSPA;;;Groupe des Natterers
+HYPSAV;Hypsugo savii;60506;Vespère de Savi
