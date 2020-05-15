@@ -523,6 +523,8 @@ function compare(a, b) {
 }
 
 function printEspece(tabEspece, tabCdRef) {
+  tabEspece = tabEspece.filter(onlyUnique)
+  tabCdRef = tabCdRef.filter(onlyUnique)
   stringEspece = "";
   i = 0;
   while (i < tabEspece.length) {
@@ -535,10 +537,10 @@ function printEspece(tabEspece, tabCdRef) {
 
 function onEachFeatureMailleLastObs(feature, layer) {
   popupContent =
+    "<b>Observateur(s) dans la maille: </b> <br>" + feature.properties.list_observateurs.filter(onlyUnique) + "<br>" +
     "<b>Espèces observées dans la maille: </b> <ul> " +
     printEspece(feature.properties.list_taxon, feature.properties.list_cdref) +
     "</ul>";
-
   layer.bindPopup(popupContent);
 }
 
@@ -557,17 +559,20 @@ function generateGeoJsonMailleLastObs(observations) {
   while (i < observations.length) {
     geometry = observations[i].geojson_maille;
     idMaille = observations[i].id_maille;
+    observers = observations[i].observateurs;
     properties = {
       id_maille: idMaille,
       list_taxon: [observations[i].taxon],
       list_cdref: [observations[i].cd_ref],
-      list_id_observation: [observations[i].id_observation]
+      list_id_observation: [observations[i].id_observation],
+      list_observateurs: [observers]
     };
     var j = i + 1;
     while (j < observations.length && observations[j].id_maille == idMaille) {
       properties.list_taxon.push(observations[j].taxon);
       properties.list_cdref.push(observations[j].cd_ref);
       properties.list_id_observation.push(observations[j].id_observation);
+      properties.list_observateurs.push(observations[j].observateurs);
       j = j + 1;
     }
     myGeoJson.features.push({

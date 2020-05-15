@@ -80,7 +80,7 @@ def lastObservationsCommuneMaille(connection, mylimit, insee):
     sql = """
     WITH last_obs AS (
         SELECT
-            obs.cd_ref, obs.dateobs, t.lb_nom,
+            obs.cd_ref, obs.dateobs, obs.observateurs, t.lb_nom,
             t.nom_vern, obs.the_geom_point as l_geom
         FROM atlas.vm_observations obs
         JOIN atlas.vm_communes c
@@ -91,11 +91,11 @@ def lastObservationsCommuneMaille(connection, mylimit, insee):
         ORDER BY obs.dateobs DESC
         LIMIT :thislimit
     )
-    SELECT l.lb_nom, l.nom_vern, l.cd_ref, m.id_maille, m.geojson_maille
+    SELECT l.lb_nom, l.nom_vern, l.cd_ref, m.id_maille, m.geojson_maille, l.observateurs
     FROM atlas.t_mailles_territoire m
     JOIN last_obs  l
     ON st_intersects(l.l_geom, m.the_geom)
-    GROUP BY l.lb_nom, l.cd_ref, m.id_maille, l.nom_vern, m.geojson_maille
+    GROUP BY l.lb_nom, l.cd_ref, m.id_maille, l.nom_vern, m.geojson_maille, l.observateurs
     """
     observations = connection.execute(text(sql), thisInsee=insee, thislimit=mylimit)
     obsList = list()
@@ -107,6 +107,7 @@ def lastObservationsCommuneMaille(connection, mylimit, insee):
         temp = {
             "cd_ref": o.cd_ref,
             "taxon": taxon,
+            "observateurs": o.observateurs,
             "geojson_maille": json.loads(o.geojson_maille),
             "id_maille": o.id_maille,
         }
