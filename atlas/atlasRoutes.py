@@ -132,7 +132,7 @@ def index():
 def portail_chiro():
     session = utils.loadSession()
     connection = utils.engine.connect()
-
+    cd_ref = int(186233)
     if current_app.config["AFFICHAGE_MAILLE"]:
         observations = vmObservationsMaillesRepository.lastObservationsMailles(
             connection,
@@ -155,6 +155,9 @@ def portail_chiro():
         connection, current_app.config["RANG_STAT"]
     )
 
+    years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
+    sources = vmObservationsRepository.getSourcesAll(connection)
+
     connection.close()
     session.close()
 
@@ -165,6 +168,8 @@ def portail_chiro():
         stat=stat,
         customStat=customStat,
         customStatMedias=customStatMedias,
+        years=years,
+        sources=sources,
     )
 #-------------------------------------------------------------------------------# PORTAIL LOUTRE
 @main.route("/portail_loutre", methods=["GET", "POST"])

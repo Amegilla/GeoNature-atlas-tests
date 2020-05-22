@@ -26,6 +26,8 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/index.css') }}" />
         <link rel="stylesheet" href="{{url_for('static', filename='custom/custom.css') }}" />
 
+		<!-- highcharts , pour graphique camembert sources -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
     </head>
 
     <body>
@@ -114,6 +116,13 @@
 						<div class="col-sm-2" id="mapStat" style="padding-left: 0px; padding-top: 15px;">
 							<p><button id="sp_cr_en" type="button" class="btn btn-primary btn-lg btn-block">Espèces CR et EN<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces classées en danger et en danger CRitique selon la liste rouge UICN France" data-placement="right"></span></button></p>
 							<p><button id="sp_vu" type="button" class="btn btn-primary btn-lg btn-block">Espèces VU<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces classées Vulnérables selon la liste rouge UICN France" data-placement="right"></span></button></p>
+						</div>
+						
+						<div class="col-sm-4" id="mapSide">
+							<hr>
+							<!-- <div class="customcharts"  id="sourcesChart" style="height:250px;"></div>
+							<hr /> -->
+							<div class="customcharts"  id="yearlyChart" style="height:400px;margin-top: 15px;"></div>
 						</div>
 					</div>
 				</div>
@@ -258,15 +267,18 @@
 		{% endif %}
 
     	<script type="text/javascript">
-  			var observations = {{observations|tojson}}
-  			, configuration = {{configuration|tojson}},
-  			url_limit_territory = "{{url_for('static', filename='custom/territoire.json') }}";
+			  var observations = {{observations|tojson}}, 
+			  configuration = {{configuration|tojson}},
+			  url_limit_territory = "{{url_for('static', filename='custom/territoire.json') }}";
+			  var sources = {{sources|tojson}};
+			  var years = {{years|tojson}};
 	  	</script>
 
 	  	<!-- <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script> -->
 		<script src="{{url_for('static', filename='mapGenerator_tuto.js') }}"></script>
 		<!-- <script src="{{url_for('static', filename='mapHome.js') }}"></script> -->
 			<script src="{{url_for('static', filename='main.js') }}"></script>
+			<script src="{{url_for('static', filename='chart_portails.js') }}"></script>
 			<script>
 				// load lazy the images
 				$(".lazy").lazy();
