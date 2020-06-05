@@ -138,7 +138,9 @@ function onEachFeatureMaille(feature, layer) {
     "</br> <b> Dernière observation: </b>" +
     feature.properties.last_observation +
     " ";
-  layer.bindPopup(popupContent);
+  layer.bindPopup(popupContent, {
+    maxHeight: 200
+  });
 }
 
 // Style maille
