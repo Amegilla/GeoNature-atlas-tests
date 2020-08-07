@@ -38,30 +38,44 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <h1 style="text-align: center;">Présentation de l’ONM</h1>
-              <h2>Présentation générale</h2>
-              <h3>Objectifs</h3>
-              <p>
-                L’Observatoire National des Mammifères (ONM) coordonné par la SFEPM est un projet visant 
-                à fédérer les structures associatives agissant pour l’étude et la protection des Mammifères 
-                sauvages en France. 
-                Il a pour objectifs d’évaluer et d’informer sur l'état et l'évolution des populations 
-                de mammifères et de leurs habitats, ainsi que sur les interactions entre Mammifères et société. 
-                Ces objectifs seront réalisés à partir d’une expertise scientifique et collaborative et 
-                sur la base de l’agrégation -volontaire- des données récoltées sur les Mammifères par 
-                le monde associatif dans un premier temps, par d’autres réseaux (FCEN, RNF,…) par la suite.
-                L’ONM doit à terme permettre ainsi d’agréger des informations, d’analyser les connaissances, 
-                de proposer des indicateurs et de les mettre à disposition de tous, du grand public aux 
-                politiques publiques. Il a pour buts d’accompagner les stratégies régionales et nationales 
-                de conservation des Mammifères, de répondre aux demandes des politiques internationales et 
-                nationales et de permettre leur évaluation partagée. 
-                Un autre objectif de l’ONM est de proposer un centre de ressources (méthodes, données, 
-                informations, rapports, référentiels…) permettant de regrouper l’ensemble des informations 
-                disponibles sur les Mammifères et les travaux conduits en France par le monde associatif.
-              </p>
-              <ul><li><a href="{{url_for('static', filename='docs/ONM_plaquette-de-presentation.pdf') }}" target="_bank">Plaquette de présentation de l’ONM</a></li></ul>
+              <h2 style="font-family: dosis; padding-left: 10px;">Présentation générale</h2>
+              <h3 style="font-family: dosis; padding-left: 20px;">Objectifs</h3>
+              <div class="row">
 
-              <h3>Contexte national</h3>
-              <p>
+                <div class="col-lg-8">
+                  <p class="text-justify">
+                    L’Observatoire National des Mammifères (ONM) coordonné par la SFEPM est un projet visant 
+                    à fédérer les structures associatives agissant pour l’étude et la protection des Mammifères 
+                    sauvages en France. 
+                    Il a pour objectifs d’évaluer et d’informer sur l'état et l'évolution des populations 
+                    de mammifères et de leurs habitats, ainsi que sur les interactions entre Mammifères et société. 
+                    Ces objectifs seront réalisés à partir d’une expertise scientifique et collaborative et 
+                    sur la base de l’agrégation -volontaire- des données récoltées sur les Mammifères par 
+                    le monde associatif dans un premier temps, par d’autres réseaux (FCEN, RNF,…) par la suite.
+                    L’ONM doit à terme permettre ainsi d’agréger des informations, d’analyser les connaissances, 
+                    de proposer des indicateurs et de les mettre à disposition de tous, du grand public aux 
+                    politiques publiques. Il a pour buts d’accompagner les stratégies régionales et nationales 
+                    de conservation des Mammifères, de répondre aux demandes des politiques internationales et 
+                    nationales et de permettre leur évaluation partagée. 
+                    Un autre objectif de l’ONM est de proposer un centre de ressources (méthodes, données, 
+                    informations, rapports, référentiels…) permettant de regrouper l’ensemble des informations 
+                    disponibles sur les Mammifères et les travaux conduits en France par le monde associatif.
+                  </p>
+                  <ul><li><a href="{{url_for('static', filename='docs/ONM_plaquette-de-presentation.pdf') }}" target="_bank">Plaquette de présentation de l’ONM</a></li></ul>
+                </div>
+
+                <div class="col-lg-4">
+                  <img class="img-circle img-responsive center-block" src="{{url_for('static', filename='custom/images/blaieau_denis-avondes_1200px.jpg') }}" alt="blaireau_denis-avondes" width="300" height="450">
+                </div>
+                
+              </div>
+              
+              
+              
+              <h3 style="font-family: dosis; padding-left: 20px;">Contexte national</h3>
+              <div class="row">
+                <div class="col-lg-8">
+              <p class="text-justify">
                 Il n’existe à ce jour aucun Observatoire National sur les Mammifères. 
                 Bien plus qu’un simple portail cartographique, l’ONM est un centre de ressources 
                 destiné à accéder au maximum d'informations récoltées sur les mammifères 
@@ -72,41 +86,75 @@
                 sur ces taxons. La collaboration avec les autres portails ou observatoires 
                 nationaux et régionaux sera la clef d’une coopération effective entre tous.
               </p>
-              <h3>Partenaires</h3>
-              <p>
+            </div>
+
+            <div class="col-lg-4">
+              <img class="img-circle img-responsive center-block" src="{{url_for('static', filename='custom/images/hermine_denis-avondes_1200px.jpg') }}" alt="hermine_denis-avondes" width="300" height="450">
+            </div>
+          </div>
+
+              <div class="row">
+                <div class="col-lg-8">
+              <h3 style="font-family: dosis; padding-left: 20px;">Partenaires</h3>
+              <p class="text-justify">
                 L’ONM est ouvert à toute association naturaliste de statut associatif 1901 ou 1908 
                 collectant des données sur les mammifères sauvages ou autres et souhaitant 
                 adhérer et participer à cet Observatoire. 
                 La liste en l’état des partenaires est disponible dans la section « Partenaires ».
               </p>
               <ul><li><a href="{{url_for('static', filename='custom/templates/partenaires.html') }}" target="_bank">Voir la page partenaires</a></li></ul>
-              <h3>GeoNature</h3>
-              <p>
+            </div>
+
+            <div class="col-lg-4">
+              <img class="img-circle img-responsive center-block" src="{{url_for('static', filename='custom/images/lievre_denis-avondes_1200px.jpg') }}" alt="lievre_denis-avondes" width="300" height="450">
+            </div>
+          </div>
+
+              <div class="row">
+                <div class="col-lg-8">
+              <h3 style="font-family: dosis; padding-left: 20px;">GeoNature</h3>
+              <p class="text-justify">
                 L’ONM est basé sur l'application web GeoNature-atlas développé par le Parc national des Écrins et publié sous licence libre. 
                 Les développements réalisés dans le cadre de l'ONM sont partagés avec les développeurs de GeoNature et proposés à intégration si opportun.
               </p>
               <ul><li><a href="https://geonature.fr/" target="_bank">Aller sur la page du projet geonature</a></li></ul>
             </div>
+
+            <div class="col-lg-4">
+              <img class="img-circle img-responsive center-block" src="{{url_for('static', filename='custom/images/renard_denis-avondes_1200px.jpg') }}" alt="renard_denis-avondes" width="300" height="450">
+            </div>
+          </div>
+            </div>
           </div>
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2>Données</h2>
+              <h2 style="font-family: dosis; padding-left: 10px;">Données</h2>
               <!-- <ul><li>Lien SINP, circulation des données</li></ul> -->
-              <h3>Type de données</h3>
-              <p>
+              <h3 style="font-family: dosis; padding-left: 20px;">Type de données</h3>
+
+              <div class="row">
+                <div class="col-lg-8">
+              <p class="text-justify">
                 La base de données de l’ONM agrège des données d’occurrence (présence ou absence vérifiée) 
                 de Mammifères sauvages présents sur le territoire français. Ces données sont transmises à 
                 minima à la maille 10x10 km, et sont accompagnées d’un ensemble d’attributs définis dans 
                 le but de mieux les qualifier et d’améliorer leur analyse et l’expertise finale.
               </p>
               <ul><li><a href="{{url_for('static', filename='docs/ONM_Format standard_2019.pdf') }}" target="_bank">Format standard de la base de données de l’ONM</a></li></ul>
+            </div>
+
+            <div class="col-lg-4">
+              <img class="img-circle img-responsive center-block" src="{{url_for('static', filename='custom/images/chevreuil_deons-avondes_1200px.jpg') }}" alt="chevreuil_denis-avondes" width="300" height="450">
+            </div>
+          </div>
 
 
-
-              <h3>Catalogue des jeux de données</h3>
+              <h3 style="font-family: dosis; padding-left: 20px;">Catalogue des jeux de données</h3>
               <ul><li>Liste des jeux de données intégrés dans l’ONM (En construction)</li></ul>
               
-              <p>
+              <div class="row">
+                <div class="col-lg-8">
+              <p class="text-justify">
                 L’utilisation d‘une donnée est établie à partir de sa validation et des éventuelles 
                 limites de diffusion.  Elle pourra être utilisée pour des productions de l’ONM, 
                 associatives ou en lien avec les politiques de l'Etat avec la reconnaissance du 
@@ -115,23 +163,29 @@
                 échelle locale, la SFEPM renverra systématiquement vers les associations locales 
                 propriétaires des données.
               </p>
-              <p>
+            </div>
+
+            <div class="col-lg-4">
+              <img class="img-circle  img-responsive center-block" src="{{url_for('static', filename='custom/images/ecureuil_intro.JPG') }}" alt="Generic placeholder image" width="300" height="450">
+            </div>
+          </div>
+              <p class="text-justify">
                 Il est rappelé que les données et les cartes mise à disposition sur ce portail 
                 ne peuvent servir d’unique bibliographie pour les études réglementaires.
               </p>
 
               <ul><li>Pour toute demande d’accès aux données, contactez fanny.paperin@sfepm.org (à voir si on est beaucoup sollicité, on mettra en place un formulaire)</li></ul>
               
-              <h3>Processus de validation des données</h3>
+              <h3 style="font-family: dosis; padding-left: 20px;">Processus de validation des données</h3>
               <p>En construction</p>
 
-              <h3>Circulation des données et lien avec le SINP</h3>
+              <h3 style="font-family: dosis; padding-left: 20px;">Circulation des données et lien avec le SINP</h3>
               <p>En construction</p>
             </div>
           </div>
           <div class="panel panel-default">
             <div class="panel-body">
-              <h2>Contacts</h2>
+              <h2  style="font-family: dosis; padding-left: 10px;">Contacts</h2>
               <ul>
                 <li>Fanny Paperin, Chargée de mission Chiroptères et Coordinatrice pour l’ONM : fanny.paperin@sfepm.org, 02.48.70.40.03</li>
                 <li>Romain Baghi, Responsable technique : romain.baghi@sfepm.org </li>
