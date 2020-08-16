@@ -146,7 +146,8 @@ def portail_chiro():
             current_app.config["ATTR_MAIN_PHOTO"],
         )
 
-    mostViewTaxon = vmTaxonsMostView.mostViewTaxon(connection)
+    portal_taxon_list = vmTaxonsMostView.portal_taxon_list(connection,cd_ref)
+
     stat = vmObservationsRepository.statIndex(connection)
     customStat = vmObservationsRepository.genericStat(
         connection, current_app.config["RANG_STAT"]
@@ -164,13 +165,67 @@ def portail_chiro():
     return render_template(
         "templates/portail_chiro.html",
         observations=observations,
-        mostViewTaxon=mostViewTaxon,
+        mostViewTaxon=portal_taxon_list,
         stat=stat,
         customStat=customStat,
         customStatMedias=customStatMedias,
         years=years,
         sources=sources,
     )
+
+#-------------------------------------------------------------------------------# PORTAIL LOUTRE
+@main.route("/portail_petitmams", methods=["GET", "POST"])
+def portail_petitmams():
+    session = utils.loadSession()
+    connection = utils.engine.connect()
+
+    # ici on passe une liste de cd_ref car les sp de ce portail ne correspondent pas à un groupe taxonomique existant
+    cd_ref = [60015,60176,60205,60187,60237,60119,60127,60106,528793,60062,60102,
+                60038,60276,60249,61280,199963,61258,61283,61357,61379,61412,61418,61402,61435,
+                61425,61290,61448,61458,61494,61498,61510,61543,61568,61580,61585,61587,61648,
+                61618,61636,61174,61392,867244,61357,60243,61153,61204]
+    # prevoir mecanisme pour aller chercher la liste des cd_refs tout seul, en piochant par exemple dans la config
+
+    if current_app.config["AFFICHAGE_MAILLE"]:
+        observations = vmObservationsMaillesRepository.lastObservationsMailles(
+            connection,
+            current_app.config["NB_DAY_LAST_OBS"],
+            current_app.config["ATTR_MAIN_PHOTO"],
+        )
+    else:
+        observations = vmObservationsRepository.lastObservations(
+            connection,
+            current_app.config["NB_DAY_LAST_OBS"],
+            current_app.config["ATTR_MAIN_PHOTO"],
+        )
+
+    portal_taxon_list = vmTaxonsMostView.portal_taxon_list(connection,cd_ref)
+
+    stat = vmObservationsRepository.statIndex(connection)
+    customStat = vmObservationsRepository.genericStat(
+        connection, current_app.config["RANG_STAT"]
+    )
+    customStatMedias = vmObservationsRepository.genericStatMedias(
+        connection, current_app.config["RANG_STAT"]
+    )
+
+    years = vmYearRepository.getYearlyObservationsChilds(connection, cd_ref)
+    sources = vmObservationsRepository.getSourcesAll(connection)
+
+    connection.close()
+    session.close()
+
+    return render_template(
+        "templates/portail_petitmams.html",
+        observations=observations,
+        mostViewTaxon=portal_taxon_list,
+        stat=stat,
+        customStat=customStat,
+        customStatMedias=customStatMedias,
+        years=years,
+        sources=sources,
+    )
+
 #-------------------------------------------------------------------------------# PORTAIL LOUTRE
 @main.route("/portail_loutre", methods=["GET", "POST"])
 def portail_loutre():

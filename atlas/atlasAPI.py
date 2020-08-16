@@ -80,6 +80,14 @@ def getObservationsEspecesMailleGlobalAPI():
     connection.close()
     return jsonify(observations)
 
+# api pour la carte de la page portail petitmams avec nombre d'espece par maille 
+@api.route('/observationsEspecesMailleGlobalPetitMams', methods=['GET'])
+def getObservationsEspecesMailleGlobalAPI_petitMams():
+    connection = utils.engine.connect()
+    observations = vmObservationsEspecesMaillesGlobalRepository.getObservationsMaillesChilds_petitMams(connection)
+    connection.close()
+    return jsonify(observations)
+
 # api pour la carte de la page portail chiro avec nombre d'espece par maille pour les chiro
 @api.route('/observationsEspecesMailleGlobalchiro', methods=['GET'])
 def getObservationsEspecesMailleGlobalAPI_chiro():

@@ -40,7 +40,7 @@
 
 			<!-- Introduction -->
 			{% if configuration.AFFICHAGE_INTRODUCTION %}
-				{% include 'static/custom/templates/introduction_portail_chiro.html' %}
+				{% include 'static/custom/templates/introduction_portail_petitmams.html' %}
 			{% endif %}
 
 			{% if configuration.AFFICHAGE_STAT_GLOBALES %}
@@ -109,15 +109,33 @@
 								<img id ="loadingGif" src="">
 							</div>
 						</div>
-						<div class="col-sm-2" id="mapStat" style="padding-left: 0px; padding-top: 15px;">
-							<p><button id="sp_all" type="button" class="btn btn-primary btn-lg btn-block">Toutes les Espèces<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Les 34 espèces françaises de chiroptères" data-placement="right"></span></button></p>
-							<p><button id="sp_annexeII" type="button" class="btn btn-primary btn-lg btn-block">Espèces annexe II<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces protégées au titre de la directive habitats (annexe II)" data-placement="right"></span></button></p>
-						</div>
-						<div class="col-sm-2" id="mapStat" style="padding-left: 0px; padding-top: 15px;">
-							<p><button id="sp_cr_en" type="button" class="btn btn-primary btn-lg btn-block">Espèces CR et EN<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces classées en danger et en danger CRitique selon la liste rouge UICN France" data-placement="right"></span></button></p>
-							<p><button id="sp_vu" type="button" class="btn btn-primary btn-lg btn-block">Espèces VU<span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Espèces classées Vulnérables selon la liste rouge UICN France" data-placement="right"></span></button></p>
+						<div class="col-sm-4" id="mapStat" style="padding-left: 0px; padding-top: 15px;">
+							<p><button id="sp_all" type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ListModal">Voir la liste</button></p>
 						</div>
 						
+						<!-- Modal -->
+						<div class="modal fade" id="ListModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel">Liste des petits mammifères de France métropolitaine</h4>
+								</div>
+								<div class="modal-body">
+								
+								<ul>
+									<li>Le hérisson</li>
+									<li>L'écureuil roux</li>
+								</ul>
+
+								</div>
+								<div class="modal-footer">
+								<button type="button" >Plus d'informations</button>
+								</div>
+							</div>
+							</div>
+						</div>
+
 						<div class="col-sm-4" id="mapSide">
 							<hr>
 							<!-- <div class="customcharts"  id="sourcesChart" style="height:250px;"></div>
@@ -235,11 +253,10 @@
 					<div class="panel-heading"><h3>Fiches espèces <span class="glyphicon glyphicon-question-sign helpTip" data-toggle="tooltip" data-original-title="Liste des espèces françaises de chiroptères" data-placement="right"></span></h3></div>
 					<div class="row thumbnail-row">
 					{% for tax in mostViewTaxon %}
-					{% if tax.cd_ref != 60630 %} <!-- on elimine la loutre -->
 						<div class="col-lg-2 col-md-4 col-sm-6 col-xs-12 thumbnail-col">
 						    <div class="hovereffect">
 						        {% if tax.path == None %}
-                      <img class="default-logo " src="{{url_for('static', filename='images/picto_Mammiferes_chiro_small.png') }}" alt="">
+                      <img class="default-logo " src="{{url_for('static', filename='images/picto_micromam_small.png') }}" alt="">
 						        {% else %}
                       {% if configuration.REDIMENSIONNEMENT_IMAGE %}
                         <div class ="pictoImg pictoImgMedium" style="background-image:url({{configuration.TAXHUB_URL}}/api/tmedias/thumbnail/{{tax.id_media}}?h=500&w=500);" data-toggle="tooltip" data-original-title="{{tax.group2_inpn}}" data-placement="left"></div>
@@ -253,7 +270,6 @@
 						        </div>
 						    </div>
 						</div>
-					  {% endif %}
 					  {% endfor %}
 					</div>
 				</div>
@@ -275,7 +291,7 @@
 	  	</script>
 
 	  	<!-- <script src="{{url_for('static', filename='custom/maps-custom.js') }}"></script> -->
-		<script src="{{url_for('static', filename='mapGenerator_chiro.js') }}"></script>
+		<script src="{{url_for('static', filename='mapGenerator_petitmams.js') }}"></script>
 		<!-- <script src="{{url_for('static', filename='mapHome.js') }}"></script> -->
 			<script src="{{url_for('static', filename='main.js') }}"></script>
 			<script src="{{url_for('static', filename='chart_portails.js') }}"></script>
