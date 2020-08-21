@@ -365,3 +365,11 @@ font-family: Dosis;
 
 
 /* page de presentation */
+
+
+
+/* limiter la hauter des popup leaflet sur la carte */
+.leaflet-popup-content {
+    max-height: 250px;
+    overflow: auto;
+    }
