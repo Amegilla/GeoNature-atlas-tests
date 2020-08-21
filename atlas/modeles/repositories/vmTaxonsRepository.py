@@ -39,7 +39,7 @@ def getTaxonsCommunes(connection, insee):
             'nom_vern': r.nom_vern,
             'cd_ref': r.cd_ref,
             'last_obs': r.last_obs,
-            'group2_inpn': deleteAccent(r.group2_inpn),
+            'group2_inpn': utils.deleteAccent(r.group2_inpn),
             'patrimonial': r.patrimonial,
             'protection_stricte': r.protection_stricte,
             'path': utils.findPath(r),

@@ -4,7 +4,7 @@
 }
 
 #mapWrapper {
-	position: fixed !important;
+	position: sticky !important;
 	left: 58% !important; 
 }
 
