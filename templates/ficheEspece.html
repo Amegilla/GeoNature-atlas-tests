@@ -700,6 +700,7 @@
             var configuration = {{configuration|tojson}};
             var url_limit_territory = "{{url_for('static', filename='custom/territoire.json') }}";
             var taxonYearMin = {{taxon.taxonSearch.yearmin}};
+            var sliderDefaultMinYear = 2000;
             var cd_ref = {{taxon.taxonSearch.cd_ref}};
             var nb_obs = {{taxon.taxonSearch.nb_obs}};
             var sources = {{sources|tojson}};

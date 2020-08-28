@@ -705,7 +705,7 @@ function generateSliderOnMap() {
   map.addControl(new SliderControl());
 
   mySlider = new Slider("#sliderControl", {
-    value: [taxonYearMin, YEARMAX],
+    value: [sliderDefaultMinYear, YEARMAX],
     min: taxonYearMin,
     max: YEARMAX,
     step: configuration.MAP.STEP

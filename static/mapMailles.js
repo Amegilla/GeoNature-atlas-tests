@@ -26,7 +26,10 @@ $.ajax({
     $('#loadingGif').hide();
 
     // affichage des mailles
-    displayMailleLayerFicheEspece(observations, taxonYearMin, YEARMAX);
+    //displayMailleLayerFicheEspece(observations, taxonYearMin, YEARMAX);
+
+    // affichage des mailles "contemporaines", à partir de l'an 20000, les données plus anciennes sont considérés comme "historiques" et ne sont plus affichées par defaut mais reste accessibles grace au slider.
+    displayMailleLayerFicheEspece(observations, sliderDefaultMinYear, YEARMAX);
 
       //display nb observations
   $("#nbObsLateral").html("<b>"+observations.length+" </b> </br> Observations" );
