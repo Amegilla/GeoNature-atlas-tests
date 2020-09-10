@@ -2,13 +2,6 @@ $(document).ready(function() {
   $("#myTable").show();
   $("#myTable").DataTable({
     responsive: true,
-    order: [defaultSortedColumn, "desc"],
-    aoColumnDefs: [
-      {
-        bSortable: false,
-        aTargets: noSordedColumns
-      }
-    ],
     // ,"scrollY":500
     // ,"deferRender":true
     // ,"scroller": false

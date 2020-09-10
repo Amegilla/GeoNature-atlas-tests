@@ -3,21 +3,9 @@
         <tr>
             <th data-priority="1">Groupe</th>
             <th data-priority="2">Nom Scientifique</th>
-            <th data-priority="6">Nom Vernaculaire</th>
-            {% if configuration.PROTECTION %}
-                <th data-priority="8">Protection</th>
-            {% endif %}
-            
-            <th id="sorted" data-priority="4"> Nombre d'observation(s)</th>
-            <th data-priority="7">Dernière observation</th>
-
-            {% if configuration.PATRIMONIALITE %}
-                <th data-priority="9">{{configuration.PATRIMONIALITE.label}}</th>
-            {% endif %}
-            
-            
-            
-            
+            <th data-priority="4">Nom Vernaculaire</th>
+            <th id="sorted" data-priority="3"> Nombre d'observation(s)</th>
+            <th data-priority="5">Dernière observation</th>
         </tr>
     </thead>
     <tbody>
@@ -49,32 +37,9 @@
                         {{taxon.nom_vern}}
                     {% endif %}
                 </td>
-                {% if configuration.PROTECTION %}
-                    <td>
-                        {% if taxon.protection_stricte == 'oui' %}
-                            <a href="https://inpn.mnhn.fr/espece/cd_nom/{{taxon.cd_ref}}/tab/statut" target="_blank">
-                                <img src="{{url_for('static', filename='images/logo_protection.png') }}" style="width : 40px; height: 40px" data-placement="left" data-toggle="tooltip" data-original-title="Ce taxon béneficie d'un statut de protection">
-                            </a>
-                        {% endif %}
-                    </td>
-                {% endif %}
-                
-                
+
                 <td>{{taxon.nb_obs}}</td>
                 <td>{{taxon.last_obs | int}}</td>
-                {% if configuration.PATRIMONIALITE %}
-                    <td>
-                        {% if taxon.patrimonial in configuration.PATRIMONIALITE.config %}
-                            <img
-                                src="{{url_for('static', filename=configuration.PATRIMONIALITE.config[taxon.patrimonial].icon) }}"
-                                style="width : 30px; height: 30px" data-placement="left" data-toggle="tooltip"
-                                data-original-title="{{configuration.PATRIMONIALITE.config[taxon.patrimonial].text}}" data-placement="right"
-                            >
-                        {% endif %}
-                    </td>
-                {% endif %}
-                
-
                 
             </tr>
         {% endfor %}
