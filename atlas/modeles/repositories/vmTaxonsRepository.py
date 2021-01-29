@@ -176,7 +176,7 @@ def getTaxonsProtection(connection, cd_ref):
             temp = {'cat': 'LR-eu : ', 'statut':r.categorie_lr_europe.upper(),
                 'text':'Classement liste rouge Européenne : '+r.text_lr_europe}
             taxonProtectionList.append(temp)
-        if r.categorie_lr_france is not None:
+        if r.categorie_lr_france is not None and r.text_lr_france is not None:
             temp = {'cat': 'LR-fr : ', 'statut':r.categorie_lr_france,
                 'text':'Classement liste rouge Française : '+r.text_lr_france}
             taxonProtectionList.append(temp)
