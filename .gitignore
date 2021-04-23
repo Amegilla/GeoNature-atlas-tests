@@ -8,6 +8,9 @@ data/ref/emprise_territoire.*
 data/ref/L93*
 static/territoire.json
 static/images/ancien
+static/conf/custom.js
+static/ressources_petits_mams/*
+static/ressources_petits_mams/Chalbos_micromam_entier2020.pdf
 atlas/configuration/config.py
 atlas/configuration/settings.ini
 robots.txt
